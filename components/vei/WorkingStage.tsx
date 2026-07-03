@@ -54,13 +54,13 @@ export default function WorkingStage({
       <div className="mb-10 text-center">
         <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-white/60">
           <Loader2 className="h-3.5 w-3.5 animate-spin" style={{ color: data.accent }} />
-          AI is working · {data.name}
+          AI OS · Deciding · {data.name}
         </div>
         <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-          Understanding your value subject
+          The super brain is reasoning
         </h2>
         <p className="mt-3 text-sm text-white/40">
-          No forms. No questionnaires. The agent reasons on its own.
+          No forms. No questionnaires. The decision engine reasons on its own.
         </p>
       </div>
 

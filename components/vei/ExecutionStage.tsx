@@ -69,10 +69,10 @@ export default function ExecutionStage({
             className="h-1.5 w-1.5 animate-pulse-glow rounded-full"
             style={{ background: data.accent }}
           />
-          Execution Plan · {data.name}
+          The Decision · {data.name}
         </div>
         <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-          The best value path — with actions, not just analysis
+          The brain&apos;s decision — a value path, with actions to match
         </h2>
       </div>
 

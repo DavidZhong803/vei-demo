@@ -2,9 +2,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "VEI — Value Evolution Intelligence",
+  title: "VEI — The AI Operating System for Enterprises",
   description:
-    "Upload Your Value. AI Continuously Finds and Executes Your Best Value Path.",
+    "Every enterprise will have its own AI Operating System. VEI is the enterprise super brain that decides, not just executes.",
 };
 
 export const viewport: Viewport = {

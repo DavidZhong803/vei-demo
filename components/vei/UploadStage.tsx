@@ -1,8 +1,10 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import {
+  ArrowLeft,
   ArrowRight,
   FileText,
   Github,
@@ -42,6 +44,14 @@ export default function UploadStage({
       transition={{ duration: 0.5 }}
       className="mx-auto flex min-h-screen w-full max-w-4xl flex-col items-center justify-center px-6 py-24 text-center"
     >
+      <Link
+        href="/"
+        className="group absolute left-6 top-6 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs text-white/60 transition-colors hover:border-white/25 hover:text-white"
+      >
+        <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
+        Home
+      </Link>
+
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
@@ -49,7 +59,7 @@ export default function UploadStage({
         className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium tracking-wide text-white/70"
       >
         <span className="h-1.5 w-1.5 animate-pulse-glow rounded-full bg-vei-accent" />
-        VEI · Value Evolution Intelligence
+        VEI · Your enterprise AI Operating System
       </motion.div>
 
       <motion.h1
@@ -58,9 +68,9 @@ export default function UploadStage({
         transition={{ delay: 0.12 }}
         className="text-balance text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl"
       >
-        <span className="gradient-text">Upload Your Value.</span>
+        <span className="gradient-text">Feed your value.</span>
         <br />
-        AI Finds &amp; Executes Your Best Path.
+        The super brain decides the path.
       </motion.h1>
 
       <motion.p
@@ -69,9 +79,9 @@ export default function UploadStage({
         transition={{ delay: 0.2 }}
         className="mt-6 max-w-xl text-balance text-lg leading-relaxed text-white/50"
       >
-        上传你的价值主体，AI 持续寻找并执行你的最佳价值实现路径。
+        上传你的价值主体，AI 持续寻找、决策并执行你的最佳价值实现路径。
         <br />
-        Not an analysis tool. Not a consultant. A continuously working AI agent.
+        Not an analysis tool. Not a consultant. A continuously deciding AI agent.
       </motion.p>
 
       {/* Dropzone */}

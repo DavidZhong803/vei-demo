@@ -19,10 +19,10 @@ export default function BottomNav({
       {/* center FAB — semi-circle wedged into the bar top */}
       <button
         onClick={onNew}
-        className="absolute left-1/2 top-0 z-40 flex h-11 w-11 -translate-x-1/2 -translate-y-[26%] items-center justify-center rounded-full bg-vea-emerald text-white shadow-md shadow-vea-emerald/30 ring-[3px] ring-[#f6f8f4]"
+        className="absolute left-1/2 top-0 z-40 flex h-[3.25rem] w-[3.25rem] -translate-x-1/2 -translate-y-[26%] items-center justify-center rounded-full bg-vea-emerald text-white shadow-md shadow-vea-emerald/30 ring-[3px] ring-[#f6f8f4]"
         aria-label={t("New computation", "新建计算")}
       >
-        <Plus className="h-5 w-5" strokeWidth={2.5} />
+        <Plus className="h-6 w-6" strokeWidth={2.5} />
       </button>
 
       <div className="mx-auto flex max-w-md items-end justify-around px-1 pb-0.5 pt-2">
@@ -39,7 +39,7 @@ export default function BottomNav({
           onClick={() => onTab("market")}
         />
         {/* spacer — reserves room for the FAB without shifting side tabs */}
-        <div className="w-11 shrink-0" aria-hidden />
+        <div className="w-[3.25rem] shrink-0" aria-hidden />
         <NavBtn label={t("Alerts", "订阅")} icon={<Bell className="h-5 w-5" />} />
         <NavBtn label={t("Me", "账户")} icon={<User className="h-5 w-5" />} />
       </div>

@@ -17,6 +17,7 @@ import {
 import { motion } from "framer-motion";
 import { INDUSTRIES } from "@/lib/market";
 import { useNow, hhmmss } from "./useNow";
+import { useLang, useT } from "./lang";
 
 const ICONS: Record<string, LucideIcon> = {
   "ai-semi": Cpu,
@@ -37,21 +38,26 @@ export default function IndustrySidebar({
   onSelect: (id: string) => void;
 }) {
   const now = useNow();
+  const { lang } = useLang();
+  const t = useT();
 
   return (
     <aside className="flex h-full w-full flex-col bg-ink text-white/80">
       <div className="px-5 pb-4 pt-6">
         <div className="flex items-center gap-2">
           <span className="text-sm font-semibold tracking-tight text-white">
-            计算市场
+            {t("Computation Market", "计算市场")}
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full border border-vea-neon/25 bg-vea-neon/10 px-2 py-0.5 text-[10px] font-medium text-vea-neon">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-vea-neon" />
-            运行中
+            {t("Live", "运行中")}
           </span>
         </div>
         <p className="mt-1 text-[11px] leading-relaxed text-white/40">
-          Computation Market · AI 正在 7×24 小时持续计算全球市场
+          {t(
+            "VEA computes the global market 7×24, continuously.",
+            "AI 正在 7×24 小时持续计算全球市场。"
+          )}
         </p>
       </div>
 
@@ -84,10 +90,10 @@ export default function IndustrySidebar({
                     active ? "text-white" : "text-white/80"
                   }`}
                 >
-                  {ind.nameZh}
+                  {lang === "zh" ? ind.nameZh : ind.nameEn}
                 </span>
                 <span className="block truncate text-[10px] text-white/35">
-                  {ind.nameEn} · {ind.companies} 家
+                  {ind.companies} {t("companies", "家企业")}
                 </span>
               </span>
               <span
@@ -104,11 +110,13 @@ export default function IndustrySidebar({
 
       <div className="mt-2 border-t border-white/[0.06] px-5 py-4">
         <button className="mb-3 flex w-full items-center justify-between rounded-lg bg-white/[0.04] px-3 py-2 text-xs text-white/60 transition-colors hover:bg-white/[0.07]">
-          查看全部产业
+          {t("View all sectors", "查看全部产业")}
           <ChevronRight className="h-3.5 w-3.5" />
         </button>
         <div className="flex items-center justify-between text-[10px] text-white/30">
-          <span className="font-mono">最后更新 {hhmmss(now)}</span>
+          <span className="font-mono">
+            {t("Updated", "最后更新")} {hhmmss(now)}
+          </span>
           <motion.span
             animate={{ rotate: 360 }}
             transition={{ duration: 6, repeat: Infinity, ease: "linear" }}

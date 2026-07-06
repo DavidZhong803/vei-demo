@@ -9,6 +9,7 @@ import MarketPanel from "./MarketPanel";
 import MyComputation from "./MyComputation";
 import BottomNav from "./BottomNav";
 import FullReportModal from "./FullReportModal";
+import { LangProvider } from "./lang";
 import InputStage from "@/components/vea/InputStage";
 import ComputingStage from "@/components/vea/ComputingStage";
 import { getCase, genericPackage, type VEAResultPackage } from "@/lib/vea";
@@ -66,6 +67,7 @@ export default function Dashboard() {
   }
 
   return (
+    <LangProvider>
     <div className="min-h-[100dvh] bg-paper text-slate-900">
       <TopBar active={tab} onTab={setTab} onNew={startNew} />
 
@@ -142,5 +144,6 @@ export default function Dashboard() {
         )}
       </AnimatePresence>
     </div>
+    </LangProvider>
   );
 }

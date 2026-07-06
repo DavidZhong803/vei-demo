@@ -52,7 +52,8 @@ export const JOURNEY: JourneyStage[] = [
 /** Condensed, glanceable summary used by the live dashboard. */
 export type DashboardSummary = {
   positionScore: number; // 0-100
-  industryStanding: string; // e.g. "前 1% · Top 1%"
+  industryStandingEn: string; // e.g. "Top 1%"
+  industryStandingZh: string; // e.g. "前 1%"
   statusZh: string; // e.g. "加速中"
   statusEn: string; // e.g. "Accelerating"
   realizationProbability: number; // 0-100
@@ -60,7 +61,8 @@ export type DashboardSummary = {
   probabilityEn: string;
   nextActionZh: string;
   nextActionEn: string;
-  nextActionEta: string; // e.g. "14 天后 · in 14d"
+  etaEn: string; // e.g. "in 14d"
+  etaZh: string; // e.g. "14 天后"
   journeyCurrent: number; // index into JOURNEY
   updatedAgo: string; // e.g. "3 分钟前 · 3m ago"
 };
@@ -105,7 +107,8 @@ export const CASES: VEAResultPackage[] = [
     accentNeon: "#2dd4a0",
     dashboard: {
       positionScore: 84,
-      industryStanding: "前 4% · Top 4%",
+      industryStandingEn: "Top 4%",
+      industryStandingZh: "前 4%",
       statusZh: "加速中",
       statusEn: "Accelerating",
       realizationProbability: 84,
@@ -113,7 +116,8 @@ export const CASES: VEAResultPackage[] = [
       probabilityEn: "High probability",
       nextActionZh: "发布参考智能体",
       nextActionEn: "Ship reference agents",
-      nextActionEta: "21 天后 · in 21d",
+      etaEn: "in 21d",
+      etaZh: "21 天后",
       journeyCurrent: 2,
       updatedAgo: "2 分钟前 · 2m ago",
     },
@@ -183,7 +187,8 @@ export const CASES: VEAResultPackage[] = [
     accentNeon: "#2dd4a0",
     dashboard: {
       positionScore: 92,
-      industryStanding: "前 1% · Top 1%",
+      industryStandingEn: "Top 1%",
+      industryStandingZh: "前 1%",
       statusZh: "加速中",
       statusEn: "Accelerating",
       realizationProbability: 91,
@@ -191,7 +196,8 @@ export const CASES: VEAResultPackage[] = [
       probabilityEn: "High probability",
       nextActionZh: "推出 AI 工厂租赁",
       nextActionEn: "Launch AI-factory rental",
-      nextActionEta: "14 天后 · in 14d",
+      etaEn: "in 14d",
+      etaZh: "14 天后",
       journeyCurrent: 3,
       updatedAgo: "刚刚 · just now",
     },
@@ -260,7 +266,8 @@ export const CASES: VEAResultPackage[] = [
     accentNeon: "#2dd4a0",
     dashboard: {
       positionScore: 73,
-      industryStanding: "前 15% · Top 15%",
+      industryStandingEn: "Top 15%",
+      industryStandingZh: "前 15%",
       statusZh: "上升中",
       statusEn: "Rising",
       realizationProbability: 73,
@@ -268,7 +275,8 @@ export const CASES: VEAResultPackage[] = [
       probabilityEn: "Moderate-high",
       nextActionZh: "锁定产能协议",
       nextActionEn: "Lock capacity deals",
-      nextActionEta: "30 天后 · in 30d",
+      etaEn: "in 30d",
+      etaZh: "30 天后",
       journeyCurrent: 1,
       updatedAgo: "5 分钟前 · 5m ago",
     },
@@ -347,7 +355,8 @@ export function genericPackage(subject: string): VEAResultPackage {
     accentNeon: "#2dd4a0",
     dashboard: {
       positionScore: 61,
-      industryStanding: "前 25% · Top 25%",
+      industryStandingEn: "Top 25%",
+      industryStandingZh: "前 25%",
       statusZh: "启动中",
       statusEn: "Emerging",
       realizationProbability: 61,
@@ -355,7 +364,8 @@ export function genericPackage(subject: string): VEAResultPackage {
       probabilityEn: "Moderate",
       nextActionZh: "锁定单一价值窗口",
       nextActionEn: "Pick one value window",
-      nextActionEta: "7 天后 · in 7d",
+      etaEn: "in 7d",
+      etaZh: "7 天后",
       journeyCurrent: 0,
       updatedAgo: "刚刚 · just now",
     },

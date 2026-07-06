@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { motion } from "framer-motion";
+import { useT } from "@/components/vea/dashboard/lang";
 
 /**
  * The computing screen. Per spec: one line only — "VEA is computing…" — on a
@@ -16,9 +17,10 @@ export default function ComputingStage({
   onDone: () => void;
   duration?: number;
 }) {
+  const t = useT();
   useEffect(() => {
-    const t = setTimeout(onDone, duration);
-    return () => clearTimeout(t);
+    const timer = setTimeout(onDone, duration);
+    return () => clearTimeout(timer);
   }, [onDone, duration]);
 
   return (
@@ -50,7 +52,7 @@ export default function ComputingStage({
       </div>
 
       <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-        VEA is computing
+        {t("VEA is computing", "VEA 正在计算")}
         <motion.span
           animate={{ opacity: [0.2, 1, 0.2] }}
           transition={{ duration: 1.4, repeat: Infinity }}
@@ -59,8 +61,9 @@ export default function ComputingStage({
         </motion.span>
       </h1>
       <p className="mt-4 max-w-md text-sm text-slate-500">
-        Computing the optimal monetization path for{" "}
-        <span className="font-medium text-slate-700">{subject}</span>.
+        {t("Computing the optimal monetization path for ", "正在计算最优货币化路径：")}
+        <span className="font-medium text-slate-700">{subject}</span>
+        {t(".", "")}
       </p>
     </motion.div>
   );

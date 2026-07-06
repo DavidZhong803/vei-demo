@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { X } from "lucide-react";
 import ResultPackage from "@/components/vea/ResultPackage";
 import type { VEAResultPackage } from "@/lib/vea";
+import { useT } from "./lang";
 
 export default function FullReportModal({
   pkg,
@@ -14,6 +15,7 @@ export default function FullReportModal({
   onClose: () => void;
   onNew: () => void;
 }) {
+  const t = useT();
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -28,7 +30,7 @@ export default function FullReportModal({
         className="fixed right-5 top-5 z-10 inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white/90 px-3.5 py-1.5 text-xs text-slate-500 backdrop-blur transition-colors hover:border-black/20 hover:text-slate-900"
       >
         <X className="h-3.5 w-3.5" />
-        关闭 Close
+        {t("Close", "关闭")}
       </button>
       <motion.div
         initial={{ opacity: 0, y: 16 }}

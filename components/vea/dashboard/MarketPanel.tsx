@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, ArrowUp, ArrowDown, Minus, Radio } from "lucide-react";
 import { INDUSTRIES, getIndustry, type ValueNode } from "@/lib/market";
 import { hhmmss } from "./useNow";
+import { useLang, useT } from "./lang";
 
 type LiveNode = ValueNode & { updatedAt: number; flash: boolean };
 
@@ -40,6 +41,8 @@ export default function MarketPanel({
   selectedId: string;
   onSelect: (id: string) => void;
 }) {
+  const { lang } = useLang();
+  const t = useT();
   const industry = getIndustry(selectedId) ?? INDUSTRIES[0];
   const [nodes, setNodes] = useState<LiveNode[]>([]);
   const flashTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -100,19 +103,19 @@ export default function MarketPanel({
         <div>
           <div className="flex items-center gap-2">
             <h2 className="text-base font-semibold text-slate-900">
-              {industry.nameZh}
+              {lang === "zh" ? industry.nameZh : industry.nameEn}
             </h2>
             <span className="inline-flex items-center gap-1 text-[11px] font-medium text-vea-emerald">
               <Radio className="h-3 w-3 animate-pulse" />
-              7×24 实时
+              {t("7×24 Live", "7×24 实时")}
             </span>
           </div>
           <p className="mt-0.5 text-xs text-slate-400">
-            {industry.nameEn} value chain · live computation
+            {t("Value chain · live computation", "价值链 · 实时计算")}
           </p>
         </div>
         <span className="hidden shrink-0 rounded-full bg-black/[0.04] px-2.5 py-1 text-[11px] text-slate-500 sm:block">
-          {industry.companies} 家企业
+          {industry.companies} {t("companies", "家企业")}
         </span>
       </div>
 
@@ -128,18 +131,17 @@ export default function MarketPanel({
                 : "bg-black/[0.04] text-slate-500"
             }`}
           >
-            {ind.nameZh}
+            {lang === "zh" ? ind.nameZh : ind.nameEn}
           </button>
         ))}
       </div>
 
       {/* column headers */}
       <div className="grid grid-cols-[1.4fr_auto_1.6fr_auto] items-center gap-3 px-5 py-2.5 text-[10px] uppercase tracking-wider text-slate-400 sm:gap-4">
-        <span>节点 Node</span>
-        <span className="text-center">位置</span>
-        <span className="hidden sm:block">下一事件 Next Event</span>
-        <span className="sm:hidden">事件</span>
-        <span className="text-right">更新</span>
+        <span>{t("Node", "节点")}</span>
+        <span className="text-center">{t("Pos.", "位置")}</span>
+        <span>{t("Next Event", "下一事件")}</span>
+        <span className="text-right">{t("Updated", "更新")}</span>
       </div>
 
       {/* rows */}
@@ -159,7 +161,7 @@ export default function MarketPanel({
             <div className="min-w-0">
               <div className="flex items-center gap-1.5">
                 <span className="truncate text-sm font-medium text-slate-800">
-                  {node.nameZh}
+                  {lang === "zh" ? node.nameZh : node.nameEn}
                 </span>
                 {node.flash && (
                   <motion.span
@@ -172,7 +174,7 @@ export default function MarketPanel({
                 )}
               </div>
               <span className="block truncate text-[10px] text-slate-400">
-                {node.nameEn}
+                {lang === "zh" ? node.nameEn : node.nameZh}
               </span>
             </div>
 
@@ -181,9 +183,8 @@ export default function MarketPanel({
             </div>
 
             <div className="min-w-0">
-              <p className="truncate text-xs text-slate-600">{node.nextEventZh}</p>
-              <p className="hidden truncate text-[10px] text-slate-400 sm:block">
-                {node.nextEventEn}
+              <p className="truncate text-xs text-slate-600">
+                {lang === "zh" ? node.nextEventZh : node.nextEventEn}
               </p>
             </div>
 
@@ -200,7 +201,7 @@ export default function MarketPanel({
 
       {/* footer */}
       <button className="flex items-center justify-center gap-1.5 border-t border-black/[0.06] py-3 text-xs font-medium text-slate-500 transition-colors hover:text-vea-emerald">
-        查看全部价值链 View full value chain
+        {t("View full value chain", "查看全部价值链")}
         <ArrowRight className="h-3.5 w-3.5" />
       </button>
     </section>

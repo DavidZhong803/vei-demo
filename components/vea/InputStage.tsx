@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft, FileText, Paperclip, Sparkles } from "lucide-react";
 import { CASES } from "@/lib/vea";
+import { useT } from "@/components/vea/dashboard/lang";
 
 export default function InputStage({
   onCompute,
@@ -16,6 +17,7 @@ export default function InputStage({
   const [value, setValue] = useState("");
   const [file, setFile] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const t = useT();
 
   const canCompute = value.trim().length > 0 || !!file;
 
@@ -39,7 +41,7 @@ export default function InputStage({
           className="group absolute left-6 top-6 inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-black/[0.03] px-3.5 py-1.5 text-xs text-slate-500 transition-colors hover:border-black/20 hover:text-slate-800"
         >
           <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
-          返回 Back
+          {t("Back", "返回")}
         </button>
       ) : (
         <Link
@@ -67,7 +69,7 @@ export default function InputStage({
         transition={{ delay: 0.1 }}
         className="text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl"
       >
-        What would you like VEA to compute?
+        {t("What would you like VEA to compute?", "您想让 VEA 计算什么？")}
       </motion.h1>
       <motion.p
         initial={{ opacity: 0, y: 14 }}
@@ -75,8 +77,10 @@ export default function InputStage({
         transition={{ delay: 0.16 }}
         className="mt-4 max-w-lg text-balance text-base leading-relaxed text-slate-500"
       >
-        输入一个价值主体 — a company, technology, patent, project, or document.
-        VEA computes and delivers the result.
+        {t(
+          "Enter a value subject — a company, technology, patent, project, or document. VEA computes and delivers the result.",
+          "输入一个价值主体 —— 企业、技术、专利、项目或文档。VEA 计算并交付结果。"
+        )}
       </motion.p>
 
       {/* input card */}
@@ -93,7 +97,10 @@ export default function InputStage({
             onKeyDown={(e) => {
               if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) submit();
             }}
-            placeholder="e.g. Meta, a memory-controller patent, a business plan…"
+            placeholder={t(
+              "e.g. Meta, a memory-controller patent, a business plan…",
+              "例如：Meta、一项存储控制器专利、一份商业计划…"
+            )}
             rows={3}
             className="w-full resize-none rounded-xl bg-transparent px-4 py-3 text-base text-slate-800 placeholder:text-slate-400 focus:outline-none"
           />
@@ -103,7 +110,9 @@ export default function InputStage({
               className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs text-slate-500 transition-colors hover:bg-black/[0.04] hover:text-slate-700"
             >
               <Paperclip className="h-3.5 w-3.5" />
-              {file ? "1 file attached" : "Attach PDF / Word"}
+              {file
+                ? t("1 file attached", "已附加 1 个文件")
+                : t("Attach PDF / Word", "附加 PDF / Word")}
             </button>
             <input
               ref={inputRef}
@@ -119,7 +128,7 @@ export default function InputStage({
               className="inline-flex items-center gap-2 rounded-full bg-vea-emerald px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-vea-emerald-soft disabled:cursor-not-allowed disabled:opacity-40"
             >
               <Sparkles className="h-4 w-4" />
-              Compute
+              {t("Compute", "开始计算")}
             </button>
           </div>
         </div>
@@ -140,7 +149,7 @@ export default function InputStage({
         className="mt-10 w-full"
       >
         <p className="mb-4 text-xs uppercase tracking-[0.2em] text-slate-400">
-          Or open a computed case
+          {t("Or open a computed case", "或打开一个已计算案例")}
         </p>
         <div className="flex flex-wrap justify-center gap-3">
           {CASES.map((c) => (

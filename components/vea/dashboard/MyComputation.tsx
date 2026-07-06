@@ -13,8 +13,10 @@ import {
   Plus,
 } from "lucide-react";
 import { CASES, JOURNEY, type VEAResultPackage } from "@/lib/vea";
+import { useLang, useT } from "./lang";
 
 function Stepper({ current }: { current: number }) {
+  const { lang } = useLang();
   return (
     <div className="flex items-center">
       {JOURNEY.map((stage, i) => {
@@ -38,7 +40,7 @@ function Stepper({ current }: { current: number }) {
                   state === "current" ? "text-slate-800" : "text-slate-400"
                 }`}
               >
-                {stage.labelZh}
+                {lang === "zh" ? stage.labelZh : stage.labelEn}
               </span>
             </div>
             {i < JOURNEY.length - 1 && (
@@ -86,6 +88,8 @@ export default function MyComputation({
   onOpenFull: () => void;
   onNew: () => void;
 }) {
+  const { lang } = useLang();
+  const t = useT();
   const d = pkg.dashboard;
   const nextEvent = pkg.keyEvents.find((e) => e.status !== "Done") ?? pkg.keyEvents[0];
 
@@ -94,9 +98,14 @@ export default function MyComputation({
       {/* header */}
       <div className="flex items-start justify-between gap-3 border-b border-black/[0.06] p-5">
         <div>
-          <h2 className="text-base font-semibold text-slate-900">我的计算</h2>
+          <h2 className="text-base font-semibold text-slate-900">
+            {t("My Computation", "我的计算")}
+          </h2>
           <p className="mt-0.5 text-xs text-slate-400">
-            My Computation · 您的专属技术资产计算结果
+            {t(
+              "Your dedicated technical-asset result",
+              "您的专属技术资产计算结果"
+            )}
           </p>
         </div>
         <div className="relative shrink-0">
@@ -124,7 +133,7 @@ export default function MyComputation({
           <div>
             <p className="mb-1 flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-wider text-slate-400">
               <Target className="h-3 w-3 text-vea-emerald" />
-              当前位置 Position
+              {t("Current Position", "当前位置")}
             </p>
             <div className="flex items-baseline gap-1.5">
               <motion.span
@@ -137,26 +146,32 @@ export default function MyComputation({
               <span className="text-lg text-slate-400">/100</span>
             </div>
             <p className="mt-1 text-xs text-slate-500">
-              行业位置 <span className="font-medium text-slate-700">{d.industryStanding}</span>
+              {t("Industry rank", "行业位置")}{" "}
+              <span className="font-medium text-slate-700">
+                {lang === "zh" ? d.industryStandingZh : d.industryStandingEn}
+              </span>
             </p>
           </div>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-vea-emerald/10 px-3 py-1.5 text-sm font-semibold text-vea-emerald">
             <TrendingUp className="h-4 w-4" />
-            {d.statusZh}
+            {lang === "zh" ? d.statusZh : d.statusEn}
           </span>
         </div>
 
         {/* best path stepper */}
         <div className="rounded-xl border border-black/[0.06] bg-black/[0.015] p-4">
           <p className="mb-4 text-[10px] font-medium uppercase tracking-wider text-slate-400">
-            最优路径 Best Path
+            {t("Best Path", "最优路径")}
           </p>
           <Stepper current={d.journeyCurrent} />
         </div>
 
         {/* stat tiles */}
         <div className="grid grid-cols-2 gap-3">
-          <StatTile icon={<Zap className="h-3 w-3" />} label="实现概率 Probability">
+          <StatTile
+            icon={<Zap className="h-3 w-3" />}
+            label={t("Probability", "实现概率")}
+          >
             <div className="flex items-baseline gap-1">
               <span className="text-2xl font-semibold text-slate-900">
                 {d.realizationProbability}
@@ -171,20 +186,27 @@ export default function MyComputation({
                 transition={{ duration: 1, ease: "easeOut" }}
               />
             </div>
-            <p className="mt-1.5 text-[11px] text-slate-500">{d.probabilityZh}</p>
+            <p className="mt-1.5 text-[11px] text-slate-500">
+              {lang === "zh" ? d.probabilityZh : d.probabilityEn}
+            </p>
           </StatTile>
 
-          <StatTile icon={<Target className="h-3 w-3" />} label="下一步动作 Next Action">
+          <StatTile
+            icon={<Target className="h-3 w-3" />}
+            label={t("Next Action", "下一步动作")}
+          >
             <p className="text-sm font-medium leading-snug text-slate-800">
-              {d.nextActionZh}
+              {lang === "zh" ? d.nextActionZh : d.nextActionEn}
             </p>
-            <p className="mt-0.5 text-[11px] text-slate-400">{d.nextActionEn}</p>
             <p className="mt-1.5 text-[11px] font-medium text-vea-emerald">
-              预计 {d.nextActionEta}
+              {t("ETA", "预计")} {lang === "zh" ? d.etaZh : d.etaEn}
             </p>
           </StatTile>
 
-          <StatTile icon={<CalendarClock className="h-3 w-3" />} label="关键事件 Key Event">
+          <StatTile
+            icon={<CalendarClock className="h-3 w-3" />}
+            label={t("Key Event", "关键事件")}
+          >
             <p className="text-sm font-medium leading-snug text-slate-800">
               {nextEvent.title}
             </p>
@@ -193,12 +215,15 @@ export default function MyComputation({
                 {nextEvent.date}
               </span>
               <span className="text-[11px] text-slate-400">
-                {nextEvent.probability}% 概率
+                {nextEvent.probability}% {t("prob.", "概率")}
               </span>
             </div>
           </StatTile>
 
-          <StatTile icon={<ShieldCheck className="h-3 w-3" />} label="验证状态 Validation">
+          <StatTile
+            icon={<ShieldCheck className="h-3 w-3" />}
+            label={t("Validation", "验证状态")}
+          >
             <div className="space-y-1.5">
               {pkg.validation.map((v) => (
                 <div key={v.channel} className="flex items-center gap-1.5">
@@ -211,7 +236,13 @@ export default function MyComputation({
                           : "text-slate-300"
                     }`}
                   />
-                  <span className="text-xs text-slate-600">{v.channel}</span>
+                  <span className="text-xs text-slate-600">
+                    {v.channel === "Commercial"
+                      ? t("Commercial", "商业")
+                      : v.channel === "Monetization"
+                        ? t("Monetization", "货币化")
+                        : t("Capital Market", "资本市场")}
+                  </span>
                 </div>
               ))}
             </div>
@@ -221,7 +252,7 @@ export default function MyComputation({
         {/* key event timeline */}
         <div>
           <p className="mb-3 text-[10px] font-medium uppercase tracking-wider text-slate-400">
-            关键事件时间链 Event Timeline
+            {t("Event Timeline", "关键事件时间链")}
           </p>
           <div className="flex items-center gap-1">
             {pkg.keyEvents.map((e, i) => (
@@ -253,7 +284,7 @@ export default function MyComputation({
           onClick={onOpenFull}
           className="flex flex-1 items-center justify-center gap-1.5 rounded-full bg-vea-emerald py-2.5 text-sm font-semibold text-white transition-colors hover:bg-vea-emerald-soft"
         >
-          查看完整报告 Full Report
+          {t("View Full Report", "查看完整报告")}
           <ArrowRight className="h-4 w-4" />
         </button>
         <button
@@ -261,7 +292,7 @@ export default function MyComputation({
           className="flex items-center justify-center gap-1.5 rounded-full border border-black/10 bg-white px-4 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:border-vea-emerald/40 hover:text-vea-emerald"
         >
           <Plus className="h-4 w-4" />
-          新建
+          {t("New", "新建")}
         </button>
       </div>
     </section>

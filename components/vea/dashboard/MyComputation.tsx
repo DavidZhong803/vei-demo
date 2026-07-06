@@ -57,18 +57,54 @@ function Stepper({ current }: { current: number }) {
   );
 }
 
+/** Mobile: compact dot stepper — current stage label only */
+function MobileStagePill({ current }: { current: number }) {
+  const { lang } = useLang();
+  const t = useT();
+  const stage = JOURNEY[current];
+  return (
+    <div className="rounded-xl border border-black/[0.06] bg-black/[0.015] p-3">
+      <p className="mb-2.5 text-[10px] font-medium uppercase tracking-wider text-slate-400">
+        {t("Best Path", "最优路径")}
+      </p>
+      <div className="flex items-center gap-2">
+        {JOURNEY.map((s, i) => (
+          <span
+            key={s.labelEn}
+            className={`h-1.5 flex-1 rounded-full ${
+              i < current
+                ? "bg-vea-emerald"
+                : i === current
+                  ? "bg-vea-emerald ring-2 ring-vea-emerald/25"
+                  : "bg-black/[0.08]"
+            }`}
+          />
+        ))}
+      </div>
+      <p className="mt-2 text-sm font-medium text-slate-800">
+        {t("Stage", "阶段")} {current + 1} ·{" "}
+        {lang === "zh" ? stage.labelZh : stage.labelEn}
+      </p>
+    </div>
+  );
+}
+
 function StatTile({
   icon,
   label,
   children,
+  className = "",
 }: {
   icon: React.ReactNode;
   label: string;
   children: React.ReactNode;
+  className?: string;
 }) {
   return (
-    <div className="rounded-xl border border-black/[0.06] bg-black/[0.015] p-3.5">
-      <div className="mb-2 flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-wider text-slate-400">
+    <div
+      className={`rounded-xl border border-black/[0.06] bg-black/[0.015] p-3 sm:p-3.5 ${className}`}
+    >
+      <div className="mb-1.5 flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-wider text-slate-400 sm:mb-2">
         <span className="text-vea-emerald">{icon}</span>
         {label}
       </div>
@@ -94,9 +130,65 @@ export default function MyComputation({
   const nextEvent = pkg.keyEvents.find((e) => e.status !== "Done") ?? pkg.keyEvents[0];
 
   return (
-    <section className="paper-card flex h-full flex-col rounded-2xl">
-      {/* header */}
-      <div className="flex items-start justify-between gap-3 border-b border-black/[0.06] p-5">
+    <section className="paper-card flex flex-col rounded-2xl lg:h-full">
+      {/* ── Mobile header: asset + score at a glance ── */}
+      <div className="border-b border-black/[0.06] p-3 sm:hidden">
+        <div className="flex items-center justify-between gap-2">
+          <div className="relative min-w-0 flex-1">
+            <select
+              value={CASES.some((c) => c.id === pkg.id) ? pkg.id : ""}
+              onChange={(e) => onSelectCase(e.target.value)}
+              className="w-full appearance-none truncate rounded-lg border border-black/10 bg-white py-2 pl-3 pr-8 text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-vea-emerald/30"
+            >
+              {!CASES.some((c) => c.id === pkg.id) && (
+                <option value="">{pkg.subject}</option>
+              )}
+              {CASES.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.subject}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-slate-400" />
+          </div>
+          <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-vea-emerald/10 px-2.5 py-1 text-xs font-semibold text-vea-emerald">
+            <TrendingUp className="h-3.5 w-3.5" />
+            {lang === "zh" ? d.statusZh : d.statusEn}
+          </span>
+        </div>
+
+        <div className="mt-3 flex items-end justify-between">
+          <div>
+            <p className="text-[10px] font-medium uppercase tracking-wider text-slate-400">
+              {t("Current Position", "当前位置")}
+            </p>
+            <div className="flex items-baseline gap-1">
+              <span className="text-3xl font-semibold tracking-tight text-slate-900">
+                {d.positionScore}
+              </span>
+              <span className="text-base text-slate-400">/100</span>
+            </div>
+            <p className="mt-0.5 text-[11px] text-slate-500">
+              {t("Industry rank", "行业位置")}{" "}
+              <span className="font-medium text-slate-700">
+                {lang === "zh" ? d.industryStandingZh : d.industryStandingEn}
+              </span>
+            </p>
+          </div>
+          <div className="text-right">
+            <p className="text-[10px] font-medium uppercase tracking-wider text-slate-400">
+              {t("Probability", "实现概率")}
+            </p>
+            <p className="text-2xl font-semibold text-slate-900">
+              {d.realizationProbability}
+              <span className="text-sm text-slate-400">%</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Desktop header ── */}
+      <div className="hidden items-start justify-between gap-3 border-b border-black/[0.06] p-5 sm:flex">
         <div>
           <h2 className="text-base font-semibold text-slate-900">
             {t("My Computation", "我的计算")}
@@ -127,9 +219,9 @@ export default function MyComputation({
         </div>
       </div>
 
-      <div className="flex-1 space-y-5 overflow-y-auto p-5">
-        {/* position + status */}
-        <div className="flex items-end justify-between gap-4">
+      <div className="flex-1 space-y-3 overflow-y-auto p-3 sm:space-y-5 sm:p-5">
+        {/* desktop score row */}
+        <div className="hidden items-end justify-between gap-4 sm:flex">
           <div>
             <p className="mb-1 flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-wider text-slate-400">
               <Target className="h-3 w-3 text-vea-emerald" />
@@ -158,20 +250,63 @@ export default function MyComputation({
           </span>
         </div>
 
-        {/* best path stepper */}
-        <div className="rounded-xl border border-black/[0.06] bg-black/[0.015] p-4">
+        {/* mobile stage pill / desktop stepper */}
+        <div className="sm:hidden">
+          <MobileStagePill current={d.journeyCurrent} />
+        </div>
+        <div className="hidden rounded-xl border border-black/[0.06] bg-black/[0.015] p-4 sm:block">
           <p className="mb-4 text-[10px] font-medium uppercase tracking-wider text-slate-400">
             {t("Best Path", "最优路径")}
           </p>
           <Stepper current={d.journeyCurrent} />
         </div>
 
-        {/* stat tiles */}
-        <div className="grid grid-cols-2 gap-3">
-          <StatTile
-            icon={<Zap className="h-3 w-3" />}
-            label={t("Probability", "实现概率")}
-          >
+        {/* mobile: next action + key event stacked */}
+        <div className="space-y-2 sm:hidden">
+          <StatTile icon={<Target className="h-3 w-3" />} label={t("Next Action", "下一步动作")}>
+            <p className="text-sm font-medium leading-snug text-slate-800">
+              {lang === "zh" ? d.nextActionZh : d.nextActionEn}
+            </p>
+            <p className="mt-1 text-[11px] font-medium text-vea-emerald">
+              {t("ETA", "预计")} {lang === "zh" ? d.etaZh : d.etaEn}
+            </p>
+          </StatTile>
+          <StatTile icon={<CalendarClock className="h-3 w-3" />} label={t("Key Event", "关键事件")}>
+            <p className="text-sm font-medium leading-snug text-slate-800">
+              {nextEvent.title}
+            </p>
+            <p className="mt-1 font-mono text-[11px] text-slate-400">
+              {nextEvent.date} · {nextEvent.probability}% {t("prob.", "概率")}
+            </p>
+          </StatTile>
+          <div className="flex flex-wrap gap-2 pt-1">
+            {pkg.validation.map((v) => (
+              <span
+                key={v.channel}
+                className="inline-flex items-center gap-1 rounded-full border border-black/[0.06] bg-black/[0.02] px-2.5 py-1 text-[11px] text-slate-600"
+              >
+                <CheckCircle2
+                  className={`h-3 w-3 ${
+                    v.strength === "Strong"
+                      ? "text-vea-emerald"
+                      : v.strength === "Moderate"
+                        ? "text-amber-500"
+                        : "text-slate-300"
+                  }`}
+                />
+                {v.channel === "Commercial"
+                  ? t("Commercial", "商业")
+                  : v.channel === "Monetization"
+                    ? t("Monetization", "货币化")
+                    : t("Capital Market", "资本市场")}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* desktop stat grid */}
+        <div className="hidden grid-cols-2 gap-3 sm:grid">
+          <StatTile icon={<Zap className="h-3 w-3" />} label={t("Probability", "实现概率")}>
             <div className="flex items-baseline gap-1">
               <span className="text-2xl font-semibold text-slate-900">
                 {d.realizationProbability}
@@ -191,10 +326,7 @@ export default function MyComputation({
             </p>
           </StatTile>
 
-          <StatTile
-            icon={<Target className="h-3 w-3" />}
-            label={t("Next Action", "下一步动作")}
-          >
+          <StatTile icon={<Target className="h-3 w-3" />} label={t("Next Action", "下一步动作")}>
             <p className="text-sm font-medium leading-snug text-slate-800">
               {lang === "zh" ? d.nextActionZh : d.nextActionEn}
             </p>
@@ -203,10 +335,7 @@ export default function MyComputation({
             </p>
           </StatTile>
 
-          <StatTile
-            icon={<CalendarClock className="h-3 w-3" />}
-            label={t("Key Event", "关键事件")}
-          >
+          <StatTile icon={<CalendarClock className="h-3 w-3" />} label={t("Key Event", "关键事件")}>
             <p className="text-sm font-medium leading-snug text-slate-800">
               {nextEvent.title}
             </p>
@@ -220,10 +349,7 @@ export default function MyComputation({
             </div>
           </StatTile>
 
-          <StatTile
-            icon={<ShieldCheck className="h-3 w-3" />}
-            label={t("Validation", "验证状态")}
-          >
+          <StatTile icon={<ShieldCheck className="h-3 w-3" />} label={t("Validation", "验证状态")}>
             <div className="space-y-1.5">
               {pkg.validation.map((v) => (
                 <div key={v.channel} className="flex items-center gap-1.5">
@@ -249,8 +375,8 @@ export default function MyComputation({
           </StatTile>
         </div>
 
-        {/* key event timeline */}
-        <div>
+        {/* desktop event timeline */}
+        <div className="hidden sm:block">
           <p className="mb-3 text-[10px] font-medium uppercase tracking-wider text-slate-400">
             {t("Event Timeline", "关键事件时间链")}
           </p>
@@ -278,8 +404,8 @@ export default function MyComputation({
         </div>
       </div>
 
-      {/* footer actions */}
-      <div className="flex items-center gap-2 border-t border-black/[0.06] p-4">
+      {/* footer — mobile: single CTA; desktop: both buttons */}
+      <div className="flex items-center gap-2 border-t border-black/[0.06] p-3 sm:p-4">
         <button
           onClick={onOpenFull}
           className="flex flex-1 items-center justify-center gap-1.5 rounded-full bg-vea-emerald py-2.5 text-sm font-semibold text-white transition-colors hover:bg-vea-emerald-soft"
@@ -289,7 +415,7 @@ export default function MyComputation({
         </button>
         <button
           onClick={onNew}
-          className="flex items-center justify-center gap-1.5 rounded-full border border-black/10 bg-white px-4 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:border-vea-emerald/40 hover:text-vea-emerald"
+          className="hidden items-center justify-center gap-1.5 rounded-full border border-black/10 bg-white px-4 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:border-vea-emerald/40 hover:text-vea-emerald sm:flex"
         >
           <Plus className="h-4 w-4" />
           {t("New", "新建")}

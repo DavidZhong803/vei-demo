@@ -21,9 +21,51 @@ export default function TopBar({
   const t = useT();
 
   return (
-    <header className="sticky top-0 z-30 border-b border-black/[0.07] bg-[#f6f8f4]/85 backdrop-blur-md">
-      <div className="flex h-14 items-center gap-4 px-4 sm:px-5">
-        {/* brand */}
+    <header className="sticky top-0 z-30 border-b border-black/[0.07] bg-[#f6f8f4]/90 backdrop-blur-md">
+      {/* ── Mobile: compact single row ── */}
+      <div className="flex h-12 items-center gap-2 px-3 sm:hidden">
+        <Link href="/" className="flex shrink-0 items-center gap-1.5">
+          <span className="flex h-6 w-6 items-center justify-center rounded-md bg-vea-emerald text-[11px] font-bold text-white">
+            V
+          </span>
+          <span className="text-sm font-semibold tracking-tight text-slate-900">
+            VEA
+          </span>
+        </Link>
+
+        <span className="inline-flex items-center gap-1 rounded-full border border-vea-amber/25 bg-vea-amber/[0.08] px-2 py-0.5 text-[10px] font-medium text-vea-amber">
+          <span className="h-1 w-1 animate-pulse rounded-full bg-vea-amber-soft" />
+          7×24
+        </span>
+
+        <div className="flex-1" />
+
+        <div className="flex items-center rounded-full border border-black/10 bg-black/[0.02] p-0.5 text-[10px] font-medium">
+          <button
+            onClick={() => setLang("en")}
+            className={`rounded-full px-1.5 py-0.5 transition-colors ${
+              lang === "en"
+                ? "bg-vea-emerald text-white"
+                : "text-slate-500"
+            }`}
+          >
+            EN
+          </button>
+          <button
+            onClick={() => setLang("zh")}
+            className={`rounded-full px-1.5 py-0.5 transition-colors ${
+              lang === "zh"
+                ? "bg-vea-emerald text-white"
+                : "text-slate-500"
+            }`}
+          >
+            中文
+          </button>
+        </div>
+      </div>
+
+      {/* ── Desktop: full bar ── */}
+      <div className="hidden h-14 items-center gap-4 px-5 sm:flex">
         <Link href="/" className="flex shrink-0 items-center gap-2">
           <span className="flex h-7 w-7 items-center justify-center rounded-md bg-vea-emerald text-sm font-bold text-white">
             V
@@ -36,7 +78,6 @@ export default function TopBar({
           </span>
         </Link>
 
-        {/* desktop tabs */}
         <nav className="ml-2 hidden items-center gap-1 lg:flex">
           {(
             [
@@ -60,7 +101,6 @@ export default function TopBar({
 
         <div className="flex-1" />
 
-        {/* live status */}
         <span className="hidden items-center gap-1.5 rounded-full border border-vea-emerald/20 bg-vea-emerald/[0.06] px-3 py-1.5 text-[11px] font-medium text-vea-emerald sm:flex">
           <span className="relative flex h-1.5 w-1.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-vea-emerald opacity-70" />
@@ -70,13 +110,11 @@ export default function TopBar({
           <span className="font-mono text-vea-emerald/60">{hhmmss(now)}</span>
         </span>
 
-        {/* search (decorative) */}
         <div className="hidden items-center gap-2 rounded-full border border-black/10 bg-black/[0.02] px-3 py-1.5 text-xs text-slate-400 xl:flex">
           <Search className="h-3.5 w-3.5" />
           {t("Search companies / sectors / events", "搜索企业 / 产业 / 事件")}
         </div>
 
-        {/* language toggle */}
         <div className="flex items-center rounded-full border border-black/10 bg-black/[0.02] p-0.5 text-[11px] font-medium">
           <button
             onClick={() => setLang("en")}
@@ -100,7 +138,6 @@ export default function TopBar({
           </button>
         </div>
 
-        {/* new computation */}
         <button
           onClick={onNew}
           className="inline-flex items-center gap-1.5 rounded-full bg-vea-emerald px-3.5 py-2 text-xs font-semibold text-white transition-colors hover:bg-vea-emerald-soft"

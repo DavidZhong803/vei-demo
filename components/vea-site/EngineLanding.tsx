@@ -53,45 +53,45 @@ export default function EngineLanding() {
 
   return (
     <main className="relative h-[100dvh] snap-y snap-mandatory overflow-y-auto scroll-smooth bg-ink text-white">
-      {/* top bar (fixed across sections) */}
-      <motion.header
-        initial={{ opacity: 0, y: -12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="fixed inset-x-0 top-0 z-30"
-      >
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-          <div className="flex items-center gap-2.5">
-            <span className="flex h-6 w-6 items-center justify-center rounded-md border border-vea-neon/30 bg-vea-neon/10 text-[11px] font-bold text-vea-neon">
-              V
-            </span>
-            <span className="text-sm font-semibold tracking-tight text-white/90">
-              VEA
-            </span>
-            <span className="hidden text-xs text-white/35 md:inline">
-              Technical Monetization Computational Framework
-            </span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Link
-              href="/cases"
-              className="rounded-full px-4 py-2 text-xs font-medium text-white/60 transition-colors hover:text-white"
-            >
-              Cases
-            </Link>
-            <Link
-              href="/app"
-              className="group inline-flex items-center gap-1.5 rounded-full border border-vea-neon/30 bg-vea-neon/10 px-4 py-2 text-xs font-medium text-vea-neon transition-colors hover:bg-vea-neon/15"
-            >
-              Try the Beta
-              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-            </Link>
-          </div>
-        </div>
-      </motion.header>
-
       {/* SECTION 1 — hero */}
-      <section className="relative flex h-[100dvh] snap-start snap-always flex-col items-center justify-center overflow-hidden px-6 text-center">
+      <section className="relative flex min-h-[100dvh] snap-start snap-always flex-col overflow-hidden px-4 pb-14 pt-[env(safe-area-inset-top)] text-center sm:px-6">
+        {/* hero nav — scrolls away with this section (no overlap on mission) */}
+        <motion.header
+          initial={{ opacity: 0, y: -12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="relative z-20 shrink-0"
+        >
+          <div className="mx-auto flex max-w-6xl items-center justify-between py-4 sm:py-5">
+            <div className="flex items-center gap-2">
+              <span className="flex h-6 w-6 items-center justify-center rounded-md border border-vea-neon/30 bg-vea-neon/10 text-[11px] font-bold text-vea-neon">
+                V
+              </span>
+              <span className="text-sm font-semibold tracking-tight text-white/90">
+                VEA
+              </span>
+              <span className="hidden text-xs text-white/35 md:inline">
+                Technical Monetization Computational Framework
+              </span>
+            </div>
+            <div className="flex items-center gap-1 sm:gap-1.5">
+              <Link
+                href="/cases"
+                className="rounded-full px-2.5 py-1.5 text-[11px] font-medium text-white/60 transition-colors hover:text-white sm:px-4 sm:py-2 sm:text-xs"
+              >
+                Cases
+              </Link>
+              <Link
+                href="/app"
+                className="group inline-flex items-center gap-1 rounded-full border border-vea-neon/30 bg-vea-neon/10 px-2.5 py-1.5 text-[11px] font-medium text-vea-neon transition-colors hover:bg-vea-neon/15 sm:gap-1.5 sm:px-4 sm:py-2 sm:text-xs"
+              >
+                <span className="hidden sm:inline">Try the Beta</span>
+                <span className="sm:hidden">Beta</span>
+                <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5 sm:h-3.5 sm:w-3.5" />
+              </Link>
+            </div>
+          </div>
+        </motion.header>
         {/* ambient */}
         <div className="pointer-events-none absolute inset-0 engine-glow" />
         <div className="pointer-events-none absolute inset-0 grid-bg opacity-50" />
@@ -99,32 +99,33 @@ export default function EngineLanding() {
         <div className="pointer-events-none absolute inset-0 vignette" />
 
         {/* center content */}
-        <div className="relative z-10 flex w-full max-w-4xl flex-col items-center justify-center">
+        <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-1 flex-col items-center justify-center pb-20 pt-2 sm:pb-16">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15 }}
-          className="mb-7 inline-flex items-center gap-2 rounded-full border border-vea-neon/25 bg-vea-neon/[0.06] px-4 py-1.5 text-xs font-medium tracking-wide text-vea-neon/90 backdrop-blur"
+          className="mb-4 inline-flex items-center gap-2 rounded-full border border-vea-neon/25 bg-vea-neon/[0.06] px-3 py-1 text-[10px] font-medium tracking-wide text-vea-neon/90 backdrop-blur sm:mb-7 sm:px-4 sm:py-1.5 sm:text-xs"
         >
           <span className="relative flex h-1.5 w-1.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-vea-neon opacity-70" />
             <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-vea-neon" />
           </span>
-          7&times;24 Continuous Computation · ONLINE
+          <span className="hidden sm:inline">7&times;24 Continuous Computation · ONLINE</span>
+          <span className="sm:hidden">7×24 · ONLINE</span>
         </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.22 }}
-          className="max-w-4xl text-balance text-5xl font-semibold leading-[1.04] tracking-tight sm:text-6xl md:text-7xl"
+          className="max-w-4xl text-balance text-[2rem] font-semibold leading-[1.08] tracking-tight sm:text-6xl md:text-7xl"
         >
           Compute the value of technology{" "}
           <span className="neon-text">in time.</span>
         </motion.h1>
 
         {/* cycling value prop */}
-        <div className="mt-7 flex h-16 max-w-xl items-start justify-center">
+        <div className="mt-4 flex h-14 max-w-xl items-start justify-center sm:mt-7 sm:h-16">
           <AnimatePresence mode="wait">
             <motion.div
               key={tag}
@@ -149,18 +150,18 @@ export default function EngineLanding() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="mt-6 flex items-center gap-8"
+          className="mt-4 flex items-center gap-5 sm:mt-6 sm:gap-8"
         >
           {METRICS.map((m) => (
             <div key={m.label} className="text-center">
               <p
-                className={`font-mono text-2xl font-semibold sm:text-3xl ${
+                className={`font-mono text-xl font-semibold sm:text-3xl ${
                   m.live ? "text-vea-amber-soft" : "text-vea-neon"
                 }`}
               >
                 <Counter value={m.value} live={m.live} />
               </p>
-              <p className="mt-0.5 text-[11px] uppercase tracking-wide text-white/35">
+              <p className="mt-0.5 text-[10px] uppercase tracking-wide text-white/35 sm:text-[11px]">
                 {m.label}
               </p>
             </div>
@@ -172,18 +173,19 @@ export default function EngineLanding() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="mt-10 flex flex-col items-center gap-3 sm:flex-row"
+          className="mt-6 flex w-full max-w-xs flex-col items-stretch gap-2.5 sm:mt-10 sm:max-w-none sm:flex-row sm:items-center sm:justify-center sm:gap-3"
         >
           <Link
             href="/app"
-            className="group inline-flex items-center gap-2 rounded-full bg-vea-neon px-6 py-3 text-sm font-semibold text-black transition-transform hover:scale-[1.03] active:scale-95"
+            className="group inline-flex items-center justify-center gap-2 rounded-full bg-vea-neon px-5 py-2.5 text-sm font-semibold text-black transition-transform hover:scale-[1.03] active:scale-95 sm:px-6 sm:py-3"
           >
-            Beta available — start computing
+            <span className="hidden sm:inline">Beta available — start computing</span>
+            <span className="sm:hidden">Start computing</span>
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </Link>
           <Link
             href="/cases"
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-white/70 backdrop-blur transition-colors hover:border-white/30 hover:text-white"
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/70 backdrop-blur transition-colors hover:border-white/30 hover:text-white sm:px-6 sm:py-3"
           >
             Explore cases
           </Link>
@@ -196,7 +198,7 @@ export default function EngineLanding() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
-          className="group absolute bottom-16 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1 text-[11px] font-medium uppercase tracking-[0.2em] text-white/40 transition-colors hover:text-vea-neon"
+          className="group absolute bottom-[3.25rem] left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1 text-[10px] font-medium uppercase tracking-[0.2em] text-white/40 transition-colors hover:text-vea-neon sm:bottom-16 sm:text-[11px]"
         >
           Mission
           <motion.span

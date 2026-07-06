@@ -97,9 +97,9 @@ export default function MarketPanel({
   }, [industry]);
 
   return (
-    <section className="paper-card flex h-full flex-col rounded-2xl">
+    <section className="paper-card flex flex-col rounded-2xl lg:h-full">
       {/* header */}
-      <div className="flex items-start justify-between gap-3 border-b border-black/[0.06] p-5">
+      <div className="flex items-start justify-between gap-3 border-b border-black/[0.06] p-3 sm:p-5">
         <div>
           <div className="flex items-center gap-2">
             <h2 className="text-base font-semibold text-slate-900">
@@ -136,8 +136,8 @@ export default function MarketPanel({
         ))}
       </div>
 
-      {/* column headers */}
-      <div className="grid grid-cols-[1.4fr_auto_1.6fr_auto] items-center gap-3 px-5 py-2.5 text-[10px] uppercase tracking-wider text-slate-400 sm:gap-4">
+      {/* column headers — desktop only */}
+      <div className="hidden grid-cols-[1.4fr_auto_1.6fr_auto] items-center gap-3 px-5 py-2.5 text-[10px] uppercase tracking-wider text-slate-400 sm:grid sm:gap-4">
         <span>{t("Node", "节点")}</span>
         <span className="text-center">{t("Pos.", "位置")}</span>
         <span>{t("Next Event", "下一事件")}</span>
@@ -156,45 +156,82 @@ export default function MarketPanel({
                 ? "rgba(5,150,105,0.09)"
                 : "rgba(5,150,105,0)",
             }}
-            className="grid grid-cols-[1.4fr_auto_1.6fr_auto] items-center gap-3 border-b border-black/[0.04] px-5 py-3 sm:gap-4"
           >
-            <div className="min-w-0">
-              <div className="flex items-center gap-1.5">
-                <span className="truncate text-sm font-medium text-slate-800">
-                  {lang === "zh" ? node.nameZh : node.nameEn}
-                </span>
-                {node.flash && (
-                  <motion.span
-                    initial={{ opacity: 0, scale: 0.6 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="rounded bg-vea-amber/15 px-1 py-0.5 text-[9px] font-semibold text-vea-amber"
+            {/* mobile card row */}
+            <div className="border-b border-black/[0.04] px-3 py-2.5 sm:hidden">
+              <div className="flex items-start justify-between gap-2">
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-1.5">
+                    <span className="truncate text-sm font-medium text-slate-800">
+                      {lang === "zh" ? node.nameZh : node.nameEn}
+                    </span>
+                    {node.flash && (
+                      <motion.span
+                        initial={{ opacity: 0, scale: 0.6 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="shrink-0 rounded bg-vea-amber/15 px-1 py-0.5 text-[9px] font-semibold text-vea-amber"
+                      >
+                        LIVE
+                      </motion.span>
+                    )}
+                  </div>
+                  <p className="mt-1 line-clamp-2 text-xs leading-snug text-slate-500">
+                    {lang === "zh" ? node.nextEventZh : node.nextEventEn}
+                  </p>
+                </div>
+                <div className="flex shrink-0 flex-col items-end gap-1">
+                  <ChangeBadge delta={node.positionChange} flash={node.flash} />
+                  <span
+                    className={`font-mono text-[10px] tabular-nums ${
+                      node.flash ? "text-vea-amber" : "text-slate-400"
+                    }`}
                   >
-                    LIVE
-                  </motion.span>
-                )}
+                    {hhmmss(new Date(node.updatedAt))}
+                  </span>
+                </div>
               </div>
-              <span className="block truncate text-[10px] text-slate-400">
-                {lang === "zh" ? node.nameEn : node.nameZh}
+            </div>
+
+            {/* desktop table row */}
+            <div className="hidden grid-cols-[1.4fr_auto_1.6fr_auto] items-center gap-3 border-b border-black/[0.04] px-5 py-3 sm:grid sm:gap-4">
+              <div className="min-w-0">
+                <div className="flex items-center gap-1.5">
+                  <span className="truncate text-sm font-medium text-slate-800">
+                    {lang === "zh" ? node.nameZh : node.nameEn}
+                  </span>
+                  {node.flash && (
+                    <motion.span
+                      initial={{ opacity: 0, scale: 0.6 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="rounded bg-vea-amber/15 px-1 py-0.5 text-[9px] font-semibold text-vea-amber"
+                    >
+                      LIVE
+                    </motion.span>
+                  )}
+                </div>
+                <span className="block truncate text-[10px] text-slate-400">
+                  {lang === "zh" ? node.nameEn : node.nameZh}
+                </span>
+              </div>
+
+              <div className="flex justify-center">
+                <ChangeBadge delta={node.positionChange} flash={node.flash} />
+              </div>
+
+              <div className="min-w-0">
+                <p className="truncate text-xs text-slate-600">
+                  {lang === "zh" ? node.nextEventZh : node.nextEventEn}
+                </p>
+              </div>
+
+              <span
+                className={`text-right font-mono text-[11px] tabular-nums ${
+                  node.flash ? "text-vea-amber" : "text-slate-400"
+                }`}
+              >
+                {hhmmss(new Date(node.updatedAt))}
               </span>
             </div>
-
-            <div className="flex justify-center">
-              <ChangeBadge delta={node.positionChange} flash={node.flash} />
-            </div>
-
-            <div className="min-w-0">
-              <p className="truncate text-xs text-slate-600">
-                {lang === "zh" ? node.nextEventZh : node.nextEventEn}
-              </p>
-            </div>
-
-            <span
-              className={`text-right font-mono text-[11px] tabular-nums ${
-                node.flash ? "text-vea-amber" : "text-slate-400"
-              }`}
-            >
-              {hhmmss(new Date(node.updatedAt))}
-            </span>
           </motion.div>
         ))}
       </div>

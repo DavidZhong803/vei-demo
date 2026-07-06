@@ -15,31 +15,31 @@ export default function BottomNav({
 }) {
   const t = useT();
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-30 border-t border-black/[0.07] bg-[#f6f8f4]/92 backdrop-blur-md lg:hidden">
-      <div className="mx-auto flex max-w-md items-center justify-around px-2 py-1.5">
+    <nav className="fixed inset-x-0 bottom-0 z-30 border-t border-black/[0.07] bg-[#f6f8f4]/95 backdrop-blur-md pb-[env(safe-area-inset-bottom,0px)] lg:hidden">
+      <div className="mx-auto flex max-w-md items-end justify-around px-1 pt-1">
         <NavBtn
-          label={t("Computation", "我的计算")}
+          label={t("Mine", "我的")}
           icon={<LineChart className="h-5 w-5" />}
           active={active === "mycomp"}
           onClick={() => onTab("mycomp")}
         />
         <NavBtn
-          label={t("Market", "计算市场")}
+          label={t("Market", "市场")}
           icon={<LayoutGrid className="h-5 w-5" />}
           active={active === "market"}
           onClick={() => onTab("market")}
         />
         <button
           onClick={onNew}
-          className="flex flex-col items-center gap-0.5"
+          className="flex flex-col items-center"
           aria-label={t("New computation", "新建计算")}
         >
-          <span className="-mt-4 flex h-11 w-11 items-center justify-center rounded-full bg-vea-emerald text-white shadow-lg shadow-vea-emerald/30">
+          <span className="-mt-5 flex h-10 w-10 items-center justify-center rounded-full bg-vea-emerald text-white shadow-lg shadow-vea-emerald/25">
             <Plus className="h-5 w-5" />
           </span>
         </button>
         <NavBtn label={t("Alerts", "订阅")} icon={<Bell className="h-5 w-5" />} />
-        <NavBtn label={t("Me", "我的")} icon={<User className="h-5 w-5" />} />
+        <NavBtn label={t("Me", "账户")} icon={<User className="h-5 w-5" />} />
       </div>
     </nav>
   );

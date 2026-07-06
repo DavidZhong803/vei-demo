@@ -15,7 +15,7 @@ export default function CasesPage() {
       <div className="pointer-events-none fixed inset-0 -z-10 grid-light" />
       <div className="pointer-events-none fixed inset-0 -z-10 grain opacity-[0.04]" />
 
-      <div className="mx-auto max-w-5xl px-6 py-20">
+      <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
         <Link
           href="/"
           className="group mb-10 inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white px-3.5 py-1.5 text-xs text-slate-500 transition-colors hover:border-black/20 hover:text-slate-800"

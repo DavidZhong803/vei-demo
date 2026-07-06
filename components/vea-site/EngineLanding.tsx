@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import EngineCore from "./EngineCore";
 import Counter from "./Counter";
+import MissionSection from "./MissionSection";
 
 const TAGLINES = [
   {
@@ -51,19 +52,13 @@ export default function EngineLanding() {
   }, []);
 
   return (
-    <main className="relative h-[100dvh] overflow-hidden bg-ink text-white">
-      {/* ambient */}
-      <div className="pointer-events-none absolute inset-0 engine-glow" />
-      <div className="pointer-events-none absolute inset-0 grid-bg opacity-50" />
-      <EngineCore />
-      <div className="pointer-events-none absolute inset-0 vignette" />
-
-      {/* top bar */}
+    <main className="relative h-[100dvh] snap-y snap-mandatory overflow-y-auto scroll-smooth bg-ink text-white">
+      {/* top bar (fixed across sections) */}
       <motion.header
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="absolute inset-x-0 top-0 z-20"
+        className="fixed inset-x-0 top-0 z-30"
       >
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <div className="flex items-center gap-2.5">
@@ -95,8 +90,16 @@ export default function EngineLanding() {
         </div>
       </motion.header>
 
-      {/* center content */}
-      <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
+      {/* SECTION 1 — hero */}
+      <section className="relative flex h-[100dvh] snap-start snap-always flex-col items-center justify-center overflow-hidden px-6 text-center">
+        {/* ambient */}
+        <div className="pointer-events-none absolute inset-0 engine-glow" />
+        <div className="pointer-events-none absolute inset-0 grid-bg opacity-50" />
+        <EngineCore />
+        <div className="pointer-events-none absolute inset-0 vignette" />
+
+        {/* center content */}
+        <div className="relative z-10 flex w-full max-w-4xl flex-col items-center justify-center">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -181,31 +184,52 @@ export default function EngineLanding() {
             Explore cases
           </Link>
         </motion.div>
-      </div>
+        </div>
 
-      {/* bottom live ticker */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.7 }}
-        className="absolute inset-x-0 bottom-0 z-10 border-t border-white/[0.06] bg-black/20 py-3 backdrop-blur-sm"
-      >
-        <div className="flex items-center gap-3 px-6 text-[11px] text-white/40">
-          <span className="flex shrink-0 items-center gap-1.5 font-medium uppercase tracking-wide text-vea-neon/80">
-            <span className="h-1.5 w-1.5 rounded-full bg-vea-neon" />
-            Live
-          </span>
-          <div className="relative flex-1 overflow-hidden">
-            <div className="flex w-max animate-marquee gap-10 font-mono whitespace-nowrap">
-              {[...STREAM, ...STREAM].map((s, i) => (
-                <span key={i} className="text-white/45">
-                  {s}
-                </span>
-              ))}
+        {/* scroll cue */}
+        <motion.a
+          href="#mission"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="group absolute bottom-16 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1 text-[11px] font-medium uppercase tracking-[0.2em] text-white/40 transition-colors hover:text-vea-neon"
+        >
+          Mission
+          <motion.span
+            animate={{ y: [0, 5, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ChevronDown className="h-4 w-4" />
+          </motion.span>
+        </motion.a>
+
+        {/* bottom live ticker */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7 }}
+          className="absolute inset-x-0 bottom-0 z-10 border-t border-white/[0.06] bg-black/20 py-3 backdrop-blur-sm"
+        >
+          <div className="flex items-center gap-3 px-6 text-[11px] text-white/40">
+            <span className="flex shrink-0 items-center gap-1.5 font-medium uppercase tracking-wide text-vea-neon/80">
+              <span className="h-1.5 w-1.5 rounded-full bg-vea-neon" />
+              Live
+            </span>
+            <div className="relative flex-1 overflow-hidden">
+              <div className="flex w-max animate-marquee gap-10 font-mono whitespace-nowrap">
+                {[...STREAM, ...STREAM].map((s, i) => (
+                  <span key={i} className="text-white/45">
+                    {s}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </section>
+
+      {/* SECTION 2 — mission */}
+      <MissionSection />
     </main>
   );
 }

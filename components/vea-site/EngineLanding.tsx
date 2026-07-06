@@ -153,7 +153,11 @@ export default function EngineLanding() {
         >
           {METRICS.map((m) => (
             <div key={m.label} className="text-center">
-              <p className="font-mono text-2xl font-semibold text-vea-neon sm:text-3xl">
+              <p
+                className={`font-mono text-2xl font-semibold sm:text-3xl ${
+                  m.live ? "text-vea-amber-soft" : "text-vea-neon"
+                }`}
+              >
                 <Counter value={m.value} live={m.live} />
               </p>
               <p className="mt-0.5 text-[11px] uppercase tracking-wide text-white/35">

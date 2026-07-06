@@ -21,7 +21,7 @@ export default function TopBar({
   const t = useT();
 
   return (
-    <header className="sticky top-0 z-30 border-b border-black/[0.06] bg-white/80 backdrop-blur-md">
+    <header className="sticky top-0 z-30 border-b border-black/[0.07] bg-[#f6f8f4]/85 backdrop-blur-md">
       <div className="flex h-14 items-center gap-4 px-4 sm:px-5">
         {/* brand */}
         <Link href="/" className="flex shrink-0 items-center gap-2">

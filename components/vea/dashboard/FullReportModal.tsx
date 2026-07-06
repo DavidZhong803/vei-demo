@@ -22,9 +22,10 @@ export default function FullReportModal({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.25 }}
-      className="fixed inset-0 z-50 overflow-y-auto bg-paper"
+      className="fixed inset-0 z-50 overflow-y-auto"
     >
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-gradient-to-b from-white via-paper to-paper-soft" />
+      <div className="pointer-events-none fixed inset-0 -z-10 product-canvas" />
+      <div className="pointer-events-none fixed inset-0 -z-10 grain opacity-[0.04]" />
       <button
         onClick={onClose}
         className="fixed right-5 top-5 z-10 inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white/90 px-3.5 py-1.5 text-xs text-slate-500 backdrop-blur transition-colors hover:border-black/20 hover:text-slate-900"

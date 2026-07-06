@@ -12,25 +12,28 @@ const config: Config = {
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       colors: {
-        // Dark "engine" surfaces — deep, slightly cool near-black for depth
+        // Dark "engine" surfaces — deep green-black (GeniusFlare foundation)
         ink: {
-          DEFAULT: "#06070a",
-          soft: "#0a0c11",
-          card: "#0f1218",
+          DEFAULT: "#08120d",
+          soft: "#0b1712",
+          card: "#101c16",
         },
-        // Light "result" surfaces
+        // Light "result" surfaces — warm, green-tinted stone (not stark white)
         paper: {
-          DEFAULT: "#fafbfc",
-          soft: "#f2f4f6",
-          card: "#ffffff",
+          DEFAULT: "#eef1ec",
+          soft: "#e5eae2",
+          card: "#fcfdfa",
         },
         vea: {
           neon: "#2dd4a0", // dark-mode refined jade (primary accent)
           glow: "#17b184", // deeper jade for glows / gradients
           mist: "#7ff0d0", // light mint tip for gradient text
           steel: "#7c9cff", // cool secondary — adds technical depth
-          emerald: "#059669", // light-mode professional green
+          emerald: "#059669", // light-mode professional green (value)
           "emerald-soft": "#10b981",
+          amber: "#e08a12", // the "flare" — acceleration / live signals
+          "amber-soft": "#f5a623",
+          gold: "#fbbf24",
           ink: "#06110d",
         },
       },

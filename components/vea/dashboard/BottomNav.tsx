@@ -15,7 +15,7 @@ export default function BottomNav({
 }) {
   const t = useT();
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-30 border-t border-black/[0.06] bg-white/90 backdrop-blur-md lg:hidden">
+    <nav className="fixed inset-x-0 bottom-0 z-30 border-t border-black/[0.07] bg-[#f6f8f4]/92 backdrop-blur-md lg:hidden">
       <div className="mx-auto flex max-w-md items-center justify-around px-2 py-1.5">
         <NavBtn
           label={t("Computation", "我的计算")}

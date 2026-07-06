@@ -10,8 +10,10 @@ export const metadata: Metadata = {
 
 export default function CasesPage() {
   return (
-    <main className="relative min-h-screen bg-paper text-slate-900">
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-gradient-to-b from-white via-paper to-paper-soft" />
+    <main className="relative min-h-screen text-slate-900">
+      <div className="pointer-events-none fixed inset-0 -z-10 product-canvas" />
+      <div className="pointer-events-none fixed inset-0 -z-10 grid-light" />
+      <div className="pointer-events-none fixed inset-0 -z-10 grain opacity-[0.04]" />
 
       <div className="mx-auto max-w-5xl px-6 py-20">
         <Link

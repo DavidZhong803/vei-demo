@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 const CHAIN = [
-  { en: "Idea", zh: "想法" },
-  { en: "Technology", zh: "技术" },
-  { en: "Product", zh: "产品" },
+  { en: "Technical Asset", zh: "技术资产" },
+  { en: "Validation", zh: "验证" },
+  { en: "Product", zh: "产品化" },
   { en: "Market", zh: "市场" },
-  { en: "Value", zh: "商业价值" },
+  { en: "Monetization", zh: "货币化" },
 ];
 
 // Accelerating cadence: gaps between activations shrink toward the end,
@@ -52,8 +52,8 @@ export default function MissionSection() {
           transition={{ duration: 0.55, delay: 0.05 }}
           className="text-balance text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl md:text-6xl"
         >
-          From idea to business —{" "}
-          <span className="neon-text">accelerated.</span>
+          Accelerate technical assets into{" "}
+          <span className="neon-text">monetized value.</span>
         </motion.h2>
 
         <motion.p
@@ -63,10 +63,10 @@ export default function MissionSection() {
           transition={{ duration: 0.55, delay: 0.12 }}
           className="mx-auto mt-6 max-w-2xl text-balance text-base leading-relaxed text-white/55 sm:text-lg"
         >
-          Every breakthrough stalls in the gap between invention and income. VEA
-          computes the shortest path across the entire value chain — compressing
-          the distance from a raw idea to a monetized business, and moving faster
-          than the market can react.
+          The hardest step in technology is not invention — it is monetization.
+          VEA computes the shortest, highest-probability path from a technical
+          asset to realized value across the entire chain, and compresses the
+          time it takes to get there — moving faster than the market can react.
         </motion.p>
 
         {/* acceleration chain */}
@@ -78,7 +78,7 @@ export default function MissionSection() {
             className="absolute top-2 h-[3px] w-32 -translate-y-1/2 rounded-full"
             style={{
               background:
-                "linear-gradient(90deg, transparent, rgba(45,212,160,0.9), transparent)",
+                "linear-gradient(90deg, transparent, rgba(245,166,35,0.95), transparent)",
               filter: "blur(1px)",
             }}
             initial={{ left: "-12%" }}
@@ -134,8 +134,8 @@ export default function MissionSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mx-auto mt-14 max-w-2xl text-balance text-sm leading-relaxed text-white/40"
         >
-          我们的使命：加速价值链的实现 —— 让每一个想法，以最短的路径，
-          成为真正的商业与价值。
+          我们的使命：加速技术资产的货币化 —— 让每一项技术，以最短的路径、
+          最高的概率，成为真正的商业价值。
         </motion.p>
 
         <motion.div
@@ -153,7 +153,8 @@ export default function MissionSection() {
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </Link>
           <span className="text-xs text-white/35">
-            The distance from idea to value is a computation — we make it shorter.
+            The distance from a technical asset to value is a computation — we
+            make it shorter.
           </span>
         </motion.div>
       </div>

@@ -101,10 +101,10 @@ export default function MyComputation({
           <h2 className="text-base font-semibold text-slate-900">
             {t("My Computation", "我的计算")}
           </h2>
-          <p className="mt-0.5 text-xs text-slate-400">
+          <p className="mt-0.5 text-xs text-slate-500">
             {t(
-              "Your dedicated technical-asset result",
-              "您的专属技术资产计算结果"
+              "Your technical asset — on its path to monetized value",
+              "您的技术资产 · 通往价值实现的路径"
             )}
           </p>
         </div>

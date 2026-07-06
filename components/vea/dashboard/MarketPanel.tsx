@@ -105,7 +105,7 @@ export default function MarketPanel({
             <h2 className="text-base font-semibold text-slate-900">
               {lang === "zh" ? industry.nameZh : industry.nameEn}
             </h2>
-            <span className="inline-flex items-center gap-1 text-[11px] font-medium text-vea-emerald">
+            <span className="inline-flex items-center gap-1 text-[11px] font-medium text-vea-amber">
               <Radio className="h-3 w-3 animate-pulse" />
               {t("7×24 Live", "7×24 实时")}
             </span>
@@ -167,7 +167,7 @@ export default function MarketPanel({
                   <motion.span
                     initial={{ opacity: 0, scale: 0.6 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="rounded bg-vea-emerald/15 px-1 py-0.5 text-[9px] font-semibold text-vea-emerald"
+                    className="rounded bg-vea-amber/15 px-1 py-0.5 text-[9px] font-semibold text-vea-amber"
                   >
                     LIVE
                   </motion.span>
@@ -190,7 +190,7 @@ export default function MarketPanel({
 
             <span
               className={`text-right font-mono text-[11px] tabular-nums ${
-                node.flash ? "text-vea-emerald" : "text-slate-400"
+                node.flash ? "text-vea-amber" : "text-slate-400"
               }`}
             >
               {hhmmss(new Date(node.updatedAt))}

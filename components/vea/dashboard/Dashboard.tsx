@@ -68,7 +68,11 @@ export default function Dashboard() {
 
   return (
     <LangProvider>
-    <div className="min-h-[100dvh] bg-paper text-slate-900">
+    <div className="relative min-h-[100dvh] text-slate-900">
+      {/* textured product canvas (replaces flat white) */}
+      <div className="pointer-events-none fixed inset-0 -z-10 product-canvas" />
+      <div className="pointer-events-none fixed inset-0 -z-10 grid-light" />
+      <div className="pointer-events-none fixed inset-0 -z-10 grain opacity-[0.04]" />
       <TopBar active={tab} onTab={setTab} onNew={startNew} />
 
       <div className="flex">
@@ -110,9 +114,10 @@ export default function Dashboard() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-50 overflow-y-auto bg-paper"
+            className="fixed inset-0 z-50 overflow-y-auto"
           >
-            <div className="pointer-events-none fixed inset-0 -z-10 bg-gradient-to-b from-white via-paper to-paper-soft" />
+            <div className="pointer-events-none fixed inset-0 -z-10 product-canvas" />
+            <div className="pointer-events-none fixed inset-0 -z-10 grain opacity-[0.04]" />
             <AnimatePresence mode="wait">
               {overlay === "input" && (
                 <InputStage

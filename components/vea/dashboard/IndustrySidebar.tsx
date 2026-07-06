@@ -42,14 +42,22 @@ export default function IndustrySidebar({
   const t = useT();
 
   return (
-    <aside className="flex h-full w-full flex-col bg-ink text-white/80">
-      <div className="px-5 pb-4 pt-6">
+    <aside className="relative flex h-full w-full flex-col overflow-hidden bg-ink text-white/80">
+      {/* ambient: emerald light from top, amber flare rising from the base */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(70% 30% at 30% 0%, rgba(16,185,129,0.10), transparent 60%), radial-gradient(80% 34% at 50% 100%, rgba(224,138,18,0.10), transparent 62%)",
+        }}
+      />
+      <div className="relative px-5 pb-4 pt-6">
         <div className="flex items-center gap-2">
           <span className="text-sm font-semibold tracking-tight text-white">
             {t("Computation Market", "计算市场")}
           </span>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-vea-neon/25 bg-vea-neon/10 px-2 py-0.5 text-[10px] font-medium text-vea-neon">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-vea-neon" />
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-vea-amber/30 bg-vea-amber/10 px-2 py-0.5 text-[10px] font-medium text-vea-amber-soft">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-vea-amber-soft" />
             {t("Live", "运行中")}
           </span>
         </div>
@@ -61,7 +69,7 @@ export default function IndustrySidebar({
         </p>
       </div>
 
-      <nav className="flex-1 space-y-1 overflow-y-auto px-3">
+      <nav className="relative flex-1 space-y-1 overflow-y-auto px-3">
         {INDUSTRIES.map((ind) => {
           const Icon = ICONS[ind.id] ?? Cpu;
           const active = ind.id === selectedId;
@@ -108,7 +116,7 @@ export default function IndustrySidebar({
         })}
       </nav>
 
-      <div className="mt-2 border-t border-white/[0.06] px-5 py-4">
+      <div className="relative mt-2 border-t border-white/[0.06] px-5 py-4">
         <button className="mb-3 flex w-full items-center justify-between rounded-lg bg-white/[0.04] px-3 py-2 text-xs text-white/60 transition-colors hover:bg-white/[0.07]">
           {t("View all sectors", "查看全部产业")}
           <ChevronRight className="h-3.5 w-3.5" />

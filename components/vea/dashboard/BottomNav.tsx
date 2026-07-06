@@ -18,7 +18,7 @@ export default function BottomNav({
     <nav className="fixed inset-x-0 bottom-0 z-30 overflow-visible border-t border-black/[0.07] bg-[#f6f8f4]/95 backdrop-blur-md pb-[env(safe-area-inset-bottom,0px)] lg:hidden">
       <button
         onClick={onNew}
-        className="absolute left-1/2 top-0 z-40 flex h-14 w-14 -translate-x-1/2 -translate-y-[26%] items-center justify-center rounded-full bg-vea-emerald text-white shadow-lg shadow-vea-emerald/35 ring-[3px] ring-[#f6f8f4]"
+        className="absolute left-1/2 top-0 z-40 flex h-14 w-14 -translate-x-1/2 -translate-y-[32%] items-center justify-center rounded-full bg-vea-emerald text-white shadow-lg shadow-vea-emerald/35 ring-[3px] ring-[#f6f8f4]"
         aria-label={t("New computation", "新建计算")}
       >
         <Plus className="h-6 w-6" strokeWidth={2.5} />

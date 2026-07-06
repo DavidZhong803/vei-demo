@@ -17,7 +17,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  background: #0a0a0b;
+  /* Neutral base; each route paints its own surface (dark landing / light app) */
+  background: #07080a;
   color: #ededef;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -29,23 +30,23 @@ body {
 }
 
 ::selection {
-  background: rgba(124, 156, 255, 0.3);
+  background: rgba(0, 255, 194, 0.25);
 }
 
-/* Custom minimal scrollbar */
+/* Minimal scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(128, 128, 128, 0.25);
   border-radius: 8px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(128, 128, 128, 0.4);
 }
 
 @layer utilities {
@@ -53,18 +54,33 @@ body {
     text-wrap: balance;
   }
 
-  /* Soft radial ambient glow used across stages */
-  .ambient-glow {
+  /* ── Dark engine (landing) ─────────────────────────────── */
+  .engine-glow {
     background: radial-gradient(
-        60% 50% at 50% 0%,
-        rgba(124, 156, 255, 0.12) 0%,
+        55% 45% at 50% 0%,
+        rgba(0, 255, 194, 0.12) 0%,
         transparent 70%
       ),
       radial-gradient(
-        50% 40% at 80% 20%,
-        rgba(167, 139, 250, 0.1) 0%,
+        45% 40% at 82% 12%,
+        rgba(0, 229, 172, 0.08) 0%,
         transparent 70%
       );
+  }
+
+  .grid-bg {
+    background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.035) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 46px 46px;
+    mask-image: radial-gradient(
+      ellipse 80% 60% at 50% 35%,
+      black 30%,
+      transparent 82%
+    );
   }
 
   .glass {
@@ -79,31 +95,30 @@ body {
     backdrop-filter: blur(20px);
   }
 
-  .gradient-text {
-    background: linear-gradient(120deg, #ffffff 0%, #a9c0ff 55%, #c4b5fd 100%);
+  .neon-text {
+    background: linear-gradient(110deg, #ffffff 0%, #9affe4 55%, #00ffc2 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
-  /* Animated grid backdrop */
-  .grid-bg {
-    background-image: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0.04) 1px,
-        transparent 1px
-      ),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-    background-size: 44px 44px;
-    mask-image: radial-gradient(
-      ellipse 80% 60% at 50% 40%,
-      black 30%,
-      transparent 80%
-    );
+  /* ── Light result (product) ────────────────────────────── */
+  .paper-card {
+    background: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04),
+      0 8px 24px -12px rgba(15, 23, 42, 0.08);
+  }
+
+  .emerald-text {
+    background: linear-gradient(110deg, #047857 0%, #059669 55%, #10b981 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 }
 
-/* Blinking caret for the "agent thinking" effect */
+/* Live ticking caret / cursor */
 @keyframes caret-blink {
   0%,
   100% {
@@ -117,8 +132,8 @@ body {
   display: inline-block;
   width: 8px;
   height: 1.05em;
-  margin-left: 2px;
+  margin-left: 3px;
   vertical-align: text-bottom;
-  background: #7c9cff;
+  background: #00ffc2;
   animation: caret-blink 1s steps(1) infinite;
 }

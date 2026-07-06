@@ -12,15 +12,24 @@ const config: Config = {
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       colors: {
+        // Dark "engine" surfaces
         ink: {
-          DEFAULT: "#0a0a0b",
-          soft: "#111114",
-          card: "#141418",
+          DEFAULT: "#07080a",
+          soft: "#0c0e11",
+          card: "#101317",
         },
-        vei: {
-          accent: "#7c9cff",
-          glow: "#a78bfa",
-          teal: "#5eead4",
+        // Light "result" surfaces
+        paper: {
+          DEFAULT: "#fafbfc",
+          soft: "#f2f4f6",
+          card: "#ffffff",
+        },
+        vea: {
+          neon: "#00ffc2", // dark-mode medical/neon green
+          glow: "#00e5ac",
+          emerald: "#059669", // light-mode professional green
+          "emerald-soft": "#10b981",
+          ink: "#0b1a15",
         },
       },
       keyframes: {
@@ -31,9 +40,18 @@ const config: Config = {
         shimmer: {
           "100%": { transform: "translateX(100%)" },
         },
+        "spin-slow": {
+          to: { transform: "rotate(360deg)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-8px)" },
+        },
       },
       animation: {
         "pulse-glow": "pulse-glow 2.4s ease-in-out infinite",
+        "spin-slow": "spin-slow 26s linear infinite",
+        float: "float 6s ease-in-out infinite",
       },
     },
   },

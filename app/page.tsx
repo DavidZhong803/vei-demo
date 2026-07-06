@@ -1,24 +1,22 @@
-import Backdrop from "@/components/vei/Backdrop";
-import Nav from "@/components/site/Nav";
-import Hero from "@/components/site/Hero";
-import Thesis from "@/components/site/Thesis";
-import Pillars from "@/components/site/Pillars";
-import HowItThinks from "@/components/site/HowItThinks";
-import CasesPreview from "@/components/site/CasesPreview";
-import VisionMission from "@/components/site/VisionMission";
-import Footer from "@/components/site/Footer";
+import EngineBackdrop from "@/components/vea-site/EngineBackdrop";
+import Nav from "@/components/vea-site/Nav";
+import Hero from "@/components/vea-site/Hero";
+import LivingEngine from "@/components/vea-site/LivingEngine";
+import SellingPoints from "@/components/vea-site/SellingPoints";
+import Access from "@/components/vea-site/Access";
+import BetaCTA from "@/components/vea-site/BetaCTA";
+import Footer from "@/components/vea-site/Footer";
 
 export default function Home() {
   return (
-    <main className="relative">
-      <Backdrop />
+    <main className="relative text-white">
+      <EngineBackdrop />
       <Nav />
       <Hero />
-      <Thesis />
-      <Pillars />
-      <HowItThinks />
-      <CasesPreview />
-      <VisionMission />
+      <LivingEngine />
+      <SellingPoints />
+      <Access />
+      <BetaCTA />
       <Footer />
     </main>
   );

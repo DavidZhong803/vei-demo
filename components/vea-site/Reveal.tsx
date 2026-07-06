@@ -3,14 +3,11 @@
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 
-/**
- * Lightweight scroll-reveal wrapper used across the marketing homepage.
- * Fades + lifts children into view once, when they enter the viewport.
- */
+/** Scroll-reveal wrapper: fades + lifts children into view once. */
 export default function Reveal({
   children,
   delay = 0,
-  y = 20,
+  y = 22,
   className,
 }: {
   children: ReactNode;
@@ -23,7 +20,7 @@ export default function Reveal({
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}

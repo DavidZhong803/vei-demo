@@ -11,10 +11,13 @@ export default function Hero() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium tracking-wide text-white/70"
+        className="mb-8 inline-flex items-center gap-2 rounded-full border border-vea-neon/25 bg-vea-neon/[0.06] px-4 py-1.5 text-xs font-medium tracking-wide text-vea-neon/90"
       >
-        <span className="h-1.5 w-1.5 animate-pulse-glow rounded-full bg-vei-accent" />
-        The AI Operating System for Enterprises
+        <span className="relative flex h-1.5 w-1.5">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-vea-neon opacity-70" />
+          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-vea-neon" />
+        </span>
+        7&times;24 Continuous Computation · ONLINE
       </motion.div>
 
       <motion.h1
@@ -23,18 +26,18 @@ export default function Hero() {
         transition={{ delay: 0.18 }}
         className="max-w-4xl text-balance text-5xl font-semibold leading-[1.06] tracking-tight sm:text-6xl md:text-7xl"
       >
-        Every enterprise will have its own{" "}
-        <span className="gradient-text">AI Operating System.</span>
+        Compute the value of technology <span className="neon-text">in time.</span>
       </motion.h1>
 
       <motion.p
         initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.28 }}
-        className="mt-7 max-w-2xl text-balance text-lg leading-relaxed text-white/50 sm:text-xl"
+        className="mt-7 max-w-2xl text-balance text-lg leading-relaxed text-white/55 sm:text-xl"
       >
-        The future belongs to enterprises that continuously create and evolve
-        value. VEI builds the operating system that makes it possible.
+        VEA is an AI framework that computes the optimal path to monetize
+        technology within a given time window — and keeps validating it against
+        markets, results, and capital.
       </motion.p>
 
       <motion.p
@@ -43,9 +46,9 @@ export default function Hero() {
         transition={{ delay: 0.36 }}
         className="mt-4 max-w-xl text-balance text-sm leading-relaxed text-white/35"
       >
-        未来，每一家企业都将拥有属于自己的 AI 操作系统。
+        VEA 是一套基于 AI 的技术货币化计算框架。
         <br />
-        VEI，为企业构建实现这一目标的 AI 操作系统。
+        计算技术在时间中的价值演化。
       </motion.p>
 
       <motion.div
@@ -55,22 +58,22 @@ export default function Hero() {
         className="mt-10 flex flex-col items-center gap-3 sm:flex-row"
       >
         <Link
-          href="/demo"
-          className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition-transform hover:scale-[1.03] active:scale-95"
+          href="/app"
+          className="group inline-flex items-center gap-2 rounded-full bg-vea-neon px-6 py-3 text-sm font-semibold text-black transition-transform hover:scale-[1.03] active:scale-95"
         >
-          See the super brain decide
+          Beta available — start computing
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
         </Link>
         <a
-          href="#thesis"
+          href="#engine"
           className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-white/70 transition-colors hover:border-white/30 hover:text-white"
         >
-          Why it matters
+          See the engine
         </a>
       </motion.div>
 
       <motion.a
-        href="#thesis"
+        href="#engine"
         aria-label="Scroll down"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

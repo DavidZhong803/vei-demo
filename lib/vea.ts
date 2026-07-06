@@ -38,6 +38,33 @@ export type ValidationItem = {
 
 export type ResultCard = { title: string; detail: string };
 
+/** Bilingual 5-stage monetization journey shared across packages. */
+export type JourneyStage = { labelZh: string; labelEn: string };
+
+export const JOURNEY: JourneyStage[] = [
+  { labelZh: "技术验证", labelEn: "Tech Validation" },
+  { labelZh: "生态合作", labelEn: "Ecosystem" },
+  { labelZh: "商业化落地", labelEn: "Commercialization" },
+  { labelZh: "规模扩张", labelEn: "Scale-up" },
+  { labelZh: "资本市场", labelEn: "Capital Market" },
+];
+
+/** Condensed, glanceable summary used by the live dashboard. */
+export type DashboardSummary = {
+  positionScore: number; // 0-100
+  industryStanding: string; // e.g. "前 1% · Top 1%"
+  statusZh: string; // e.g. "加速中"
+  statusEn: string; // e.g. "Accelerating"
+  realizationProbability: number; // 0-100
+  probabilityZh: string; // e.g. "高概率实现"
+  probabilityEn: string;
+  nextActionZh: string;
+  nextActionEn: string;
+  nextActionEta: string; // e.g. "14 天后 · in 14d"
+  journeyCurrent: number; // index into JOURNEY
+  updatedAgo: string; // e.g. "3 分钟前 · 3m ago"
+};
+
 export type VEAResultPackage = {
   id: string;
   subject: string; // value subject name
@@ -45,6 +72,7 @@ export type VEAResultPackage = {
   computedAt: string; // mock timestamp
   accentEmerald: string; // light-mode accent
   accentNeon: string; // dark-mode accent
+  dashboard: DashboardSummary;
 
   // Card 1
   executiveSummary: string;
@@ -75,6 +103,20 @@ export const CASES: VEAResultPackage[] = [
     computedAt: "09:42:18 UTC+8",
     accentEmerald: "#059669",
     accentNeon: "#2dd4a0",
+    dashboard: {
+      positionScore: 84,
+      industryStanding: "前 4% · Top 4%",
+      statusZh: "加速中",
+      statusEn: "Accelerating",
+      realizationProbability: 84,
+      probabilityZh: "高概率实现",
+      probabilityEn: "High probability",
+      nextActionZh: "发布参考智能体",
+      nextActionEn: "Ship reference agents",
+      nextActionEta: "21 天后 · in 21d",
+      journeyCurrent: 2,
+      updatedAgo: "2 分钟前 · 2m ago",
+    },
     executiveSummary:
       "Meta's fastest monetization path is turning its open Llama ecosystem into the default AI layer across its 3.9B-user attention network — the 90-day window is decisive.",
     currentPosition: {
@@ -139,6 +181,20 @@ export const CASES: VEAResultPackage[] = [
     computedAt: "09:41:23 UTC+8",
     accentEmerald: "#059669",
     accentNeon: "#2dd4a0",
+    dashboard: {
+      positionScore: 92,
+      industryStanding: "前 1% · Top 1%",
+      statusZh: "加速中",
+      statusEn: "Accelerating",
+      realizationProbability: 91,
+      probabilityZh: "高概率实现",
+      probabilityEn: "High probability",
+      nextActionZh: "推出 AI 工厂租赁",
+      nextActionEn: "Launch AI-factory rental",
+      nextActionEta: "14 天后 · in 14d",
+      journeyCurrent: 3,
+      updatedAgo: "刚刚 · just now",
+    },
     executiveSummary:
       "NVIDIA's monetization is shifting from selling chips to renting an AI factory — the 30-day window favors deepening the CUDA-to-cloud full-stack lock-in.",
     currentPosition: {
@@ -202,6 +258,20 @@ export const CASES: VEAResultPackage[] = [
     computedAt: "09:40:45 UTC+8",
     accentEmerald: "#059669",
     accentNeon: "#2dd4a0",
+    dashboard: {
+      positionScore: 73,
+      industryStanding: "前 15% · Top 15%",
+      statusZh: "上升中",
+      statusEn: "Rising",
+      realizationProbability: 73,
+      probabilityZh: "中高概率",
+      probabilityEn: "Moderate-high",
+      nextActionZh: "锁定产能协议",
+      nextActionEn: "Lock capacity deals",
+      nextActionEta: "30 天后 · in 30d",
+      journeyCurrent: 1,
+      updatedAgo: "5 分钟前 · 5m ago",
+    },
     executiveSummary:
       "Corning's overlooked monetization path is the AI data-center optical build-out — the 180-day window rewards repositioning glass IP as critical AI infrastructure.",
     currentPosition: {
@@ -275,6 +345,20 @@ export function genericPackage(subject: string): VEAResultPackage {
     computedAt: "just now",
     accentEmerald: "#059669",
     accentNeon: "#2dd4a0",
+    dashboard: {
+      positionScore: 61,
+      industryStanding: "前 25% · Top 25%",
+      statusZh: "启动中",
+      statusEn: "Emerging",
+      realizationProbability: 61,
+      probabilityZh: "中等概率",
+      probabilityEn: "Moderate",
+      nextActionZh: "锁定单一价值窗口",
+      nextActionEn: "Pick one value window",
+      nextActionEta: "7 天后 · in 7d",
+      journeyCurrent: 0,
+      updatedAgo: "刚刚 · just now",
+    },
     executiveSummary: `${name}'s strongest near-term monetization path is to concentrate its technical assets on the single highest-probability value window and validate fast.`,
     currentPosition: {
       statement: "Differentiated technical asset with an under-exploited monetization surface.",

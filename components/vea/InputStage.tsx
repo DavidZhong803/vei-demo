@@ -8,8 +8,10 @@ import { CASES } from "@/lib/vea";
 
 export default function InputStage({
   onCompute,
+  onBack,
 }: {
   onCompute: (subject: string, caseId?: string) => void;
+  onBack?: () => void;
 }) {
   const [value, setValue] = useState("");
   const [file, setFile] = useState<string | null>(null);
@@ -31,13 +33,23 @@ export default function InputStage({
       transition={{ duration: 0.4 }}
       className="mx-auto flex min-h-screen w-full max-w-3xl flex-col items-center justify-center px-6 py-24 text-center"
     >
-      <Link
-        href="/"
-        className="group absolute left-6 top-6 inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-black/[0.03] px-3.5 py-1.5 text-xs text-slate-500 transition-colors hover:border-black/20 hover:text-slate-800"
-      >
-        <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
-        Home
-      </Link>
+      {onBack ? (
+        <button
+          onClick={onBack}
+          className="group absolute left-6 top-6 inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-black/[0.03] px-3.5 py-1.5 text-xs text-slate-500 transition-colors hover:border-black/20 hover:text-slate-800"
+        >
+          <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
+          返回 Back
+        </button>
+      ) : (
+        <Link
+          href="/"
+          className="group absolute left-6 top-6 inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-black/[0.03] px-3.5 py-1.5 text-xs text-slate-500 transition-colors hover:border-black/20 hover:text-slate-800"
+        >
+          <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
+          Home
+        </Link>
+      )}
 
       <motion.div
         initial={{ opacity: 0, y: 10 }}

@@ -42,22 +42,30 @@ export default function EngineCore() {
     // Scale the reactor to the viewport so it feels centered on any screen.
     const scale = () => Math.min(w, h) / 850;
 
+    // Warm jade at the core, cooling to steel-blue at the edges → depth.
+    const JADE = "45,212,160";
+    const STEEL = "124,156,255";
+
     const rings = [
-      { r: 120, count: 3, speed: 0.00055, dir: 1, size: 2.3 },
-      { r: 185, count: 5, speed: 0.0004, dir: -1, size: 2 },
-      { r: 260, count: 8, speed: 0.0003, dir: 1, size: 1.8 },
-      { r: 345, count: 12, speed: 0.00022, dir: -1, size: 1.6 },
-      { r: 440, count: 18, speed: 0.00016, dir: 1, size: 1.3 },
+      { r: 120, count: 3, speed: 0.00055, dir: 1, size: 2.3, c: JADE },
+      { r: 185, count: 5, speed: 0.0004, dir: -1, size: 2, c: JADE },
+      { r: 260, count: 8, speed: 0.0003, dir: 1, size: 1.8, c: JADE },
+      { r: 345, count: 12, speed: 0.00022, dir: -1, size: 1.6, c: STEEL },
+      { r: 440, count: 18, speed: 0.00016, dir: 1, size: 1.3, c: STEEL },
     ];
 
-    const parts = Array.from({ length: 80 }, () => ({
-      a: Math.random() * Math.PI * 2,
-      r: 90 + Math.random() * 420,
-      s: 0.00004 + Math.random() * 0.00016,
-      dir: Math.random() > 0.5 ? 1 : -1,
-      size: Math.random() * 1.4 + 0.4,
-      o: Math.random() * 0.35 + 0.08,
-    }));
+    const parts = Array.from({ length: 80 }, () => {
+      const r = 90 + Math.random() * 420;
+      return {
+        a: Math.random() * Math.PI * 2,
+        r,
+        s: 0.00004 + Math.random() * 0.00016,
+        dir: Math.random() > 0.5 ? 1 : -1,
+        size: Math.random() * 1.4 + 0.4,
+        o: Math.random() * 0.3 + 0.06,
+        c: r > 300 ? STEEL : JADE,
+      };
+    });
 
     let pulses: { r: number; o: number }[] = [];
     let lastPulse = 0;
@@ -80,17 +88,17 @@ export default function EngineCore() {
 
       // core glow
       const pulse = 0.62 + Math.sin(t * 0.002) * 0.16;
-      const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, 160 * k);
-      g.addColorStop(0, `rgba(0,255,194,${0.22 * pulse})`);
-      g.addColorStop(0.45, `rgba(0,229,172,${0.07 * pulse})`);
-      g.addColorStop(1, "rgba(0,255,194,0)");
+      const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, 170 * k);
+      g.addColorStop(0, `rgba(${JADE},${0.2 * pulse})`);
+      g.addColorStop(0.45, `rgba(${JADE},${0.06 * pulse})`);
+      g.addColorStop(1, `rgba(${JADE},0)`);
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, w, h);
 
       // core dot
       ctx.beginPath();
       ctx.arc(cx, cy, 3.6 * k + 1.2, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(0,255,194,0.95)";
+      ctx.fillStyle = `rgba(${JADE},0.95)`;
       ctx.fill();
 
       // pulse ripples
@@ -106,7 +114,7 @@ export default function EngineCore() {
       pulses.forEach((p) => {
         ctx.beginPath();
         ctx.arc(cx, cy, p.r * k, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(0,255,194,${p.o})`;
+        ctx.strokeStyle = `rgba(${JADE},${p.o})`;
         ctx.lineWidth = 1;
         ctx.stroke();
       });
@@ -116,7 +124,7 @@ export default function EngineCore() {
         const rr = ring.r * k;
         ctx.beginPath();
         ctx.arc(cx, cy, rr, 0, Math.PI * 2);
-        ctx.strokeStyle = "rgba(0,255,194,0.055)";
+        ctx.strokeStyle = `rgba(${ring.c},0.05)`;
         ctx.lineWidth = 1;
         ctx.stroke();
 
@@ -127,11 +135,11 @@ export default function EngineCore() {
           const y = cy + Math.sin(ang) * rr;
           ctx.beginPath();
           ctx.arc(x, y, ring.size * 3, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(0,255,194,0.07)";
+          ctx.fillStyle = `rgba(${ring.c},0.06)`;
           ctx.fill();
           ctx.beginPath();
           ctx.arc(x, y, ring.size, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(0,255,194,0.85)";
+          ctx.fillStyle = `rgba(${ring.c},0.8)`;
           ctx.fill();
         }
       });
@@ -143,7 +151,7 @@ export default function EngineCore() {
         const y = cy + Math.sin(p.a) * p.r * k;
         ctx.beginPath();
         ctx.arc(x, y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0,255,194,${p.o})`;
+        ctx.fillStyle = `rgba(${p.c},${p.o})`;
         ctx.fill();
       });
 

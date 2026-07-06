@@ -74,7 +74,7 @@ export const CASES: VEAResultPackage[] = [
     kind: "Social + AI Infrastructure",
     computedAt: "09:42:18 UTC+8",
     accentEmerald: "#059669",
-    accentNeon: "#00ffc2",
+    accentNeon: "#2dd4a0",
     executiveSummary:
       "Meta's fastest monetization path is turning its open Llama ecosystem into the default AI layer across its 3.9B-user attention network — the 90-day window is decisive.",
     currentPosition: {
@@ -138,7 +138,7 @@ export const CASES: VEAResultPackage[] = [
     kind: "AI Compute Platform",
     computedAt: "09:41:23 UTC+8",
     accentEmerald: "#059669",
-    accentNeon: "#00ffc2",
+    accentNeon: "#2dd4a0",
     executiveSummary:
       "NVIDIA's monetization is shifting from selling chips to renting an AI factory — the 30-day window favors deepening the CUDA-to-cloud full-stack lock-in.",
     currentPosition: {
@@ -201,7 +201,7 @@ export const CASES: VEAResultPackage[] = [
     kind: "Advanced Materials",
     computedAt: "09:40:45 UTC+8",
     accentEmerald: "#059669",
-    accentNeon: "#00ffc2",
+    accentNeon: "#2dd4a0",
     executiveSummary:
       "Corning's overlooked monetization path is the AI data-center optical build-out — the 180-day window rewards repositioning glass IP as critical AI infrastructure.",
     currentPosition: {
@@ -274,7 +274,7 @@ export function genericPackage(subject: string): VEAResultPackage {
     kind: "Technical Asset",
     computedAt: "just now",
     accentEmerald: "#059669",
-    accentNeon: "#00ffc2",
+    accentNeon: "#2dd4a0",
     executiveSummary: `${name}'s strongest near-term monetization path is to concentrate its technical assets on the single highest-probability value window and validate fast.`,
     currentPosition: {
       statement: "Differentiated technical asset with an under-exploited monetization surface.",

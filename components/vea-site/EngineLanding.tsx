@@ -54,8 +54,9 @@ export default function EngineLanding() {
     <main className="relative h-[100dvh] overflow-hidden bg-ink text-white">
       {/* ambient */}
       <div className="pointer-events-none absolute inset-0 engine-glow" />
-      <div className="pointer-events-none absolute inset-0 grid-bg opacity-60" />
+      <div className="pointer-events-none absolute inset-0 grid-bg opacity-50" />
       <EngineCore />
+      <div className="pointer-events-none absolute inset-0 vignette" />
 
       {/* top bar */}
       <motion.header

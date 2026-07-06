@@ -12,11 +12,11 @@ const config: Config = {
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       colors: {
-        // Dark "engine" surfaces
+        // Dark "engine" surfaces — deep, slightly cool near-black for depth
         ink: {
-          DEFAULT: "#07080a",
-          soft: "#0c0e11",
-          card: "#101317",
+          DEFAULT: "#06070a",
+          soft: "#0a0c11",
+          card: "#0f1218",
         },
         // Light "result" surfaces
         paper: {
@@ -25,11 +25,13 @@ const config: Config = {
           card: "#ffffff",
         },
         vea: {
-          neon: "#00ffc2", // dark-mode medical/neon green
-          glow: "#00e5ac",
+          neon: "#2dd4a0", // dark-mode refined jade (primary accent)
+          glow: "#17b184", // deeper jade for glows / gradients
+          mist: "#7ff0d0", // light mint tip for gradient text
+          steel: "#7c9cff", // cool secondary — adds technical depth
           emerald: "#059669", // light-mode professional green
           "emerald-soft": "#10b981",
-          ink: "#0b1a15",
+          ink: "#06110d",
         },
       },
       keyframes: {

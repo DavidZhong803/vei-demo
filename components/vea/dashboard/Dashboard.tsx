@@ -82,7 +82,7 @@ export default function Dashboard() {
         </aside>
 
         {/* main */}
-        <main className="min-w-0 flex-1 px-3 pb-[calc(4.25rem+env(safe-area-inset-bottom,0px))] pt-3 sm:p-5 lg:pb-5">
+        <main className="min-w-0 flex-1 px-3 pb-[calc(3.75rem+env(safe-area-inset-bottom,0px))] pt-3 sm:p-5 lg:pb-5">
           <div className="grid gap-3 sm:gap-5 xl:grid-cols-[minmax(0,0.92fr)_minmax(0,1.15fr)]">
             <div
               className={`${tab === "market" ? "block" : "hidden"} lg:block xl:h-[calc(100dvh-6.5rem)]`}

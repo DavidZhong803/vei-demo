@@ -19,7 +19,7 @@ export default function MissionSection() {
   return (
     <section
       id="mission"
-      className="relative flex min-h-[86dvh] flex-col items-center justify-center overflow-hidden px-4 py-16 pt-[env(safe-area-inset-top)] sm:min-h-[92dvh] sm:px-6 sm:py-20"
+      className="relative flex flex-col items-center justify-center overflow-visible px-4 py-16 pt-[env(safe-area-inset-top)] sm:min-h-[92dvh] sm:overflow-hidden sm:px-6 sm:py-20"
     >
       <div className="pointer-events-none absolute inset-0 grid-bg opacity-30" />
       <div
@@ -47,7 +47,7 @@ export default function MissionSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.4 }}
           transition={{ duration: 0.55, delay: 0.05 }}
-          className="text-balance text-[1.75rem] font-semibold leading-[1.14] tracking-tight text-white/88 sm:text-4xl md:text-5xl"
+          className="text-balance text-[1.62rem] font-semibold leading-[1.16] tracking-tight text-white/88 sm:text-4xl md:text-5xl"
         >
           Accelerate technical assets into{" "}
           <span className="neon-text">monetized value.</span>
@@ -65,8 +65,27 @@ export default function MissionSection() {
           asset to realized value — moving faster than the market can react.
         </motion.p>
 
-        {/* acceleration chain — horizontal scroll on mobile */}
-        <div className="relative mx-auto mt-8 w-full sm:mt-12 sm:max-w-3xl">
+        <div className="mx-auto mt-8 grid w-full max-w-sm gap-2 text-left sm:hidden">
+          {CHAIN.map((node, i) => (
+            <div
+              key={node.en}
+              className="flex items-center gap-3 rounded-lg border border-white/[0.07] bg-white/[0.035] px-3 py-2.5"
+            >
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-vea-neon/12 text-xs font-semibold text-vea-neon">
+                {i + 1}
+              </span>
+              <span className="min-w-0">
+                <span className="block text-sm font-medium text-white/78">
+                  {node.short}
+                </span>
+                <span className="block text-xs text-white/36">{node.zh}</span>
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* acceleration chain — timeline on larger screens */}
+        <div className="relative mx-auto mt-8 hidden w-full sm:mt-12 sm:block sm:max-w-3xl">
           <div className="absolute inset-x-4 top-2 h-px bg-white/10 sm:inset-x-0" />
           <motion.div
             className="absolute top-2 h-[3px] w-24 -translate-y-1/2 rounded-full sm:w-32"

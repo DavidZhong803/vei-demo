@@ -40,11 +40,11 @@ export default function SimpleLanding() {
         </nav>
       </header>
 
-      <section className="relative z-10 mx-auto flex min-h-[72dvh] max-w-4xl flex-col items-center justify-center px-5 pb-16 pt-8 text-center sm:min-h-[calc(100dvh-4rem)] sm:pb-20">
+      <section className="relative z-10 mx-auto flex min-h-[calc(100svh-4rem)] max-w-4xl flex-col items-center justify-center px-5 pb-12 pt-8 text-center sm:min-h-[calc(100dvh-4rem)] sm:pb-20">
         <p className="mb-4 text-base font-semibold tracking-[0.12em] text-vea-amber-soft sm:text-lg">
           技术资产货币化引擎
         </p>
-        <h1 className="max-w-3xl text-balance text-[2.35rem] font-semibold leading-[1.04] tracking-tight text-white/84 sm:text-5xl md:text-[3.6rem]">
+        <h1 className="max-w-3xl text-balance text-[2.15rem] font-semibold leading-[1.06] tracking-tight text-white/84 sm:text-5xl md:text-[3.6rem]">
           Compute the value of technology in time.
         </h1>
         <p className="mt-5 max-w-xl text-balance text-sm leading-6 text-white/46 sm:text-base sm:leading-7">

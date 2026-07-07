@@ -19,7 +19,7 @@ export default function MissionSection() {
   return (
     <section
       id="mission"
-      className="relative flex min-h-[100dvh] snap-start snap-always flex-col items-center justify-center overflow-hidden px-4 py-10 pt-[env(safe-area-inset-top)] sm:px-6 sm:py-0"
+      className="relative flex min-h-[86dvh] flex-col items-center justify-center overflow-hidden px-4 py-16 pt-[env(safe-area-inset-top)] sm:min-h-[92dvh] sm:px-6 sm:py-20"
     >
       <div className="pointer-events-none absolute inset-0 grid-bg opacity-30" />
       <div
@@ -47,7 +47,7 @@ export default function MissionSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.4 }}
           transition={{ duration: 0.55, delay: 0.05 }}
-          className="text-balance text-[1.65rem] font-semibold leading-[1.12] tracking-tight sm:text-5xl md:text-6xl"
+          className="text-balance text-[1.75rem] font-semibold leading-[1.14] tracking-tight text-white/88 sm:text-4xl md:text-5xl"
         >
           Accelerate technical assets into{" "}
           <span className="neon-text">monetized value.</span>
@@ -58,7 +58,7 @@ export default function MissionSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.4 }}
           transition={{ duration: 0.55, delay: 0.12 }}
-          className="mx-auto mt-4 max-w-2xl text-balance text-sm leading-relaxed text-white/55 sm:mt-6 sm:text-lg"
+          className="mx-auto mt-4 max-w-2xl text-balance text-sm leading-7 text-white/48 sm:mt-5 sm:text-base"
         >
           The hardest step in technology is not invention — it is monetization.
           VEA computes the shortest, highest-probability path from a technical
@@ -66,7 +66,7 @@ export default function MissionSection() {
         </motion.p>
 
         {/* acceleration chain — horizontal scroll on mobile */}
-        <div className="relative mx-auto mt-8 w-full sm:mt-14 sm:max-w-3xl">
+        <div className="relative mx-auto mt-8 w-full sm:mt-12 sm:max-w-3xl">
           <div className="absolute inset-x-4 top-2 h-px bg-white/10 sm:inset-x-0" />
           <motion.div
             className="absolute top-2 h-[3px] w-24 -translate-y-1/2 rounded-full sm:w-32"
@@ -130,7 +130,7 @@ export default function MissionSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: false, amount: 0.4 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mx-auto mt-8 max-w-2xl text-balance text-xs leading-relaxed text-white/40 sm:mt-14 sm:text-sm"
+          className="mx-auto mt-8 max-w-2xl text-balance text-xs leading-6 text-white/38 sm:mt-12 sm:text-sm"
         >
           我们的使命：加速技术资产的货币化 —— 让每一项技术，以最短的路径、
           最高的概率，成为真正的商业价值。

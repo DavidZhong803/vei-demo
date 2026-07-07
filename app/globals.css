@@ -69,8 +69,13 @@ body {
       ),
       radial-gradient(
         50% 45% at 50% 100%,
-        rgba(224, 138, 18, 0.07) 0%,
+        rgba(245, 166, 35, 0.12) 0%,
         transparent 62%
+      ),
+      radial-gradient(
+        40% 42% at 28% 72%,
+        rgba(224, 138, 18, 0.08) 0%,
+        transparent 64%
       ),
       radial-gradient(
         45% 40% at 12% 90%,
@@ -166,6 +171,20 @@ body {
     border: 1px solid rgba(16, 40, 28, 0.09);
     box-shadow: 0 1px 2px rgba(16, 40, 28, 0.05),
       0 14px 34px -18px rgba(16, 40, 28, 0.16);
+  }
+
+  .app-workbench-bg {
+    background: radial-gradient(
+        42% 34% at 86% 8%,
+        rgba(245, 166, 35, 0.12) 0%,
+        transparent 68%
+      ),
+      radial-gradient(
+        48% 36% at 18% 92%,
+        rgba(45, 212, 160, 0.12) 0%,
+        transparent 70%
+      ),
+      linear-gradient(180deg, #04100b 0%, #07140f 46%, #020907 100%);
   }
 
   .emerald-text {

@@ -1,10 +1,10 @@
 import { Suspense } from "react";
-import Dashboard from "@/components/vea/dashboard/Dashboard";
+import BetaWorkbench from "@/components/vea/dashboard/BetaWorkbench";
 
 export default function AppPage() {
   return (
     <Suspense fallback={<div className="min-h-screen bg-paper" />}>
-      <Dashboard />
+      <BetaWorkbench />
     </Suspense>
   );
 }

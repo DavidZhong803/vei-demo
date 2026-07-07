@@ -62,15 +62,15 @@ export default function EngineLanding() {
           transition={{ duration: 0.5 }}
           className="relative z-20 shrink-0"
         >
-          <div className="mx-auto flex max-w-6xl items-center justify-between py-4 sm:py-5">
-            <div className="flex items-center gap-2">
-              <span className="flex h-6 w-6 items-center justify-center rounded-md border border-vea-neon/30 bg-vea-neon/10 text-[11px] font-bold text-vea-neon">
+          <div className="mx-auto flex max-w-7xl items-center justify-between py-4 sm:py-5">
+            <div className="flex items-center gap-3">
+              <span className="flex h-8 w-8 items-center justify-center rounded-md border border-vea-neon/30 bg-vea-neon/10 text-sm font-bold text-vea-neon sm:h-9 sm:w-9 sm:text-base">
                 V
               </span>
-              <span className="text-sm font-semibold tracking-tight text-white/90">
+              <span className="text-2xl font-semibold tracking-tight text-white sm:text-[1.7rem]">
                 VEA
               </span>
-              <span className="hidden text-xs text-white/35 md:inline">
+              <span className="hidden rounded bg-white/[0.08] px-1.5 py-0.5 text-sm text-white/38 md:inline">
                 Technical Monetization Computational Framework
               </span>
             </div>
@@ -99,7 +99,7 @@ export default function EngineLanding() {
         <div className="pointer-events-none absolute inset-0 vignette" />
 
         {/* center content */}
-        <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-1 flex-col items-center justify-center pb-20 pt-2 sm:pb-16">
+        <div className="relative z-10 mx-auto flex w-full max-w-5xl translate-y-8 flex-col items-center justify-center pb-12 pt-16 sm:translate-y-12 sm:pb-10">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -118,7 +118,7 @@ export default function EngineLanding() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.22 }}
-          className="max-w-4xl text-balance text-[2rem] font-semibold leading-[1.08] tracking-tight sm:text-6xl md:text-7xl"
+          className="max-w-5xl text-balance text-[2.35rem] font-semibold leading-[1.04] tracking-tight sm:text-7xl md:text-8xl"
         >
           Compute the value of technology{" "}
           <span className="neon-text">in time.</span>

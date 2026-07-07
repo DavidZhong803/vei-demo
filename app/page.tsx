@@ -1,5 +1,5 @@
-import EngineLanding from "@/components/vea-site/EngineLanding";
+import SimpleLanding from "@/components/vea-site/SimpleLanding";
 
 export default function Home() {
-  return <EngineLanding />;
+  return <SimpleLanding />;
 }

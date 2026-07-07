@@ -2,9 +2,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "VEA — Technical Monetization Computational Framework",
+  title: "VEA — Technical Asset Monetization Engine",
   description:
-    "VEA is an AI framework that computes the optimal path to monetize technology within a time window, and delivers the result.",
+    "VEA computes the optimal path to monetize technical assets within a time window, and delivers the result.",
 };
 
 export const viewport: Viewport = {

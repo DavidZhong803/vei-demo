@@ -146,7 +146,7 @@ export default function MarketAnalysisPanel({
             <p className="mt-1 max-w-3xl text-sm leading-6 text-white/48">
               {t(
                 "Continuous signals from market events, value-chain nodes, and monetization windows.",
-                "持续读取市场事件、价值链节点和技术货币化窗口。"
+                "持续读取市场事件、价值链节点和技术资产货币化窗口。"
               )}
             </p>
           </div>
@@ -271,8 +271,8 @@ export default function MarketAnalysisPanel({
       <div className="flex shrink-0 items-center gap-2 border-t border-white/[0.07] px-4 py-3 text-xs text-white/36">
         <Braces className="h-3.5 w-3.5 text-vea-amber-soft" />
         {t(
-          "Market view stays visible while the copilot works on the right.",
-          "市场视图常驻左侧，右侧对话框执行具体分析。"
+          "Market Computation stays visible while My Computation works on the right.",
+          "市场计算常驻左侧，右侧我的计算执行具体分析。"
         )}
       </div>
     </section>

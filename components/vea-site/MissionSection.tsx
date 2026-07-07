@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 const CHAIN = [
-  { en: "Technical Asset", zh: "技术资产", short: "Asset" },
-  { en: "Validation", zh: "验证", short: "Valid." },
-  { en: "Product", zh: "产品化", short: "Product" },
-  { en: "Market", zh: "市场", short: "Market" },
-  { en: "Monetization", zh: "货币化", short: "Value" },
+  { en: "Technical Asset", short: "Asset" },
+  { en: "Validation", short: "Valid." },
+  { en: "Productization", short: "Product" },
+  { en: "Market", short: "Market" },
+  { en: "Monetization", short: "Value" },
 ];
 
 const STEP_DELAY = [0, 1.15, 1.7, 2.1, 2.4];
@@ -39,7 +39,7 @@ export default function MissionSection() {
           className="mb-4 inline-flex items-center gap-2 rounded-full border border-vea-neon/25 bg-vea-neon/[0.06] px-3 py-1 text-[10px] font-medium tracking-wide text-vea-neon/90 sm:mb-6 sm:px-4 sm:py-1.5 sm:text-xs"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-vea-neon" />
-          使命 · Our Mission
+          Our Mission
         </motion.div>
 
         <motion.h2
@@ -78,7 +78,7 @@ export default function MissionSection() {
                 <span className="block text-sm font-medium text-white/78">
                   {node.short}
                 </span>
-                <span className="block text-xs text-white/36">{node.zh}</span>
+                <span className="block text-xs text-white/36">{node.en}</span>
               </span>
             </div>
           ))}
@@ -138,7 +138,6 @@ export default function MissionSection() {
                   <span className="sm:hidden">{node.short}</span>
                   <span className="hidden sm:inline">{node.en}</span>
                 </span>
-                <span className="mt-0.5 text-[10px] text-white/35">{node.zh}</span>
               </div>
             ))}
           </div>
@@ -151,8 +150,9 @@ export default function MissionSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mx-auto mt-8 max-w-2xl text-balance text-xs leading-6 text-white/38 sm:mt-12 sm:text-sm"
         >
-          我们的使命：加速技术资产的货币化 —— 让每一项技术，以最短的路径、
-          最高的概率，成为真正的商业价值。
+          Our mission is to accelerate the monetization of technical assets,
+          helping each technology become real business value through the
+          shortest path and the highest probability.
         </motion.p>
 
         <motion.div

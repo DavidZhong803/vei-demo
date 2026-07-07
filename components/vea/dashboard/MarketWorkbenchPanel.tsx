@@ -168,7 +168,7 @@ export default function MarketWorkbenchPanel() {
         <div className="border-b border-white/[0.08] p-4">
           <div className="inline-flex items-center gap-2 rounded-md border border-vea-amber/20 bg-vea-amber/[0.08] px-2.5 py-1 text-[11px] font-medium text-vea-amber-soft">
             <Radio className="h-3.5 w-3.5" />
-            {t("Market", "市场")}
+            {t("Market Computation", "市场计算")}
           </div>
           <h2 className="mt-3 text-xl font-semibold text-white">
             {t("AI Infrastructure", "人工智能基础设施")}

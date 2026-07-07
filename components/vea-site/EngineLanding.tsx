@@ -11,19 +11,15 @@ import MissionSection from "./MissionSection";
 const TAGLINES = [
   {
     en: "Computes the optimal path to monetize technology within a time window.",
-    zh: "计算技术在特定时间窗口内的最优货币化路径。",
   },
   {
     en: "Validates every result against markets, outcomes, and capital.",
-    zh: "以市场、商业结果与资本市场持续验证每一个结果。",
   },
   {
     en: "Shows your position in the value chain — and where it is heading.",
-    zh: "呈现你在产业价值链中的位置，以及未来的演化方向。",
   },
   {
     en: "Delivers the result. The computation stays inside the engine.",
-    zh: "只交付结果。复杂计算留在引擎内部。",
   },
 ];
 
@@ -71,16 +67,10 @@ export default function EngineLanding() {
                 VEA
               </span>
               <span className="hidden rounded bg-white/[0.08] px-1.5 py-0.5 text-sm text-white/38 md:inline">
-                Technical Monetization Computational Framework
+                Technical Asset Monetization Engine
               </span>
             </div>
             <div className="flex items-center gap-1 sm:gap-1.5">
-              <Link
-                href="/cases"
-                className="rounded-full px-2.5 py-1.5 text-[11px] font-medium text-white/60 transition-colors hover:text-white sm:px-4 sm:py-2 sm:text-xs"
-              >
-                Cases
-              </Link>
               <Link
                 href="/app"
                 className="group inline-flex items-center gap-1 rounded-full border border-vea-neon/30 bg-vea-neon/10 px-2.5 py-1.5 text-[11px] font-medium text-vea-neon transition-colors hover:bg-vea-neon/15 sm:gap-1.5 sm:px-4 sm:py-2 sm:text-xs"
@@ -137,9 +127,6 @@ export default function EngineLanding() {
             >
               <p className="text-balance text-base leading-relaxed text-white/60 sm:text-lg">
                 {TAGLINES[tag].en}
-              </p>
-              <p className="mt-1 text-balance text-xs leading-relaxed text-white/30">
-                {TAGLINES[tag].zh}
               </p>
             </motion.div>
           </AnimatePresence>

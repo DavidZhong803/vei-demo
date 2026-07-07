@@ -31,7 +31,7 @@ const TOOL_COPY: Record<Lang, ToolItem[]> = {
   en: [
     {
       id: "market",
-      label: "Market analysis",
+      label: "Market computation",
       icon: BarChart3,
       prompt: "Read market events, node shifts, and monetization windows.",
     },
@@ -57,7 +57,7 @@ const TOOL_COPY: Record<Lang, ToolItem[]> = {
   zh: [
     {
       id: "market",
-      label: "市场分析",
+      label: "市场计算",
       icon: BarChart3,
       prompt: "读取市场事件、节点变化与货币化窗口。",
     },
@@ -111,7 +111,7 @@ export default function CodexDockPanel({
           <div className="min-w-0">
             <p className="truncate text-sm font-semibold text-white">VEA</p>
             <p className="truncate text-[10px] text-white/38">
-              {t("Technical monetization copilot", "技术货币化助手")}
+              {t("My Computation", "我的计算")}
             </p>
           </div>
         </div>
@@ -156,8 +156,8 @@ export default function CodexDockPanel({
           </div>
           <p className="text-sm leading-6 text-white/58">
             {t(
-              "The market view stays on the left. This panel keeps the model conversation, tools, and execution controls on the right.",
-              "左侧保持市场视图。右侧保留模型对话、工具入口与执行控制。"
+              "Market Computation stays on the left. My Computation keeps the model conversation, tools, and execution controls on the right.",
+              "左侧保持市场计算。右侧我的计算保留模型对话、工具入口与执行控制。"
             )}
           </p>
         </div>
@@ -173,8 +173,8 @@ export default function CodexDockPanel({
         <div className="space-y-2">
           {[
             t(
-              "Connected to the AI infrastructure market.",
-              "已连接人工智能基础设施市场。"
+              "Connected to AI infrastructure market computation.",
+              "已连接人工智能基础设施市场计算。"
             ),
             t(
               "Choose a tool to analyze structure, path, or evidence.",

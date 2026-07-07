@@ -19,17 +19,11 @@ export default function SimpleLanding() {
             VEA
           </span>
           <span className="hidden rounded bg-vea-amber/[0.10] px-2 py-1 text-sm font-medium text-vea-amber-soft/90 md:inline">
-            技术资产货币化引擎
+            Technical Asset Monetization Engine
           </span>
         </Link>
 
         <nav className="flex items-center gap-2">
-          <Link
-            href="/cases"
-            className="hidden rounded-md px-3 py-2 text-sm font-medium text-white/45 transition-colors hover:text-white sm:inline-flex"
-          >
-            Cases
-          </Link>
           <Link
             href="/app"
             className="group inline-flex items-center gap-2 rounded-md border border-vea-neon/25 bg-vea-neon/[0.08] px-3 py-2 text-sm font-medium text-vea-neon transition-colors hover:bg-vea-neon/[0.12] sm:px-4"
@@ -42,7 +36,7 @@ export default function SimpleLanding() {
 
       <section className="relative z-10 mx-auto flex min-h-[calc(100svh-4rem)] max-w-4xl flex-col items-center justify-center px-5 pb-12 pt-8 text-center sm:min-h-[calc(100dvh-4rem)] sm:pb-20">
         <p className="mb-4 text-base font-semibold tracking-[0.12em] text-vea-amber-soft sm:text-lg">
-          技术资产货币化引擎
+          Technical Asset Monetization Engine
         </p>
         <h1 className="max-w-3xl text-balance text-[2.15rem] font-semibold leading-[1.06] tracking-tight text-white/84 sm:text-5xl md:text-[3.6rem]">
           Compute the value of technology in time.

@@ -117,7 +117,7 @@ export default function ResultPackage({
         <div>
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-vea-emerald/20 bg-vea-emerald/[0.06] px-3.5 py-1.5 text-xs font-medium text-vea-emerald">
             <Sparkles className="h-3.5 w-3.5" />
-            Technical Monetization Result Package
+            Technical Asset Monetization Result Package
           </div>
           <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
             {data.subject}

@@ -54,7 +54,7 @@ export default function IndustrySidebar({
       <div className="relative px-5 pb-4 pt-6">
         <div className="flex items-center gap-2">
           <span className="text-sm font-semibold tracking-tight text-white">
-            {t("Computation Market", "计算市场")}
+            {t("Market Computation", "市场计算")}
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full border border-vea-amber/30 bg-vea-amber/10 px-2 py-0.5 text-[10px] font-medium text-vea-amber-soft">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-vea-amber-soft" />

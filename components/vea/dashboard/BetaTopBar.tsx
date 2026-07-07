@@ -47,7 +47,7 @@ export default function BetaTopBar({
           }`}
         >
           <PanelRightOpen className="h-3.5 w-3.5" />
-          {t("Mine", "我的")}
+          {t("My Computation", "我的计算")}
         </button>
 
         <div className="flex items-center rounded-full border border-black/10 bg-black/[0.02] p-0.5 text-[10px] font-medium">
@@ -79,7 +79,10 @@ export default function BetaTopBar({
             VEA
           </span>
           <span className="hidden text-xs text-slate-400 md:inline">
-            {t("Technical monetization engine", "技术货币化引擎")}
+            {t(
+              "Technical asset monetization engine",
+              "技术资产货币化引擎"
+            )}
           </span>
         </Link>
 
@@ -88,7 +91,7 @@ export default function BetaTopBar({
           className="ml-2 inline-flex items-center gap-1.5 rounded-full bg-vea-emerald/10 px-3 py-1.5 text-xs font-semibold text-vea-emerald"
         >
           <LayoutGrid className="h-3.5 w-3.5" />
-          {t("Computation Market", "计算市场")}
+          {t("Market Computation", "市场计算")}
         </button>
 
         <div className="flex-1" />

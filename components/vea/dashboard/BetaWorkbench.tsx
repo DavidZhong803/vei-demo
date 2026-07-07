@@ -52,8 +52,8 @@ function WorkbenchContent() {
           </span>
           <span className="hidden rounded bg-white/[0.08] px-1.5 py-0.5 text-xs text-white/42 md:inline">
             {t(
-              "Technical Monetization Computational Framework",
-              "技术货币化计算框架"
+              "Technical Asset Monetization Computational Framework",
+              "技术资产货币化计算框架"
             )}
           </span>
         </Link>
@@ -66,13 +66,6 @@ function WorkbenchContent() {
         </span>
 
         <LanguageSwitch />
-
-        <Link
-          href="/cases"
-          className="hidden rounded-md px-3 py-1.5 text-xs font-medium text-white/44 transition-colors hover:text-white sm:inline-flex"
-        >
-          {t("Cases", "案例")}
-        </Link>
 
         <Link
           href="/"

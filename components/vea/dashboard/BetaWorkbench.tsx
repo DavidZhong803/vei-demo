@@ -77,7 +77,7 @@ function WorkbenchContent() {
       </header>
 
       <main
-        className={`grid h-[calc(100dvh-3.5rem)] min-h-0 gap-3 p-3 sm:gap-4 sm:p-4 ${
+        className={`grid h-[calc(100dvh-3.5rem)] min-h-0 gap-3 overflow-y-auto p-3 sm:gap-4 sm:p-4 lg:overflow-hidden ${
           chatDocked
             ? "lg:grid-cols-[minmax(0,1fr)_390px] xl:grid-cols-[minmax(0,1fr)_430px]"
             : "lg:grid-cols-1"
@@ -85,14 +85,26 @@ function WorkbenchContent() {
       >
         <MarketWorkbenchPanel />
         {chatDocked && (
-          <CodexDockPanel
-            mode="dock"
-            onMinimize={() => setChatMode("minimized")}
-            onPopOut={() => setChatMode("float")}
-            onDock={() => setChatMode("dock")}
-          />
+          <div className="hidden min-h-0 lg:block">
+            <CodexDockPanel
+              mode="dock"
+              onMinimize={() => setChatMode("minimized")}
+              onPopOut={() => setChatMode("float")}
+              onDock={() => setChatMode("dock")}
+            />
+          </div>
         )}
       </main>
+
+      {chatDocked && (
+        <button
+          onClick={() => setChatMode("float")}
+          className="absolute bottom-4 right-4 z-40 inline-flex items-center gap-2 rounded-md border border-white/[0.12] bg-[#06110d]/92 px-3 py-2 text-sm font-medium text-white/72 shadow-2xl shadow-black/35 backdrop-blur-xl transition-colors hover:text-white lg:hidden"
+        >
+          <MessageSquare className="h-4 w-4 text-vea-neon" />
+          {t("My Computation", "我的计算")}
+        </button>
+      )}
 
       {chatFloating && (
         <div className="absolute bottom-4 right-4 top-20 z-40 w-[min(430px,calc(100vw-2rem))]">
@@ -111,7 +123,7 @@ function WorkbenchContent() {
           className="absolute bottom-4 right-4 z-40 inline-flex items-center gap-2 rounded-md border border-white/[0.12] bg-[#06110d]/92 px-3 py-2 text-sm font-medium text-white/72 shadow-2xl shadow-black/35 backdrop-blur-xl transition-colors hover:text-white"
         >
           <MessageSquare className="h-4 w-4 text-vea-neon" />
-          {t("Open VEA chat", "打开 VEA 对话")}
+          {t("Open My Computation", "打开我的计算")}
         </button>
       )}
     </div>

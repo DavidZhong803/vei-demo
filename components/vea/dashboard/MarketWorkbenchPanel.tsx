@@ -163,8 +163,8 @@ export default function MarketWorkbenchPanel() {
   const report = REPORT[lang];
 
   return (
-    <section className="grid min-h-0 overflow-hidden rounded-xl border border-white/[0.09] bg-[#07140f]/78 shadow-2xl shadow-black/25 backdrop-blur-xl lg:grid-cols-[250px_minmax(0,1fr)]">
-      <aside className="min-h-0 border-b border-white/[0.08] lg:border-b-0 lg:border-r">
+    <section className="flex min-h-0 flex-col gap-3 lg:grid lg:gap-0 lg:overflow-hidden lg:rounded-xl lg:border lg:border-white/[0.09] lg:bg-[#07140f]/78 lg:shadow-2xl lg:shadow-black/25 lg:backdrop-blur-xl lg:grid-cols-[250px_minmax(0,1fr)]">
+      <aside className="shrink-0 overflow-hidden rounded-xl border border-white/[0.09] bg-[#07140f]/78 shadow-2xl shadow-black/20 backdrop-blur-xl lg:min-h-0 lg:rounded-none lg:border-0 lg:border-r lg:border-white/[0.08] lg:bg-transparent lg:shadow-none lg:backdrop-blur-none">
         <div className="border-b border-white/[0.08] p-4">
           <div className="inline-flex items-center gap-2 rounded-md border border-vea-amber/20 bg-vea-amber/[0.08] px-2.5 py-1 text-[11px] font-medium text-vea-amber-soft">
             <Radio className="h-3.5 w-3.5" />
@@ -229,7 +229,7 @@ export default function MarketWorkbenchPanel() {
         </div>
       </aside>
 
-      <article className="min-h-0 overflow-y-auto p-4 sm:p-5">
+      <article className="overflow-visible rounded-xl border border-white/[0.09] bg-[#07140f]/78 p-4 shadow-2xl shadow-black/20 backdrop-blur-xl sm:p-5 lg:min-h-0 lg:overflow-y-auto lg:rounded-none lg:border-0 lg:bg-transparent lg:shadow-none lg:backdrop-blur-none">
         <div className="mb-5 flex flex-col gap-3 border-b border-white/[0.08] pb-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-vea-amber-soft/80">

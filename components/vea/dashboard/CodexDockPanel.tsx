@@ -57,7 +57,7 @@ const TOOL_COPY: Record<Lang, ToolItem[]> = {
   zh: [
     {
       id: "market",
-      label: "市场计算",
+      label: "计算市场",
       icon: BarChart3,
       prompt: "读取市场事件、节点变化与货币化窗口。",
     },

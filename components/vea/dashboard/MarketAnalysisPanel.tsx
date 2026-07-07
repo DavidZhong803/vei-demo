@@ -272,7 +272,7 @@ export default function MarketAnalysisPanel({
         <Braces className="h-3.5 w-3.5 text-vea-amber-soft" />
         {t(
           "Market Computation stays visible while My Computation works on the right.",
-          "市场计算常驻左侧，右侧我的计算执行具体分析。"
+          "计算市场常驻左侧，右侧我的计算执行具体分析。"
         )}
       </div>
     </section>

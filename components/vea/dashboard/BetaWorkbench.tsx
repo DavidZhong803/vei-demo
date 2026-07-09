@@ -77,7 +77,7 @@ function WorkbenchContent() {
       </header>
 
       <main
-        className={`grid h-[calc(100dvh-3.5rem)] min-h-0 gap-3 overflow-y-auto p-3 sm:gap-4 sm:p-4 lg:overflow-hidden ${
+        className={`h-[calc(100dvh-3.5rem)] min-h-0 overflow-y-auto p-3 sm:p-4 lg:grid lg:gap-4 lg:overflow-hidden ${
           chatDocked
             ? "lg:grid-cols-[minmax(0,1fr)_390px] xl:grid-cols-[minmax(0,1fr)_430px]"
             : "lg:grid-cols-1"

@@ -271,7 +271,7 @@ export default function MarketAnalysisPanel({
       <div className="flex shrink-0 items-center gap-2 border-t border-white/[0.07] px-4 py-3 text-xs text-white/36">
         <Braces className="h-3.5 w-3.5 text-vea-amber-soft" />
         {t(
-          "Market Computation stays visible while My Computation works on the right.",
+          "Computation Market stays visible while My Computation works on the right.",
           "计算市场常驻左侧，右侧我的计算执行具体分析。"
         )}
       </div>

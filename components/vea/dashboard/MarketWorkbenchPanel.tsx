@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ChevronDown,
   CircuitBoard,
@@ -158,17 +158,25 @@ const REPORT = {
 export default function MarketWorkbenchPanel() {
   const { lang } = useLang();
   const t = useT();
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(false);
   const [selected, setSelected] = useState("logic");
   const report = REPORT[lang];
 
+  useEffect(() => {
+    const query = window.matchMedia("(min-width: 1024px)");
+    const syncExpanded = () => setExpanded(query.matches);
+    syncExpanded();
+    query.addEventListener("change", syncExpanded);
+    return () => query.removeEventListener("change", syncExpanded);
+  }, []);
+
   return (
-    <section className="flex min-h-0 flex-col gap-3 lg:grid lg:gap-0 lg:overflow-hidden lg:rounded-xl lg:border lg:border-white/[0.09] lg:bg-[#07140f]/78 lg:shadow-2xl lg:shadow-black/25 lg:backdrop-blur-xl lg:grid-cols-[250px_minmax(0,1fr)]">
+    <section className="space-y-3 lg:grid lg:min-h-0 lg:grid-cols-[250px_minmax(0,1fr)] lg:gap-0 lg:space-y-0 lg:overflow-hidden lg:rounded-xl lg:border lg:border-white/[0.09] lg:bg-[#07140f]/78 lg:shadow-2xl lg:shadow-black/25 lg:backdrop-blur-xl">
       <aside className="shrink-0 overflow-hidden rounded-xl border border-white/[0.09] bg-[#07140f]/78 shadow-2xl shadow-black/20 backdrop-blur-xl lg:min-h-0 lg:rounded-none lg:border-0 lg:border-r lg:border-white/[0.08] lg:bg-transparent lg:shadow-none lg:backdrop-blur-none">
         <div className="border-b border-white/[0.08] p-4">
           <div className="inline-flex items-center gap-2 rounded-md border border-vea-amber/20 bg-vea-amber/[0.08] px-2.5 py-1 text-[11px] font-medium text-vea-amber-soft">
             <Radio className="h-3.5 w-3.5" />
-            {t("Market Computation", "计算市场")}
+            {t("Computation Market", "计算市场")}
           </div>
           <h2 className="mt-3 text-xl font-semibold text-white">
             {t("AI Infrastructure", "人工智能基础设施")}
@@ -235,12 +243,12 @@ export default function MarketWorkbenchPanel() {
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-vea-amber-soft/80">
               {report.eyebrow}
             </p>
-            <h1 className="mt-2 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+            <h1 className="mt-2 text-xl font-semibold tracking-tight text-white sm:text-3xl">
               {report.title}
             </h1>
             <p className="mt-1 text-sm text-white/48">{report.subtitle}</p>
           </div>
-          <div className="grid grid-cols-3 gap-2 text-center">
+          <div className="hidden grid-cols-3 gap-2 text-center sm:grid">
             {[
               [t("Stable", "平稳"), t("NVDA", "英伟达")],
               [t("Nonlinear", "非线性"), t("HBM", "高带宽内存")],

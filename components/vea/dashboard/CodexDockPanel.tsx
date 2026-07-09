@@ -31,7 +31,7 @@ const TOOL_COPY: Record<Lang, ToolItem[]> = {
   en: [
     {
       id: "market",
-      label: "Market computation",
+      label: "Computation market",
       icon: BarChart3,
       prompt: "Read market events, node shifts, and monetization windows.",
     },
@@ -156,8 +156,8 @@ export default function CodexDockPanel({
           </div>
           <p className="text-sm leading-6 text-white/58">
             {t(
-              "Market Computation stays on the left. My Computation keeps the model conversation, tools, and execution controls on the right.",
-              "左侧保持市场计算。右侧我的计算保留模型对话、工具入口与执行控制。"
+              "Computation Market stays on the left. My Computation keeps the model conversation, tools, and execution controls on the right.",
+              "左侧保持计算市场。右侧我的计算保留模型对话、工具入口与执行控制。"
             )}
           </p>
         </div>
@@ -173,8 +173,8 @@ export default function CodexDockPanel({
         <div className="space-y-2">
           {[
             t(
-              "Connected to AI infrastructure market computation.",
-              "已连接人工智能基础设施市场计算。"
+              "Connected to the AI infrastructure computation market.",
+              "已连接人工智能基础设施计算市场。"
             ),
             t(
               "Choose a tool to analyze structure, path, or evidence.",

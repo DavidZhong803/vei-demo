@@ -33,7 +33,7 @@ export default function BottomNav({
           onClick={() => onTab("mycomp")}
         />
         <NavBtn
-          label={t("Market Computation", "计算市场")}
+          label={t("Computation Market", "计算市场")}
           icon={<LayoutGrid className="h-[1.125rem] w-[1.125rem]" />}
           active={active === "market"}
           onClick={() => onTab("market")}

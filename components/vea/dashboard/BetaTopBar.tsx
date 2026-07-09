@@ -91,7 +91,7 @@ export default function BetaTopBar({
           className="ml-2 inline-flex items-center gap-1.5 rounded-full bg-vea-emerald/10 px-3 py-1.5 text-xs font-semibold text-vea-emerald"
         >
           <LayoutGrid className="h-3.5 w-3.5" />
-          {t("Market Computation", "计算市场")}
+          {t("Computation Market", "计算市场")}
         </button>
 
         <div className="flex-1" />

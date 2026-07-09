@@ -99,7 +99,6 @@ export default function CodexDockPanel({
   const [open, setOpen] = useState(false);
   const selectedTool =
     tools.find((tool) => tool.id === selectedToolId) ?? tools[0];
-  const SelectedIcon = selectedTool.icon;
 
   return (
     <aside className="flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-white/[0.09] bg-[#06110d]/88 shadow-2xl shadow-black/35 backdrop-blur-xl">
@@ -148,43 +147,7 @@ export default function CodexDockPanel({
         </div>
       </header>
 
-      <div className="min-h-0 flex-1 space-y-3 overflow-y-auto p-3">
-        <div className="flex w-full items-center gap-2 rounded-lg border border-white/[0.07] bg-white/[0.03] px-3 py-2.5">
-          <span className="flex min-w-0 items-center gap-2">
-            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-vea-neon/[0.12] text-vea-neon">
-              <SelectedIcon className="h-3.5 w-3.5" />
-            </span>
-            <span className="min-w-0">
-              <span className="block truncate text-sm font-medium text-white/82">
-                {selectedTool.label}
-              </span>
-              <span className="block truncate text-xs text-white/38">
-                {selectedTool.prompt}
-              </span>
-            </span>
-          </span>
-        </div>
-
-        <div className="space-y-2">
-          {[
-            t(
-              "Ready. Choose a tool or send a signal to begin.",
-              "已就绪。选择功能或输入信号开始计算。"
-            ),
-            t(
-              "I can turn market events into structure, path, and evidence briefs.",
-              "我可以把市场事件转化为结构、路径与证据简报。"
-            ),
-          ].map((line) => (
-            <div
-              key={line}
-              className="max-w-[92%] rounded-lg border border-white/[0.06] bg-black/22 px-3 py-2 text-sm leading-6 text-white/58"
-            >
-              {line}
-            </div>
-          ))}
-        </div>
-      </div>
+      <div className="min-h-0 flex-1 overflow-y-auto" />
 
       <footer className="shrink-0 border-t border-white/[0.08] p-3">
         {open && (

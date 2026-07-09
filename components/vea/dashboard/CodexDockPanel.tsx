@@ -6,7 +6,6 @@ import {
   Braces,
   ChevronDown,
   FileText,
-  Layers3,
   Maximize2,
   Minimize2,
   PanelRightClose,
@@ -100,6 +99,7 @@ export default function CodexDockPanel({
   const [open, setOpen] = useState(false);
   const selectedTool =
     tools.find((tool) => tool.id === selectedToolId) ?? tools[0];
+  const SelectedIcon = selectedTool.icon;
 
   return (
     <aside className="flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-white/[0.09] bg-[#06110d]/88 shadow-2xl shadow-black/35 backdrop-blur-xl">
@@ -149,45 +149,36 @@ export default function CodexDockPanel({
       </header>
 
       <div className="min-h-0 flex-1 space-y-3 overflow-y-auto p-3">
-        <div className="rounded-lg border border-white/[0.08] bg-white/[0.035] p-3">
-          <div className="mb-2 flex items-center gap-2 text-xs font-medium text-white/72">
-            <Layers3 className="h-3.5 w-3.5 text-vea-amber-soft" />
-            {t("Workspace context", "工作上下文")}
-          </div>
-          <p className="text-sm leading-6 text-white/58">
-            {t(
-              "Computation Market stays on the left. My Computation keeps the model conversation, tools, and execution controls on the right.",
-              "左侧保持计算市场。右侧我的计算保留模型对话、工具入口与执行控制。"
-            )}
-          </p>
-        </div>
-
-        <div className="rounded-lg bg-vea-neon/[0.08] p-3 text-sm leading-6 text-white/72 ring-1 ring-vea-neon/15">
-          {t("Current mode", "当前模式")}
-          <span className="mx-1 font-semibold text-vea-neon">
-            {selectedTool.label}
+        <div className="flex w-full items-center gap-2 rounded-lg border border-white/[0.07] bg-white/[0.03] px-3 py-2.5">
+          <span className="flex min-w-0 items-center gap-2">
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-vea-neon/[0.12] text-vea-neon">
+              <SelectedIcon className="h-3.5 w-3.5" />
+            </span>
+            <span className="min-w-0">
+              <span className="block truncate text-sm font-medium text-white/82">
+                {selectedTool.label}
+              </span>
+              <span className="block truncate text-xs text-white/38">
+                {selectedTool.prompt}
+              </span>
+            </span>
           </span>
-          <p className="mt-1 text-white/48">{selectedTool.prompt}</p>
         </div>
 
         <div className="space-y-2">
           {[
             t(
-              "Connected to the AI infrastructure computation market.",
-              "已连接人工智能基础设施计算市场。"
+              "Ready. Choose a tool or send a signal to begin.",
+              "已就绪。选择功能或输入信号开始计算。"
             ),
             t(
-              "Choose a tool to analyze structure, path, or evidence.",
-              "选择工具来分析结构、路径或证据链。"
-            ),
-            t(
-              "Results will accumulate here as executable briefs.",
-              "结果会在这里沉淀为可执行简报。"
+              "I can turn market events into structure, path, and evidence briefs.",
+              "我可以把市场事件转化为结构、路径与证据简报。"
             ),
           ].map((line) => (
             <div
               key={line}
-              className="rounded-lg border border-white/[0.06] bg-black/20 px-3 py-2 text-sm text-white/54"
+              className="max-w-[92%] rounded-lg border border-white/[0.06] bg-black/22 px-3 py-2 text-sm leading-6 text-white/58"
             >
               {line}
             </div>

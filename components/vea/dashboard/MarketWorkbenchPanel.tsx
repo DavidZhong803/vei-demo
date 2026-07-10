@@ -670,6 +670,31 @@ function EmptyAnalysisState({ count }: { count: number }) {
 
 function GeneratedAnalysis({ company }: { company: Company }) {
   const { lang } = useLang();
+  const [activeLine, setActiveLine] = useState(0);
+  const [typedLength, setTypedLength] = useState(0);
+  const typedText = company.lines[activeLine][lang];
+
+  useEffect(() => {
+    setActiveLine(0);
+    setTypedLength(0);
+  }, [company.id, lang]);
+
+  useEffect(() => {
+    if (typedLength < typedText.length) {
+      const timer = setTimeout(() => {
+        setTypedLength((value) => value + 1);
+      }, 18);
+      return () => clearTimeout(timer);
+    }
+
+    if (activeLine < company.lines.length - 1) {
+      const timer = setTimeout(() => {
+        setActiveLine((value) => value + 1);
+        setTypedLength(0);
+      }, 760);
+      return () => clearTimeout(timer);
+    }
+  }, [activeLine, company.lines.length, typedLength, typedText.length]);
 
   return (
     <motion.div
@@ -678,25 +703,42 @@ function GeneratedAnalysis({ company }: { company: Company }) {
       animate={{ opacity: 1, y: 0 }}
       className="space-y-3"
     >
-      {company.lines.map((line, index) => (
-        <motion.section
-          key={`${company.id}-${line.en}`}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.14, duration: 0.35 }}
-          className="rounded-lg border border-white/[0.07] bg-white/[0.035] p-3 sm:p-3.5"
-        >
-          <div className="mb-2 flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-vea-neon shadow-[0_0_14px_rgba(45,212,160,0.65)]" />
-            <h3 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/38 sm:text-xs sm:tracking-[0.16em]">
-              {STEP_LABELS[index][lang]}
-            </h3>
-          </div>
-          <p className="text-[13px] leading-6 text-white/68 sm:text-sm">
-            {line[lang]}
-          </p>
-        </motion.section>
-      ))}
+      <motion.section
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="rounded-lg border border-white/[0.07] bg-white/[0.035] p-3 sm:hidden"
+      >
+        <div className="mb-2 flex items-center gap-2">
+          <span className="h-1.5 w-1.5 rounded-full bg-vea-neon shadow-[0_0_14px_rgba(45,212,160,0.65)]" />
+          <h3 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/38">
+            {STEP_LABELS[activeLine][lang]}
+          </h3>
+        </div>
+        <p className="min-h-[96px] text-[13px] leading-6 text-white/68">
+          {typedText.slice(0, typedLength)}
+          <span className="caret" />
+        </p>
+      </motion.section>
+
+      <div className="hidden space-y-3 sm:block">
+        {company.lines.map((line, index) => (
+          <motion.section
+            key={`${company.id}-${line.en}`}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.14, duration: 0.35 }}
+            className="rounded-lg border border-white/[0.07] bg-white/[0.035] p-3.5"
+          >
+            <div className="mb-2 flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-vea-neon shadow-[0_0_14px_rgba(45,212,160,0.65)]" />
+              <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-white/38">
+                {STEP_LABELS[index][lang]}
+              </h3>
+            </div>
+            <p className="text-sm leading-6 text-white/68">{line[lang]}</p>
+          </motion.section>
+        ))}
+      </div>
     </motion.div>
   );
 }

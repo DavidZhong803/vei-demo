@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, MessageSquare, Sparkles } from "lucide-react";
+import { ArrowRight, MessageSquare } from "lucide-react";
 import CodexDockPanel, { type ChatMode } from "./CodexDockPanel";
 import MarketWorkbenchPanel from "./MarketWorkbenchPanel";
 import { LangProvider, useLang, useT } from "./lang";
@@ -50,20 +50,9 @@ function WorkbenchContent() {
           <span className="text-xl font-semibold tracking-tight text-white">
             VEA
           </span>
-          <span className="hidden rounded bg-white/[0.08] px-1.5 py-0.5 text-xs text-white/42 md:inline">
-            {t(
-              "Technical Asset Monetization Computational Framework",
-              "技术资产货币化计算框架"
-            )}
-          </span>
         </Link>
 
         <div className="flex-1" />
-
-        <span className="hidden items-center gap-2 rounded-md border border-vea-amber/20 bg-vea-amber/[0.08] px-3 py-1.5 text-xs font-medium text-vea-amber-soft sm:inline-flex">
-          <Sparkles className="h-3.5 w-3.5" />
-          {t("Beta workspace", "测试工作区")}
-        </span>
 
         <LanguageSwitch />
 

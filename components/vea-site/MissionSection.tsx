@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 const CHAIN = [
-  { en: "Technical Asset", short: "Asset" },
-  { en: "Validation", short: "Valid." },
-  { en: "Productization", short: "Product" },
-  { en: "Market", short: "Market" },
-  { en: "Monetization", short: "Value" },
+  { en: "Technical Asset", mobile: "Asset" },
+  { en: "Validation", mobile: "Validate" },
+  { en: "Productization", mobile: "Productize" },
+  { en: "Market", mobile: "Launch" },
+  { en: "Monetization", mobile: "Monetize" },
 ];
 
 const STEP_DELAY = [0, 1.15, 1.7, 2.1, 2.4];
@@ -65,20 +65,17 @@ export default function MissionSection() {
           asset to realized value — moving faster than the market can react.
         </motion.p>
 
-        <div className="mx-auto mt-8 grid w-full max-w-sm gap-2 text-left sm:hidden">
+        <div className="mx-auto mt-8 grid w-full max-w-sm gap-2.5 text-left sm:hidden">
           {CHAIN.map((node, i) => (
             <div
               key={node.en}
-              className="flex items-center gap-3 rounded-lg border border-white/[0.07] bg-white/[0.035] px-3 py-2.5"
+              className="flex items-center gap-3 rounded-lg border border-white/[0.09] bg-white/[0.045] px-3 py-3 shadow-[0_10px_34px_rgba(0,0,0,0.16)]"
             >
-              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-vea-neon/12 text-xs font-semibold text-vea-neon">
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-vea-neon/12 text-xs font-semibold text-vea-neon ring-1 ring-vea-neon/20">
                 {i + 1}
               </span>
-              <span className="min-w-0">
-                <span className="block text-sm font-medium text-white/78">
-                  {node.short}
-                </span>
-                <span className="block text-xs text-white/36">{node.en}</span>
+              <span className="min-w-0 text-sm font-medium text-white/82">
+                {node.mobile}
               </span>
             </div>
           ))}
@@ -135,7 +132,7 @@ export default function MissionSection() {
                   }}
                 />
                 <span className="mt-3 text-[11px] font-medium text-white/80 sm:mt-4 sm:text-sm">
-                  <span className="sm:hidden">{node.short}</span>
+                  <span className="sm:hidden">{node.mobile}</span>
                   <span className="hidden sm:inline">{node.en}</span>
                 </span>
               </div>
@@ -148,7 +145,7 @@ export default function MissionSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: false, amount: 0.4 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mx-auto mt-8 max-w-2xl text-balance text-xs leading-6 text-white/38 sm:mt-12 sm:text-sm"
+          className="mx-auto mt-8 hidden max-w-2xl text-balance text-xs leading-6 text-white/38 sm:mt-12 sm:block sm:text-sm"
         >
           Our mission is to accelerate the monetization of technical assets,
           helping each technology become real business value through the

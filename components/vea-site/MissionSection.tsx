@@ -21,12 +21,12 @@ export default function MissionSection() {
       id="mission"
       className="relative flex flex-col items-center justify-center overflow-visible px-4 py-16 pt-[env(safe-area-inset-top)] sm:min-h-[92dvh] sm:overflow-hidden sm:px-6 sm:py-20"
     >
-      <div className="pointer-events-none absolute inset-0 grid-bg opacity-30" />
+      <div className="pointer-events-none absolute inset-0 grid-bg opacity-10" />
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(60% 50% at 50% 50%, rgba(45,212,160,0.08) 0%, transparent 60%), radial-gradient(50% 40% at 85% 90%, rgba(124,156,255,0.06) 0%, transparent 65%)",
+            "radial-gradient(60% 50% at 50% 50%, rgba(45,212,160,0.065) 0%, transparent 62%), radial-gradient(44% 38% at 88% 88%, rgba(124,156,255,0.045) 0%, transparent 70%), radial-gradient(42% 34% at 8% 94%, rgba(245,166,35,0.04) 0%, transparent 72%)",
         }}
       />
 
@@ -36,9 +36,9 @@ export default function MissionSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.4 }}
           transition={{ duration: 0.5 }}
-          className="mb-4 inline-flex items-center gap-2 rounded-full border border-vea-neon/25 bg-vea-neon/[0.06] px-3 py-1 text-[10px] font-medium tracking-wide text-vea-neon/90 sm:mb-6 sm:px-4 sm:py-1.5 sm:text-xs"
+          className="mb-4 inline-flex items-center gap-2 border-l-2 border-vea-steel/75 bg-vea-steel/[0.065] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#bfd2f2] sm:mb-6 sm:px-4 sm:py-1.5 sm:text-xs"
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-vea-neon" />
+          <span className="h-1.5 w-1.5 rounded-full bg-vea-neon/75" />
           Our Mission
         </motion.div>
 
@@ -50,7 +50,7 @@ export default function MissionSection() {
           className="text-balance text-[1.62rem] font-semibold leading-[1.16] tracking-tight text-white/88 sm:text-4xl md:text-5xl"
         >
           Accelerate technical assets into{" "}
-          <span className="neon-text">monetized value.</span>
+          <span className="text-vea-mist/90">monetized value.</span>
         </motion.h2>
 
         <motion.p
@@ -58,7 +58,7 @@ export default function MissionSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.4 }}
           transition={{ duration: 0.55, delay: 0.12 }}
-          className="mx-auto mt-4 max-w-2xl text-balance text-sm leading-7 text-white/48 sm:mt-5 sm:text-base"
+          className="mx-auto mt-4 max-w-2xl text-balance text-sm leading-7 text-white/66 sm:mt-5 sm:text-base"
         >
           The hardest step in technology is not invention — it is monetization.
           VEA computes the shortest, highest-probability path from a technical
@@ -69,9 +69,13 @@ export default function MissionSection() {
           {CHAIN.map((node, i) => (
             <div
               key={node.en}
-              className="flex items-center gap-3 rounded-lg border border-white/[0.09] bg-white/[0.045] px-3 py-3 shadow-[0_10px_34px_rgba(0,0,0,0.16)]"
+              className="metal-card flex items-center gap-3 rounded-lg px-3 py-3"
             >
-              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-vea-neon/12 text-xs font-semibold text-vea-neon ring-1 ring-vea-neon/20">
+              <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-md border text-xs font-semibold ${
+                i >= 2
+                  ? "border-vea-steel/28 bg-vea-steel/[0.09] text-[#bfd2f2]"
+                  : "border-vea-neon/24 bg-vea-neon/[0.07] text-vea-mist"
+              }`}>
                 {i + 1}
               </span>
               <span className="min-w-0 text-sm font-medium text-white/82">
@@ -88,8 +92,7 @@ export default function MissionSection() {
             className="absolute top-2 h-[3px] w-24 -translate-y-1/2 rounded-full sm:w-32"
             style={{
               background:
-                "linear-gradient(90deg, transparent, rgba(245,166,35,0.95), transparent)",
-              filter: "blur(1px)",
+                "linear-gradient(90deg, transparent, rgba(245,166,35,0.55), transparent)",
             }}
             initial={{ left: "-12%" }}
             animate={{ left: ["-12%", "112%"] }}
@@ -118,7 +121,7 @@ export default function MissionSection() {
                     ],
                     boxShadow: [
                       "0 0 0px rgba(45,212,160,0)",
-                      "0 0 16px rgba(45,212,160,0.8)",
+                      "0 0 8px rgba(45,212,160,0.38)",
                       "0 0 0px rgba(45,212,160,0)",
                     ],
                     scale: [1, 1.35, 1],
@@ -145,7 +148,7 @@ export default function MissionSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: false, amount: 0.4 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mx-auto mt-8 hidden max-w-2xl text-balance text-xs leading-6 text-white/38 sm:mt-12 sm:block sm:text-sm"
+          className="mx-auto mt-8 hidden max-w-2xl text-balance text-xs leading-6 text-white/58 sm:mt-12 sm:block sm:text-sm"
         >
           Our mission is to accelerate the monetization of technical assets,
           helping each technology become real business value through the
@@ -161,12 +164,12 @@ export default function MissionSection() {
         >
           <Link
             href="/app"
-            className="group inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-full bg-vea-neon px-6 py-3 text-sm font-semibold text-black transition-transform hover:scale-[1.03] active:scale-95 sm:w-auto"
+            className="group inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-md bg-vea-neon/90 px-6 py-3 text-sm font-semibold text-black transition-colors hover:bg-vea-neon sm:w-auto"
           >
             Enter the Beta
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </Link>
-          <span className="max-w-xs text-[11px] text-white/35 sm:max-w-none sm:text-xs">
+          <span className="max-w-xs text-[11px] text-white/56 sm:max-w-none sm:text-xs">
             The distance from a technical asset to value is a computation — we
             make it shorter.
           </span>

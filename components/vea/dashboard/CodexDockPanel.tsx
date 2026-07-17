@@ -26,6 +26,12 @@ type ToolItem = {
   icon: React.ComponentType<{ className?: string }>;
 };
 
+type Message = {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+};
+
 const TOOL_COPY: Record<Lang, ToolItem[]> = {
   en: [
     {
@@ -97,19 +103,81 @@ export default function CodexDockPanel({
   const tools = useMemo(() => TOOL_COPY[lang], [lang]);
   const [selectedToolId, setSelectedToolId] = useState("market");
   const [open, setOpen] = useState(false);
+  const [input, setInput] = useState("");
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [sending, setSending] = useState(false);
   const selectedTool =
     tools.find((tool) => tool.id === selectedToolId) ?? tools[0];
 
+  const sendMessage = async () => {
+    const text = input.trim();
+    if (!text || sending) return;
+
+    const userMessage: Message = {
+      id: `user-${Date.now()}`,
+      role: "user",
+      content: text,
+    };
+    const nextMessages = [...messages, userMessage];
+
+    setMessages(nextMessages);
+    setInput("");
+    setSending(true);
+
+    try {
+      const response = await fetch("/api/compute-chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          language: lang,
+          tool: selectedTool.label,
+          messages: nextMessages.map(({ role, content }) => ({
+            role,
+            content,
+          })),
+        }),
+      });
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data?.error ?? "Request failed");
+      }
+
+      setMessages((current) => [
+        ...current,
+        {
+          id: `assistant-${Date.now()}`,
+          role: "assistant",
+          content: String(data.reply ?? ""),
+        },
+      ]);
+    } catch (error) {
+      setMessages((current) => [
+        ...current,
+        {
+          id: `assistant-error-${Date.now()}`,
+          role: "assistant",
+          content:
+            error instanceof Error
+              ? error.message
+              : t("The computation assistant is unavailable.", "计算助手暂时不可用。"),
+        },
+      ]);
+    } finally {
+      setSending(false);
+    }
+  };
+
   return (
-    <aside className="flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-white/[0.09] bg-[#06110d]/88 shadow-2xl shadow-black/35 backdrop-blur-xl">
-      <header className="flex h-12 shrink-0 items-center justify-between border-b border-white/[0.08] px-3">
+    <aside className="metal-panel flex h-full min-h-0 flex-col overflow-hidden rounded-lg backdrop-blur-xl">
+      <header className="flex h-12 shrink-0 items-center justify-between border-b border-vea-steel/14 bg-vea-steel/[0.035] px-3">
         <div className="flex min-w-0 items-center gap-2">
-          <span className="flex h-7 w-7 items-center justify-center rounded-md border border-vea-amber/25 bg-vea-amber/[0.10] text-vea-amber-soft">
+          <span className="flex h-7 w-7 items-center justify-center rounded-md border border-vea-steel/25 bg-vea-steel/[0.09] text-[#bfd2f2]">
             <Sparkles className="h-3.5 w-3.5" />
           </span>
           <div className="min-w-0">
             <p className="truncate text-sm font-semibold text-white">VEA</p>
-            <p className="truncate text-[10px] text-white/38">
+            <p className="truncate text-[10px] font-medium uppercase tracking-[0.12em] text-[#9fb7dc]">
               {t("My Computation", "我的计算")}
             </p>
           </div>
@@ -119,7 +187,7 @@ export default function CodexDockPanel({
           {mode === "float" ? (
             <button
               onClick={onDock}
-              className="flex h-7 w-7 items-center justify-center rounded-md text-white/42 transition-colors hover:bg-white/[0.07] hover:text-white"
+              className="flex h-7 w-7 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-vea-steel/[0.09] hover:text-white"
               aria-label={t("Dock chat", "停靠对话")}
             >
               <PanelRightOpen className="h-3.5 w-3.5" />
@@ -127,7 +195,7 @@ export default function CodexDockPanel({
           ) : (
             <button
               onClick={onPopOut}
-              className="flex h-7 w-7 items-center justify-center rounded-md text-white/42 transition-colors hover:bg-white/[0.07] hover:text-white"
+              className="flex h-7 w-7 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-vea-steel/[0.09] hover:text-white"
               aria-label={t("Pop out chat", "弹出对话")}
             >
               <Maximize2 className="h-3.5 w-3.5" />
@@ -135,7 +203,7 @@ export default function CodexDockPanel({
           )}
           <button
             onClick={onMinimize}
-            className="flex h-7 w-7 items-center justify-center rounded-md text-white/42 transition-colors hover:bg-white/[0.07] hover:text-white"
+            className="flex h-7 w-7 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-vea-steel/[0.09] hover:text-white"
             aria-label={t("Minimize chat", "最小化对话")}
           >
             {mode === "float" ? (
@@ -147,9 +215,38 @@ export default function CodexDockPanel({
         </div>
       </header>
 
-      <div className="min-h-0 flex-1 overflow-y-auto" />
+      <div className="min-h-0 flex-1 space-y-3 overflow-y-auto px-3 py-4">
+        {messages.length === 0 ? (
+          <div className="metal-card rounded-lg p-3">
+            <p className="text-sm font-medium text-white/88">
+              {t("Computation assistant", "计算助手")}
+            </p>
+            <p className="mt-2 text-xs leading-5 text-white/62">
+              {selectedTool.prompt}
+            </p>
+          </div>
+        ) : (
+          messages.map((message) => (
+            <div
+              key={message.id}
+              className={`rounded-lg border px-3 py-2.5 text-sm leading-6 ${
+                message.role === "user"
+                  ? "ml-6 border-vea-neon/28 bg-vea-neon/[0.09] text-white/88"
+                  : "metal-card mr-6 text-white/82"
+              }`}
+            >
+              {message.content}
+            </div>
+          ))
+        )}
+        {sending && (
+          <div className="metal-card mr-6 rounded-lg px-3 py-2.5 text-sm text-white/62">
+            {t("Computing...", "计算中...")}
+          </div>
+        )}
+      </div>
 
-      <footer className="shrink-0 border-t border-white/[0.08] p-3">
+      <footer className="shrink-0 border-t border-vea-steel/14 bg-[#08131c]/55 p-3">
         {open && (
           <div className="mb-2 grid grid-cols-2 gap-2">
             {tools.map((tool) => {
@@ -164,8 +261,8 @@ export default function CodexDockPanel({
                   }}
                   className={`flex items-center gap-2 rounded-lg px-3 py-2 text-left text-xs font-medium transition-colors ${
                     active
-                      ? "bg-vea-neon/15 text-vea-neon ring-1 ring-vea-neon/25"
-                      : "bg-white/[0.045] text-white/58 hover:bg-white/[0.075] hover:text-white"
+                      ? "bg-vea-neon/10 text-vea-neon ring-1 ring-vea-neon/18"
+                      : "bg-vea-steel/[0.055] text-white/68 hover:bg-vea-steel/[0.10] hover:text-white"
                   }`}
                 >
                   <Icon className="h-3.5 w-3.5" />
@@ -176,19 +273,27 @@ export default function CodexDockPanel({
           </div>
         )}
 
-        <div className="rounded-xl border border-white/[0.10] bg-black/28 p-2">
+        <div className="rounded-lg border border-vea-steel/20 bg-[#050c12]/72 p-2 shadow-[inset_0_1px_rgba(217,230,250,0.045)]">
           <textarea
             rows={3}
+            value={input}
+            onChange={(event) => setInput(event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+              }
+            }}
             placeholder={t(
               "Enter a company, patent, project, or signal...",
               "输入公司、专利、项目或信号..."
             )}
-            className="min-h-20 w-full resize-none bg-transparent px-2 py-1 text-sm leading-6 text-white outline-none placeholder:text-white/28"
+            className="min-h-20 w-full resize-none bg-transparent px-2 py-1 text-sm leading-6 text-white outline-none placeholder:text-white/46"
           />
           <div className="flex items-center justify-between">
             <button
               onClick={() => setOpen((value) => !value)}
-              className="inline-flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-medium text-white/52 transition-colors hover:bg-white/[0.07] hover:text-white"
+              className="inline-flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-medium text-white/68 transition-colors hover:bg-vea-steel/[0.09] hover:text-white"
             >
               <Plus className="h-3.5 w-3.5" />
               {t("Tools", "功能")}
@@ -198,7 +303,11 @@ export default function CodexDockPanel({
                 }`}
               />
             </button>
-            <button className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-vea-neon text-[#06110d] transition-transform hover:scale-[1.03]">
+            <button
+              onClick={sendMessage}
+              disabled={!input.trim() || sending}
+              className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-vea-neon text-[#06110d] transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-35"
+            >
               <SendHorizontal className="h-4 w-4" />
             </button>
           </div>

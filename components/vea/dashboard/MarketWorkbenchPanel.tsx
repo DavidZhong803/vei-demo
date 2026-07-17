@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronDown, CircuitBoard, Radio } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useLang, useT, type Lang } from "./lang";
 
 type Copy = Record<Lang, string>;
@@ -643,19 +643,19 @@ function CompanyCard({
   return (
     <button
       onClick={onSelect}
-      className={`group min-h-[92px] rounded-lg border p-3 text-left transition-all sm:min-h-[104px] ${
+      className={`group min-h-[92px] rounded-lg border p-3 text-left outline-none transition-colors focus-visible:ring-2 focus-visible:ring-vea-steel/55 sm:min-h-[104px] ${
         active
-          ? "border-vea-neon/35 bg-vea-neon/[0.11] shadow-lg shadow-vea-neon/5"
-          : "border-white/[0.075] bg-white/[0.035] hover:border-white/[0.14] hover:bg-white/[0.06]"
+          ? "border-vea-steel/38 bg-vea-steel/[0.11] shadow-[inset_0_1px_rgba(220,232,251,0.07),0_10px_28px_rgba(0,0,0,0.16)]"
+          : "metal-card hover:border-vea-steel/28 hover:bg-vea-steel/[0.07]"
       }`}
     >
       <span className="block text-sm font-semibold text-white">
         {company.name}
       </span>
-      <span className={active ? "mt-1 block text-xs text-vea-neon/80" : "mt-1 block text-xs text-white/42"}>
+      <span className={active ? "mt-1 block text-xs text-[#b9cdee]" : "mt-1 block text-xs text-white/62"}>
         {company.role[lang]}
       </span>
-      <span className="mt-3 hidden text-[11px] leading-4 text-white/34 transition-colors group-hover:text-white/46 sm:mt-4 sm:line-clamp-2 sm:block">
+      <span className="mt-3 hidden text-[11px] leading-4 text-white/50 transition-colors group-hover:text-white/66 sm:mt-4 sm:line-clamp-2 sm:block">
         {company.lines[0][lang]}
       </span>
     </button>
@@ -706,15 +706,15 @@ function GeneratedAnalysis({ company }: { company: Company }) {
       <motion.section
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        className="rounded-lg border border-white/[0.07] bg-white/[0.035] p-3 sm:hidden"
+        className="metal-card rounded-lg p-3 sm:hidden"
       >
         <div className="mb-2 flex items-center gap-2">
-          <span className="h-1.5 w-1.5 rounded-full bg-vea-neon shadow-[0_0_14px_rgba(45,212,160,0.65)]" />
-          <h3 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/38">
+          <span className="h-4 w-0.5 rounded-full bg-vea-steel/80 shadow-[0_0_10px_rgba(124,156,255,0.45)]" />
+          <h3 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#b7c9e8]">
             {STEP_LABELS[activeLine][lang]}
           </h3>
         </div>
-        <p className="min-h-[96px] text-[13px] leading-6 text-white/68">
+        <p className="min-h-[96px] text-[13px] leading-6 text-white/82">
           {typedText.slice(0, typedLength)}
           <span className="caret" />
         </p>
@@ -727,15 +727,15 @@ function GeneratedAnalysis({ company }: { company: Company }) {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.14, duration: 0.35 }}
-            className="rounded-lg border border-white/[0.07] bg-white/[0.035] p-3.5"
+            className="metal-card rounded-lg p-3.5"
           >
             <div className="mb-2 flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-vea-neon shadow-[0_0_14px_rgba(45,212,160,0.65)]" />
-              <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-white/38">
+              <span className="h-4 w-0.5 rounded-full bg-vea-steel/80 shadow-[0_0_10px_rgba(124,156,255,0.45)]" />
+              <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-[#b7c9e8]">
                 {STEP_LABELS[index][lang]}
               </h3>
             </div>
-            <p className="text-sm leading-6 text-white/68">{line[lang]}</p>
+            <p className="text-sm leading-6 text-white/80">{line[lang]}</p>
           </motion.section>
         ))}
       </div>
@@ -781,17 +781,16 @@ export default function MarketWorkbenchPanel() {
   };
 
   return (
-    <section className="space-y-3 lg:grid lg:min-h-0 lg:grid-cols-[238px_minmax(0,1fr)] lg:gap-0 lg:space-y-0 lg:overflow-hidden lg:rounded-xl lg:border lg:border-white/[0.09] lg:bg-[#07140f]/78 lg:shadow-2xl lg:shadow-black/25 lg:backdrop-blur-xl">
-      <aside className="shrink-0 overflow-hidden rounded-xl border border-white/[0.09] bg-[#07140f]/78 shadow-2xl shadow-black/20 backdrop-blur-xl lg:min-h-0 lg:rounded-none lg:border-0 lg:border-r lg:border-white/[0.08] lg:bg-transparent lg:shadow-none lg:backdrop-blur-none">
-        <div className="border-b border-white/[0.08] p-3 sm:p-4">
-          <div className="inline-flex items-center gap-2 rounded-md border border-vea-amber/20 bg-vea-amber/[0.08] px-2.5 py-1 text-[11px] font-medium text-vea-amber-soft">
-            <Radio className="h-3.5 w-3.5" />
+    <section className="space-y-3 lg:grid lg:min-h-0 lg:grid-cols-[238px_minmax(0,1fr)] lg:gap-0 lg:space-y-0 lg:overflow-hidden lg:rounded-lg metal-panel">
+      <aside className="metal-panel shrink-0 overflow-hidden rounded-lg lg:min-h-0 lg:rounded-none lg:border-0 lg:border-r lg:border-vea-steel/15 lg:bg-transparent lg:shadow-none">
+        <div className="border-b border-vea-steel/14 bg-vea-steel/[0.035] p-3 sm:p-4">
+          <div className="inline-flex items-center border-l-2 border-vea-steel/75 bg-vea-steel/[0.07] px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#b9cdee]">
             {t("Computation Market", "计算市场")}
           </div>
           <h2 className="mt-2 text-lg font-semibold text-white sm:mt-3 sm:text-xl">
             {t("AI Infrastructure", "AI 基础设施")}
           </h2>
-          <p className="mt-1 hidden text-xs leading-5 text-white/40 sm:block">
+          <p className="mt-1 hidden text-xs leading-5 text-white/62 sm:block">
             {t(
               "Pick a category, then choose a company to generate analysis.",
               "选择分类后，点击公司生成分析。"
@@ -802,14 +801,13 @@ export default function MarketWorkbenchPanel() {
         <div className="p-2">
           <button
             onClick={() => setExpanded((value) => !value)}
-            className="hidden w-full items-center justify-between rounded-md px-2 py-2 text-left text-sm font-medium text-white/76 transition-colors hover:bg-white/[0.06] lg:flex"
+            className="hidden w-full items-center justify-between rounded-md px-2 py-2 text-left text-sm font-semibold text-[#c4d3ea] transition-colors hover:bg-vea-steel/[0.08] lg:flex"
           >
             <span className="inline-flex items-center gap-2">
-              <CircuitBoard className="h-4 w-4 text-vea-neon" />
               {t("Categories", "分类")}
             </span>
             <ChevronDown
-              className={`h-4 w-4 text-white/38 transition-transform ${
+              className={`h-4 w-4 text-white/62 transition-transform ${
                 expanded ? "rotate-180" : ""
               }`}
             />
@@ -825,8 +823,8 @@ export default function MarketWorkbenchPanel() {
                     onClick={() => selectCategory(category.id)}
                     className={`w-[132px] shrink-0 rounded-md px-2.5 py-2 text-left transition-colors sm:w-[150px] lg:w-full lg:px-2 lg:py-2.5 ${
                       active
-                        ? "bg-vea-neon/12 text-vea-neon ring-1 ring-vea-neon/20"
-                        : "text-white/54 hover:bg-white/[0.05] hover:text-white/82"
+                        ? "bg-vea-steel/[0.12] text-white ring-1 ring-vea-steel/28 shadow-[inset_2px_0_rgba(124,156,255,0.8)]"
+                        : "text-white/64 hover:bg-vea-steel/[0.07] hover:text-white"
                     }`}
                   >
                     <span className="block truncate text-xs font-medium sm:text-sm">
@@ -834,7 +832,7 @@ export default function MarketWorkbenchPanel() {
                     </span>
                     <span
                       className={`mt-0.5 block truncate text-[11px] ${
-                        active ? "text-vea-neon/52" : "text-white/32"
+                        active ? "text-[#9fb7dc]" : "text-white/48"
                       }`}
                     >
                       {category.companies.length} {t("companies", "家公司")}
@@ -847,7 +845,7 @@ export default function MarketWorkbenchPanel() {
         </div>
       </aside>
 
-      <article className="overflow-visible rounded-xl border border-white/[0.09] bg-[#07140f]/78 shadow-2xl shadow-black/20 backdrop-blur-xl lg:min-h-0 lg:overflow-y-auto lg:rounded-none lg:border-0 lg:bg-transparent lg:shadow-none lg:backdrop-blur-none">
+      <article className="metal-panel overflow-visible rounded-lg lg:min-h-0 lg:overflow-y-auto lg:rounded-none lg:border-0 lg:bg-transparent lg:shadow-none">
         <div className="space-y-3 p-3 sm:space-y-4 sm:p-5">
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 xl:grid-cols-3">
             {selectedCategory.companies.map((company) => (

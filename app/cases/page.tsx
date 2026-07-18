@@ -5,9 +5,9 @@ import { CASES } from "@/lib/vea";
 
 const CASE_TONES = [
   {
-    line: "from-vea-neon/80 via-vea-neon/30 to-transparent",
-    label: "text-vea-mist",
-    wash: "group-hover:bg-vea-neon/[0.045]",
+    line: "from-[#d0dcf5] via-vea-steel/30 to-transparent",
+    label: "text-[#c8d6ee]",
+    wash: "group-hover:bg-vea-steel/[0.055]",
   },
   {
     line: "from-[#9fb3d4] via-vea-steel/30 to-transparent",

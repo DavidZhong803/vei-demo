@@ -231,7 +231,7 @@ export default function CodexDockPanel({
               key={message.id}
               className={`rounded-lg border px-3 py-2.5 text-sm leading-6 ${
                 message.role === "user"
-                  ? "ml-6 border-vea-neon/28 bg-vea-neon/[0.09] text-white/88"
+                  ? "ml-6 border-vea-steel/32 bg-vea-steel/[0.11] text-white/92"
                   : "metal-card mr-6 text-white/82"
               }`}
             >
@@ -261,7 +261,7 @@ export default function CodexDockPanel({
                   }}
                   className={`flex items-center gap-2 rounded-lg px-3 py-2 text-left text-xs font-medium transition-colors ${
                     active
-                      ? "bg-vea-neon/10 text-vea-neon ring-1 ring-vea-neon/18"
+                      ? "bg-vea-steel/14 text-[#c6d6ff] ring-1 ring-vea-steel/28"
                       : "bg-vea-steel/[0.055] text-white/68 hover:bg-vea-steel/[0.10] hover:text-white"
                   }`}
                 >
@@ -306,7 +306,7 @@ export default function CodexDockPanel({
             <button
               onClick={sendMessage}
               disabled={!input.trim() || sending}
-              className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-vea-neon text-[#06110d] transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-35"
+              className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-vea-steel text-[#071019] transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-35"
             >
               <SendHorizontal className="h-4 w-4" />
             </button>

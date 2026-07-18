@@ -643,7 +643,7 @@ function CompanyCard({
   return (
     <button
       onClick={onSelect}
-      className={`group min-h-[92px] rounded-lg border p-3 text-left outline-none transition-colors focus-visible:ring-2 focus-visible:ring-vea-steel/55 sm:min-h-[104px] ${
+      className={`group w-[68vw] max-w-[244px] shrink-0 snap-start rounded-lg border p-3 text-left outline-none transition-colors focus-visible:ring-2 focus-visible:ring-vea-steel/55 sm:min-h-[104px] sm:w-auto sm:max-w-none ${
         active
           ? "border-vea-steel/38 bg-vea-steel/[0.11] shadow-[inset_0_1px_rgba(220,232,251,0.07),0_10px_28px_rgba(0,0,0,0.16)]"
           : "metal-card hover:border-vea-steel/28 hover:bg-vea-steel/[0.07]"
@@ -655,7 +655,7 @@ function CompanyCard({
       <span className={active ? "mt-1 block text-xs text-[#b9cdee]" : "mt-1 block text-xs text-white/62"}>
         {company.role[lang]}
       </span>
-      <span className="mt-3 hidden text-[11px] leading-4 text-white/50 transition-colors group-hover:text-white/66 sm:mt-4 sm:line-clamp-2 sm:block">
+      <span className="mt-3 hidden text-[11px] leading-4 text-white/64 transition-colors group-hover:text-white/78 sm:mt-4 sm:line-clamp-2 sm:block">
         {company.lines[0][lang]}
       </span>
     </button>
@@ -814,7 +814,7 @@ export default function MarketWorkbenchPanel() {
           </button>
 
           {expanded && (
-            <div className="flex gap-2 overflow-x-auto pb-1 lg:mt-1 lg:block lg:space-y-1 lg:overflow-visible lg:pb-0">
+            <div className="scrollbar-none flex gap-2 overflow-x-auto pb-1 lg:mt-1 lg:block lg:space-y-1 lg:overflow-visible lg:pb-0">
               {CATEGORIES.map((category) => {
                 const active = category.id === selectedCategory.id;
                 return (
@@ -832,7 +832,7 @@ export default function MarketWorkbenchPanel() {
                     </span>
                     <span
                       className={`mt-0.5 block truncate text-[11px] ${
-                        active ? "text-[#9fb7dc]" : "text-white/48"
+                        active ? "text-[#b6c9e8]" : "text-white/62"
                       }`}
                     >
                       {category.companies.length} {t("companies", "家公司")}
@@ -847,7 +847,7 @@ export default function MarketWorkbenchPanel() {
 
       <article className="metal-panel overflow-visible rounded-lg lg:min-h-0 lg:overflow-y-auto lg:rounded-none lg:border-0 lg:bg-transparent lg:shadow-none">
         <div className="space-y-3 p-3 sm:space-y-4 sm:p-5">
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="scrollbar-none flex snap-x snap-mandatory gap-2 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0 xl:grid-cols-3">
             {selectedCategory.companies.map((company) => (
               <CompanyCard
                 key={company.id}

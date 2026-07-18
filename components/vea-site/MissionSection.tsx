@@ -26,7 +26,7 @@ export default function MissionSection() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(60% 50% at 50% 50%, rgba(45,212,160,0.065) 0%, transparent 62%), radial-gradient(44% 38% at 88% 88%, rgba(124,156,255,0.045) 0%, transparent 70%), radial-gradient(42% 34% at 8% 94%, rgba(245,166,35,0.04) 0%, transparent 72%)",
+            "radial-gradient(60% 50% at 50% 50%, rgba(124,156,255,0.075) 0%, transparent 62%), radial-gradient(44% 38% at 88% 88%, rgba(174,197,234,0.05) 0%, transparent 70%), radial-gradient(42% 34% at 8% 94%, rgba(86,111,162,0.045) 0%, transparent 72%)",
         }}
       />
 
@@ -38,7 +38,7 @@ export default function MissionSection() {
           transition={{ duration: 0.5 }}
           className="mb-4 inline-flex items-center gap-2 border-l-2 border-vea-steel/75 bg-vea-steel/[0.065] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#bfd2f2] sm:mb-6 sm:px-4 sm:py-1.5 sm:text-xs"
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-vea-neon/75" />
+          <span className="h-1.5 w-1.5 rounded-full bg-vea-steel/85" />
           Our Mission
         </motion.div>
 
@@ -74,7 +74,7 @@ export default function MissionSection() {
               <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-md border text-xs font-semibold ${
                 i >= 2
                   ? "border-vea-steel/28 bg-vea-steel/[0.09] text-[#bfd2f2]"
-                  : "border-vea-neon/24 bg-vea-neon/[0.07] text-vea-mist"
+                  : "border-vea-steel/28 bg-vea-steel/[0.08] text-vea-mist"
               }`}>
                 {i + 1}
               </span>
@@ -116,13 +116,13 @@ export default function MissionSection() {
                   animate={{
                     backgroundColor: [
                       "rgba(255,255,255,0.15)",
-                      "rgba(45,212,160,1)",
+                      "rgba(124,156,255,1)",
                       "rgba(255,255,255,0.15)",
                     ],
                     boxShadow: [
-                      "0 0 0px rgba(45,212,160,0)",
-                      "0 0 8px rgba(45,212,160,0.38)",
-                      "0 0 0px rgba(45,212,160,0)",
+                      "0 0 0px rgba(124,156,255,0)",
+                      "0 0 10px rgba(124,156,255,0.45)",
+                      "0 0 0px rgba(124,156,255,0)",
                     ],
                     scale: [1, 1.35, 1],
                   }}
@@ -164,7 +164,7 @@ export default function MissionSection() {
         >
           <Link
             href="/app"
-            className="group inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-md bg-vea-neon/90 px-6 py-3 text-sm font-semibold text-black transition-colors hover:bg-vea-neon sm:w-auto"
+            className="group inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-md bg-vea-steel px-6 py-3 text-sm font-semibold text-[#071019] transition-colors hover:bg-vea-mist sm:w-auto"
           >
             Enter the Beta
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

@@ -89,10 +89,10 @@ function WorkbenchContent() {
       {chatDocked && (
         <button
           onClick={() => setChatMode("float")}
-          className="absolute bottom-4 right-4 z-40 inline-flex items-center gap-2 rounded-md border border-white/[0.10] bg-[#06110d]/92 px-3 py-2 text-sm font-medium text-white/68 shadow-[0_14px_34px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-colors hover:text-white lg:hidden"
+          className="absolute bottom-4 right-4 z-40 inline-flex h-10 w-10 items-center justify-center rounded-md border border-vea-steel/22 bg-[#071019]/94 p-0 text-sm font-medium text-white/76 shadow-[0_14px_34px_rgba(0,0,0,0.32)] backdrop-blur-xl transition-colors hover:text-white sm:h-auto sm:w-auto sm:gap-2 sm:px-3 sm:py-2 lg:hidden"
         >
-          <MessageSquare className="h-4 w-4 text-vea-neon" />
-          {t("My Computation", "我的计算")}
+          <MessageSquare className="h-4 w-4 text-vea-steel" />
+          <span className="sr-only sm:not-sr-only">{t("My Computation", "我的计算")}</span>
         </button>
       )}
 
@@ -110,10 +110,10 @@ function WorkbenchContent() {
       {chatMinimized && (
         <button
           onClick={() => setChatMode("dock")}
-          className="absolute bottom-4 right-4 z-40 inline-flex items-center gap-2 rounded-md border border-white/[0.10] bg-[#06110d]/92 px-3 py-2 text-sm font-medium text-white/68 shadow-[0_14px_34px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-colors hover:text-white"
+          className="absolute bottom-4 right-4 z-40 inline-flex h-10 w-10 items-center justify-center rounded-md border border-vea-steel/22 bg-[#071019]/94 p-0 text-sm font-medium text-white/76 shadow-[0_14px_34px_rgba(0,0,0,0.32)] backdrop-blur-xl transition-colors hover:text-white sm:h-auto sm:w-auto sm:gap-2 sm:px-3 sm:py-2"
         >
-          <MessageSquare className="h-4 w-4 text-vea-neon" />
-          {t("Open My Computation", "打开我的计算")}
+          <MessageSquare className="h-4 w-4 text-vea-steel" />
+          <span className="sr-only sm:not-sr-only">{t("Open My Computation", "打开我的计算")}</span>
         </button>
       )}
     </div>

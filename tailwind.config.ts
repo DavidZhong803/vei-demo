@@ -14,27 +14,27 @@ const config: Config = {
       colors: {
         // Dark "engine" surfaces — deep green-black (GeniusFlare foundation)
         ink: {
-          DEFAULT: "#08120d",
-          soft: "#0b1712",
-          card: "#101c16",
+          DEFAULT: "#071019",
+          soft: "#0a1620",
+          card: "#101d29",
         },
         // Light "result" surfaces — warm, green-tinted stone (not stark white)
         paper: {
-          DEFAULT: "#eef1ec",
-          soft: "#e5eae2",
-          card: "#fcfdfa",
+          DEFAULT: "#eef1f5",
+          soft: "#e4e9ef",
+          card: "#fbfcfe",
         },
         vea: {
-          neon: "#2dd4a0", // dark-mode refined jade (primary accent)
-          glow: "#17b184", // deeper jade for glows / gradients
-          mist: "#7ff0d0", // light mint tip for gradient text
+          neon: "#86a8ff", // primary cold-steel accent
+          glow: "#597ed6", // deeper blue for glows / gradients
+          mist: "#c6d6ff", // pale steel highlight
           steel: "#7c9cff", // cool secondary — adds technical depth
-          emerald: "#059669", // light-mode professional green (value)
-          "emerald-soft": "#10b981",
+          emerald: "#607fbf", // legacy token remapped to steel blue
+          "emerald-soft": "#7c9cff",
           amber: "#e08a12", // the "flare" — acceleration / live signals
           "amber-soft": "#f5a623",
           gold: "#fbbf24",
-          ink: "#06110d",
+          ink: "#071019",
         },
       },
       keyframes: {

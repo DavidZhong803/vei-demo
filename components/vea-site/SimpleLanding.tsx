@@ -26,7 +26,7 @@ export default function SimpleLanding() {
         <nav className="flex items-center gap-2">
           <Link
             href="/app"
-            className="group inline-flex items-center gap-2 rounded-md border border-white/[0.11] bg-white/[0.04] px-3 py-2 text-sm font-medium text-white/72 transition-colors hover:border-vea-neon/30 hover:bg-vea-neon/[0.055] hover:text-vea-mist sm:px-4"
+            className="group inline-flex items-center gap-2 rounded-md border border-white/[0.14] bg-white/[0.055] px-3 py-2 text-sm font-medium text-white/80 transition-colors hover:border-vea-steel/45 hover:bg-vea-steel/[0.10] hover:text-vea-mist sm:px-4"
           >
             Try the Beta
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -49,7 +49,7 @@ export default function SimpleLanding() {
         <div className="mt-8 flex w-full max-w-sm flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row">
           <Link
             href="/app"
-            className="group inline-flex items-center justify-center gap-2 rounded-md bg-vea-neon/90 px-5 py-3 text-sm font-semibold text-[#06110d] shadow-[0_12px_32px_rgba(45,212,160,0.12)] transition-colors hover:bg-vea-mist"
+            className="group inline-flex items-center justify-center gap-2 rounded-md bg-vea-steel px-5 py-3 text-sm font-semibold text-[#071019] shadow-[0_12px_34px_rgba(124,156,255,0.18)] transition-colors hover:bg-vea-mist"
           >
             Start computing
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

@@ -49,7 +49,8 @@ export default function CasesPage() {
           See the computation through its results.
         </h1>
         <p className="mt-4 max-w-xl text-sm leading-7 text-white/66 sm:text-base">
-          Select a company to open its computed position, timing window, and monetization path.
+          Select a company to inspect its value-chain position, defensible IP,
+          timing window, and executable transaction routes.
         </p>
 
         <div className="mt-10 grid gap-4 sm:mt-14 sm:grid-cols-2 lg:grid-cols-3">

@@ -39,11 +39,12 @@ export default function SimpleLanding() {
           Technical Asset Monetization Engine
         </p>
         <h1 className="max-w-3xl text-balance text-[2.15rem] font-semibold leading-[1.06] tracking-tight text-white/90 sm:text-5xl md:text-[3.6rem]">
-          Compute the <span className="text-vea-mist">value</span> of technology in time.
+          Turn technical position into{" "}
+          <span className="text-vea-mist">commercial leverage.</span>
         </h1>
-        <p className="mt-5 max-w-xl text-balance text-sm leading-6 text-white/66 sm:text-base sm:leading-7">
-          VEA turns market structure, technical assets, and timing windows into
-          a clear monetization path.
+        <p className="mt-5 max-w-2xl text-balance text-sm leading-6 text-white/66 sm:text-base sm:leading-7">
+          VEA connects value-chain position, IP evidence, market timing, and
+          counterparties to the most viable route to realized value.
         </p>
 
         <div className="mt-8 flex w-full max-w-sm flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row">

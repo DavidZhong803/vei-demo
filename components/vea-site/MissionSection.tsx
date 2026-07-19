@@ -6,10 +6,10 @@ import { ArrowRight } from "lucide-react";
 
 const CHAIN = [
   { en: "Technical Asset", mobile: "Asset" },
-  { en: "Validation", mobile: "Validate" },
-  { en: "Productization", mobile: "Productize" },
-  { en: "Market", mobile: "Launch" },
-  { en: "Monetization", mobile: "Monetize" },
+  { en: "Evidence", mobile: "Evidence" },
+  { en: "Value-chain Position", mobile: "Position" },
+  { en: "Counterparty", mobile: "Match" },
+  { en: "Transaction Route", mobile: "Transact" },
 ];
 
 const STEP_DELAY = [0, 1.15, 1.7, 2.1, 2.4];
@@ -49,8 +49,8 @@ export default function MissionSection() {
           transition={{ duration: 0.55, delay: 0.05 }}
           className="text-balance text-[1.62rem] font-semibold leading-[1.16] tracking-tight text-white/88 sm:text-4xl md:text-5xl"
         >
-          Accelerate technical assets into{" "}
-          <span className="text-vea-mist/90">monetized value.</span>
+          Move technical assets from protection to{" "}
+          <span className="text-vea-mist/90">commercial leverage.</span>
         </motion.h2>
 
         <motion.p
@@ -60,9 +60,9 @@ export default function MissionSection() {
           transition={{ duration: 0.55, delay: 0.12 }}
           className="mx-auto mt-4 max-w-2xl text-balance text-sm leading-7 text-white/66 sm:mt-5 sm:text-base"
         >
-          The hardest step in technology is not invention — it is monetization.
-          VEA computes the shortest, highest-probability path from a technical
-          asset to realized value — moving faster than the market can react.
+          A patent is not the outcome. VEA identifies where an asset controls
+          the value chain, who needs access, and which transaction can convert
+          that position into revenue or strategic advantage.
         </motion.p>
 
         <div className="mx-auto mt-8 grid w-full max-w-sm gap-2.5 text-left sm:hidden">
@@ -150,9 +150,9 @@ export default function MissionSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mx-auto mt-8 hidden max-w-2xl text-balance text-xs leading-6 text-white/58 sm:mt-12 sm:block sm:text-sm"
         >
-          Our mission is to accelerate the monetization of technical assets,
-          helping each technology become real business value through the
-          shortest path and the highest probability.
+          VEA turns patent strength, technical know-how, market evidence, and
+          competitive position into actionable routes: product revenue,
+          licensing, cross-licensing, partnership, or asset transaction.
         </motion.p>
 
         <motion.div
@@ -170,8 +170,7 @@ export default function MissionSection() {
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </Link>
           <span className="max-w-xs text-[11px] text-white/56 sm:max-w-none sm:text-xs">
-            The distance from a technical asset to value is a computation — we
-            make it shorter.
+            From technical evidence to a defensible transaction route.
           </span>
         </motion.div>
       </div>

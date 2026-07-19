@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "VEA — Technical Asset Monetization Engine",
   description:
-    "VEA computes the optimal path to monetize technical assets within a time window, and delivers the result.",
+    "VEA connects technical evidence, value-chain position, market timing, and counterparties to executable monetization routes.",
 };
 
 export const viewport: Viewport = {

@@ -58,6 +58,15 @@ npm run build
 npm start
 ```
 
+For live SEC EDGAR disclosures, create `.env.local` and identify the automated
+client with a real contact email:
+
+```bash
+SEC_USER_AGENT="VEA Market Intelligence your-email@example.com"
+```
+
+Set the same variable in the Vercel project environment before deployment.
+
 ---
 
 ## Project structure

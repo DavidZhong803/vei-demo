@@ -3,19 +3,23 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useLang, useT } from "@/components/vea/dashboard/lang";
 
 const CHAIN = [
-  { en: "Technical Asset", mobile: "Asset" },
-  { en: "Evidence", mobile: "Evidence" },
-  { en: "Value-chain Position", mobile: "Position" },
-  { en: "Counterparty", mobile: "Match" },
-  { en: "Transaction Route", mobile: "Transact" },
+  { en: "Technical Asset", zh: "技术资产", mobileEn: "Asset", mobileZh: "资产" },
+  { en: "Evidence", zh: "证据", mobileEn: "Evidence", mobileZh: "证据" },
+  { en: "Value-chain Position", zh: "价值链位置", mobileEn: "Position", mobileZh: "位置" },
+  { en: "Counterparty", zh: "交易对手", mobileEn: "Match", mobileZh: "匹配" },
+  { en: "Transaction Route", zh: "交易路径", mobileEn: "Transact", mobileZh: "交易" },
 ];
 
 const STEP_DELAY = [0, 1.15, 1.7, 2.1, 2.4];
 const LOOP = 3.8;
 
 export default function MissionSection() {
+  const { lang } = useLang();
+  const t = useT();
+
   return (
     <section
       id="mission"
@@ -39,7 +43,7 @@ export default function MissionSection() {
           className="mb-4 inline-flex items-center gap-2 border-l-2 border-vea-steel/75 bg-vea-steel/[0.065] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#bfd2f2] sm:mb-6 sm:px-4 sm:py-1.5 sm:text-xs"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-vea-steel/85" />
-          Our Mission
+          {t("Our Mission", "我们的使命")}
         </motion.div>
 
         <motion.h2
@@ -49,8 +53,10 @@ export default function MissionSection() {
           transition={{ duration: 0.55, delay: 0.05 }}
           className="text-balance text-[1.62rem] font-semibold leading-[1.16] tracking-tight text-white/88 sm:text-4xl md:text-5xl"
         >
-          Move technical assets from protection to{" "}
-          <span className="text-vea-mist/90">commercial leverage.</span>
+          {t("Move technical assets from protection to ", "让技术资产从保护走向")}
+          <span className="text-vea-mist/90">
+            {t("commercial leverage.", "商业价值。")}
+          </span>
         </motion.h2>
 
         <motion.p
@@ -60,9 +66,10 @@ export default function MissionSection() {
           transition={{ duration: 0.55, delay: 0.12 }}
           className="mx-auto mt-4 max-w-2xl text-balance text-sm leading-7 text-white/66 sm:mt-5 sm:text-base"
         >
-          A patent is not the outcome. VEA identifies where an asset controls
-          the value chain, who needs access, and which transaction can convert
-          that position into revenue or strategic advantage.
+          {t(
+            "A patent is not the outcome. VEA identifies where an asset controls the value chain, who needs access, and which transaction can convert that position into revenue or strategic advantage.",
+            "专利不是终点。VEA 判断资产控制价值链的位置、谁需要获得使用权，以及哪种交易可以将这一位置转化为收入或战略优势。"
+          )}
         </motion.p>
 
         <div className="mx-auto mt-8 grid w-full max-w-sm gap-2.5 text-left sm:hidden">
@@ -79,7 +86,7 @@ export default function MissionSection() {
                 {i + 1}
               </span>
               <span className="min-w-0 text-sm font-medium text-white/82">
-                {node.mobile}
+                {lang === "zh" ? node.mobileZh : node.mobileEn}
               </span>
             </div>
           ))}
@@ -135,8 +142,12 @@ export default function MissionSection() {
                   }}
                 />
                 <span className="mt-3 text-[11px] font-medium text-white/80 sm:mt-4 sm:text-sm">
-                  <span className="sm:hidden">{node.mobile}</span>
-                  <span className="hidden sm:inline">{node.en}</span>
+                  <span className="sm:hidden">
+                    {lang === "zh" ? node.mobileZh : node.mobileEn}
+                  </span>
+                  <span className="hidden sm:inline">
+                    {lang === "zh" ? node.zh : node.en}
+                  </span>
                 </span>
               </div>
             ))}
@@ -150,9 +161,10 @@ export default function MissionSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mx-auto mt-8 hidden max-w-2xl text-balance text-xs leading-6 text-white/58 sm:mt-12 sm:block sm:text-sm"
         >
-          VEA turns patent strength, technical know-how, market evidence, and
-          competitive position into actionable routes: product revenue,
-          licensing, cross-licensing, partnership, or asset transaction.
+          {t(
+            "VEA turns patent strength, technical know-how, market evidence, and competitive position into actionable routes: product revenue, licensing, cross-licensing, partnership, or asset transaction.",
+            "VEA 将专利强度、技术 know-how、市场证据与竞争位置转化为可执行路径：产品收入、许可、交叉许可、合作或资产交易。"
+          )}
         </motion.p>
 
         <motion.div
@@ -166,11 +178,14 @@ export default function MissionSection() {
             href="/app"
             className="group inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-md bg-vea-steel px-6 py-3 text-sm font-semibold text-[#071019] transition-colors hover:bg-vea-mist sm:w-auto"
           >
-            Enter the Beta
+            {t("Enter the Beta", "进入 Beta")}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </Link>
           <span className="max-w-xs text-[11px] text-white/56 sm:max-w-none sm:text-xs">
-            From technical evidence to a defensible transaction route.
+            {t(
+              "From technical evidence to a defensible transaction route.",
+              "从技术证据走向可辩护的交易路径。"
+            )}
           </span>
         </motion.div>
       </div>

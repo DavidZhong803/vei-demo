@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown, ExternalLink, RefreshCw, Search, X } from "lucide-react";
 import {
@@ -1001,14 +1001,14 @@ function CompanyCard({
     <button
       onClick={onSelect}
       data-company-id={company.id}
-      className={`group w-[68vw] max-w-[244px] shrink-0 snap-start rounded-lg border p-3 text-left outline-none transition-colors focus-visible:ring-2 focus-visible:ring-vea-steel/55 sm:min-h-[104px] sm:w-auto sm:max-w-none ${
+      className={`group min-h-[66px] w-full rounded-lg border p-3 text-left outline-none transition-colors focus-visible:ring-2 focus-visible:ring-vea-steel/55 sm:min-h-[104px] ${
         active
           ? "border-vea-steel/38 bg-vea-steel/[0.11] shadow-[inset_0_1px_rgba(220,232,251,0.07),0_10px_28px_rgba(0,0,0,0.16)]"
           : "metal-card hover:border-vea-steel/28 hover:bg-vea-steel/[0.07]"
       }`}
     >
       <span className="flex items-baseline justify-between gap-2">
-        <span className="block truncate text-sm font-semibold text-white">
+        <span className="block min-w-0 truncate text-[13px] font-semibold text-white sm:text-sm">
           {company.name}
         </span>
         <span className="shrink-0 text-[10px] font-medium text-white/46">
@@ -1306,7 +1306,6 @@ export default function MarketWorkbenchPanel() {
     null
   );
   const [searchQuery, setSearchQuery] = useState("");
-  const companyStripRef = useRef<HTMLDivElement>(null);
 
   const selectedCategory = useMemo(
     () =>
@@ -1357,18 +1356,6 @@ export default function MarketWorkbenchPanel() {
     return () => query.removeEventListener("change", syncExpanded);
   }, []);
 
-  useEffect(() => {
-    if (!selectedCompanyId || searchQuery) return;
-    const selectedCard = companyStripRef.current?.querySelector<HTMLElement>(
-      `[data-company-id="${selectedCompanyId}"]`
-    );
-    selectedCard?.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "start",
-    });
-  }, [searchQuery, selectedCategoryId, selectedCompanyId]);
-
   const selectCategory = (id: string) => {
     setSelectedCategoryId(id);
     setSelectedCompanyId(null);
@@ -1388,15 +1375,6 @@ export default function MarketWorkbenchPanel() {
           <div className="inline-flex items-center border-l-2 border-vea-steel/75 bg-vea-steel/[0.07] px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#b9cdee]">
             {t("Computation Market", "计算市场")}
           </div>
-          <h2 className="mt-2 text-lg font-semibold text-white sm:mt-3 sm:text-xl">
-            {t("US-listed AI Infrastructure", "美国上市 AI 基础设施")}
-          </h2>
-          <p className="mt-1 hidden text-xs leading-5 text-white/62 sm:block">
-            {t(
-              "Pick a category, then choose a company to generate analysis.",
-              "选择分类后，点击公司生成分析。"
-            )}
-          </p>
         </div>
 
         <div className="p-2">
@@ -1432,6 +1410,28 @@ export default function MarketWorkbenchPanel() {
             )}
           </div>
 
+          <div className="relative lg:hidden">
+            <label htmlFor="market-category-select" className="sr-only">
+              {t("Category", "分类")}
+            </label>
+            <select
+              id="market-category-select"
+              value={selectedCategory.id}
+              onChange={(event) => selectCategory(event.target.value)}
+              className="h-10 w-full appearance-none rounded-md border border-white/[0.09] bg-[#0a151e] px-3 pr-9 text-[13px] font-medium text-white/78 outline-none transition-colors focus:border-vea-steel/38 focus:ring-1 focus:ring-vea-steel/20"
+            >
+              {CATEGORIES.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.label[lang]} · {category.companies.length}
+                </option>
+              ))}
+            </select>
+            <ChevronDown
+              aria-hidden="true"
+              className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/48"
+            />
+          </div>
+
           <button
             onClick={() => setExpanded((value) => !value)}
             className="hidden w-full items-center justify-between rounded-md px-2 py-2 text-left text-sm font-semibold text-[#c4d3ea] transition-colors hover:bg-vea-steel/[0.08] lg:flex"
@@ -1447,20 +1447,20 @@ export default function MarketWorkbenchPanel() {
           </button>
 
           {expanded && (
-            <div className="scrollbar-none flex gap-2 overflow-x-auto pb-1 lg:mt-1 lg:block lg:space-y-1 lg:overflow-visible lg:pb-0">
+            <div className="hidden lg:mt-1 lg:block lg:space-y-1">
               {CATEGORIES.map((category) => {
                 const active = category.id === selectedCategory.id;
                 return (
                   <button
                     key={category.id}
                     onClick={() => selectCategory(category.id)}
-                    className={`min-h-[54px] w-[132px] shrink-0 rounded-md px-2.5 py-2 text-left transition-colors sm:min-h-[58px] sm:w-[166px] lg:w-full lg:px-2 lg:py-2.5 ${
+                    className={`w-full rounded-md px-2 py-2.5 text-left transition-colors ${
                       active
                         ? "bg-vea-steel/[0.12] text-white ring-1 ring-vea-steel/28 shadow-[inset_2px_0_rgba(124,156,255,0.8)]"
                         : "text-white/64 hover:bg-vea-steel/[0.07] hover:text-white"
                     }`}
                   >
-                    <span className="line-clamp-2 block text-[11px] font-medium leading-4 sm:text-sm">
+                    <span className="line-clamp-2 block text-sm font-medium leading-4">
                       {category.label[lang]}
                     </span>
                     <span
@@ -1485,10 +1485,7 @@ export default function MarketWorkbenchPanel() {
               {searchResults.length} {t("matching companies", "家匹配公司")}
             </p>
           )}
-          <div
-            ref={companyStripRef}
-            className="scrollbar-none flex snap-x snap-mandatory gap-2 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0 xl:grid-cols-3"
-          >
+          <div className="grid grid-cols-1 gap-2 min-[360px]:grid-cols-2 sm:grid-cols-2 xl:grid-cols-3">
             {visibleCompanies.map(({ category, company }) => (
               <CompanyCard
                 key={company.id}
